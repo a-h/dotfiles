@@ -1,0 +1,21 @@
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[user]
+	name = Adrian Hesketh
+	email = adrianhesketh@hushmail.com
+	signingkey = 22323123
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain
+[http]
+	cookiefile = /Users/adrian/.gitcookies
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg2
+[url "git@github.com:"]
+	insteadOf = https://github.com/
