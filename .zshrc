@@ -3,6 +3,20 @@ export PATH=/usr/local/bin/:$PATH
 export PATH="$PATH:/Users/adrian/.dotnet/tools"
 export PATH="$PATH:/Users/adrian/bin"
 
+# Use the dotfiles.
+if [ ! -f $HOME/.gitconfig ]; then
+    ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
+fi
+if [ ! -f $HOME/.tmux.conf ]; then
+    ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
+fi
+if [ ! -f $HOME/.vimrc ]; then
+    ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
+fi
+if [ ! -f $HOME/.zshrc ]; then
+    ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
+fi
+
 # Set the prompt.
 NT_PROMPT_SYMBOL=❱
 
