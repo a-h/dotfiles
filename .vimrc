@@ -67,7 +67,18 @@ Plug 'ruanyl/coverage.vim'
 " Snippets management.
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+" Easy grep. 
+" :Grep [arg] to search (\vv to search for word under cursor)
+" :Replace [target] [replacement] to replace across all files (\vr to replace
+" word under cursor)
+Plug 'dkprice/vim-easygrep'
 call plug#end()
+
+" vim-easygrep config.
+let g:EasyGrepRoot="repository"
+let g:EasyGrepRecursive=1
+" use ripgrep (brew install ripgrep)
+let g:EasyGrepCommand='rg'
 
 " Set colors.
 highlight Normal ctermfg=white ctermbg=black
@@ -105,8 +116,8 @@ let g:go_auto_type_info = 1
 " let g:go_highlight_extra_types = 1
 " let g:go_highlight_fields = 1
 " let g:go_highlight_types = 1
-" Highlight same names.
-let g:go_auto_sameids = 1
+" Don't highlight same names.
+let g:go_auto_sameids = 0
 " disable vim-go :GoDef short cut (gd)
 " this is handled by LanguageClient [LC]
 let g:go_def_mapping_enabled = 0
