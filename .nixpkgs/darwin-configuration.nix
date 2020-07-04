@@ -13,18 +13,22 @@
 	pkgs.gnupg
 	pkgs.go
 	pkgs.gopass
+	pkgs.graphviz
 	pkgs.htop
 	pkgs.hugo
 	pkgs.jq
 	pkgs.lynx
 	pkgs.neovim
+	pkgs.nmap
 	pkgs.nodejs
 	pkgs.ripgrep
 	pkgs.terraform
 	pkgs.tmux
 	pkgs.tree
+	pkgs.unzip
 	pkgs.wget
 	pkgs.yarn
+	pkgs.zip
     ];
 
   # Use a custom configuration.nix location.
