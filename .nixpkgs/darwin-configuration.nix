@@ -6,6 +6,7 @@
   environment.systemPackages =
     [ 
 	pkgs.awscli
+	pkgs.docker
 	pkgs.fzf
 	pkgs.git
 	pkgs.gitAndTools.gh
@@ -19,6 +20,7 @@
 	pkgs.neovim
 	pkgs.nodejs
 	pkgs.ripgrep
+	pkgs.terraform
 	pkgs.tmux
 	pkgs.tree
 	pkgs.wget
