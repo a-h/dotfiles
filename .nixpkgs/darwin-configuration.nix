@@ -8,6 +8,7 @@
 	pkgs.tmux
 	pkgs.neovim
 	pkgs.fzf
+	pkgs.git
 	pkgs.jq
 	pkgs.htop
 	pkgs.lynx
