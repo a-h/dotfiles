@@ -5,24 +5,24 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
     [ 
-	pkgs.tmux
-	pkgs.neovim
+	pkgs.awscli
 	pkgs.fzf
 	pkgs.git
-	pkgs.jq
-	pkgs.htop
-	pkgs.lynx
-	pkgs.ripgrep
-	pkgs.wget
-	pkgs.yarn
-	pkgs.tree
-	pkgs.nodejs
 	pkgs.gitAndTools.gh
 	pkgs.gnupg
-	pkgs.gopass
 	pkgs.go
-	pkgs.awscli
+	pkgs.gopass
+	pkgs.htop
 	pkgs.hugo
+	pkgs.jq
+	pkgs.lynx
+	pkgs.neovim
+	pkgs.nodejs
+	pkgs.ripgrep
+	pkgs.tmux
+	pkgs.tree
+	pkgs.wget
+	pkgs.yarn
     ];
 
   # Use a custom configuration.nix location.
