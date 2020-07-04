@@ -16,6 +16,9 @@ fi
 if [ ! -f $HOME/.zshrc ]; then
     ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
 fi
+if [ ! -f $HOME/.nixpkgs/darwin-configuration.nix ]; then
+    ln -s $HOME/dotfiles/.nixpkgs/darwin-configuration.nix $HOME/.nixpkgs
+fi
 
 # Set the prompt.
 NT_PROMPT_SYMBOL=❱
@@ -83,3 +86,6 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 export KEYTIMEOUT=1
+
+# Configure nix package manager.
+if [ -e /Users/adrian/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/adrian/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
