@@ -19,6 +19,8 @@
 	pkgs.gitAndTools.gh
 	pkgs.gnupg
 	pkgs.gopass
+	pkgs.go
+	pkgs.awscli
 	pkgs.hugo
     ];
 
