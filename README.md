@@ -7,10 +7,12 @@
 
 # New machine setup
 
-1. Clone this repo to `~/dotfiles`
-2. Execute the MacOS settings: `./.macos`
-2. Install nix and nix-darwin.
-3. Execute `darwin-rebuild switch` to install packages.
+
+1. Import public SSH key (`gpg --import pubkey.asc`)
+2. Clone this repo to `~/dotfiles`
+3. Execute the MacOS settings: `./.macos`
+4. Install nix and nix-darwin.
+5. Execute `darwin-rebuild switch` to install packages.
 
 ## Nix setup
 
