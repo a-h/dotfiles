@@ -1,4 +1,29 @@
 { config, pkgs, ... }:
+
+let
+
+  coverage = pkgs.vimUtils.buildVimPlugin {
+    name = "vim-coverage";
+    src = pkgs.fetchFromGitHub {
+      owner = "ruanyl";
+      repo = "coverage.vim";
+      rev = "1d4cd01e1e99d567b640004a8122be8105046921";
+      sha256 = "1vr6ylppwd61rj0l7m6xb0scrld91wgqm0bvnxs54b20vjbqcsap";
+    };
+  };
+
+  easygrep = pkgs.vimUtils.buildVimPlugin {
+    name = "vim-easygrep";
+    src = pkgs.fetchFromGitHub {
+      owner = "dkprice";
+      repo = "vim-easygrep";
+      rev = "d0c36a77cc63c22648e792796b1815b44164653a";
+      sha256 = "0y2p5mz0d5fhg6n68lhfhl8p4mlwkb82q337c22djs4w5zyzggbc";
+    };
+  };
+
+in
+
 {
   environment.variables = { EDITOR = "vim"; };
 
@@ -22,7 +47,7 @@
 	pkgs.nmap
 	pkgs.nodejs
 	pkgs.ripgrep
-        pkgs.slack
+        # pkgs.slack # currently broken
 	pkgs.terraform
 	pkgs.tmux
 	pkgs.tree
@@ -45,10 +70,10 @@
                     vim-sleuth #tpope/vim-sleuth
                     vim-surround #tpope/vim-surround
                     vim-test #janko/vim-test
-                    # coverage #ruanyl/coverage.vim' # Need to create this one
+                    coverage #ruanyl/coverage.vim
                     ultisnips #SirVer/ultisnips
                     vim-snippets #honza/vim-snippets
-                    # vim-easygrep #dkprice/vim-easygrep # Also missing
+                    easygrep #dkprice/vim-easygrep # Also missing
                   ]; 
 		  opt = [];
 		};
