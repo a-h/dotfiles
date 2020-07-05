@@ -17,26 +17,10 @@ if [ ! -f $HOME/.nixpkgs/darwin-configuration.nix ]; then
     ln -s $HOME/dotfiles/.nixpkgs/darwin-configuration.nix $HOME/.nixpkgs
 fi
 
-# Set the prompt.
-NT_PROMPT_SYMBOL=❱
-
-function precmd(){
-  autoload -U add-zsh-hook
-  setopt prompt_subst
-
-  PROMPT='${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}%(?.%F{green}${NT_PROMPT_SYMBOL}%f.%F{red}${NT_PROMPT_SYMBOL}%f) '
-
-  if [[ "$NT_HIDE_EXIT_CODE" == '1' ]]; then
-          RPROMPT=''
-  else
-          RPROMPT='%(?..%F{red}%B%S  $?  %s%b%f)'
-  fi
-}
-
 # Configure Nitrokey SSH.
 unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-	export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 fi
 
 # Get rid of telemetry.
@@ -68,14 +52,11 @@ bindkey "${key[Home]}"     beginning-of-line
 bindkey "${key[End]}"      end-of-line
 bindkey "^[[3~" delete-char
 
-function zle-line-init zle-keymap-select {
-    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
-    zle reset-prompt
-}
+# number of jobs, return code of previous command, current directory, % if not root, or # if root.
+PROMPT="%j %? %d %# "
 
-zle -N zle-line-init
 zle -N zle-keymap-select
 export KEYTIMEOUT=1
 
 # Configure nix package manager.
-if [ -e /Users/adrian/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/adrian/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [ -e /Users/adrian/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/adrian/.nix-profile/etc/profile.d/nix.sh; fi 
