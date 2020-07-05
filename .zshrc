@@ -10,10 +10,6 @@ fi
 if [ ! -f $HOME/.tmux.conf ]; then
     ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
 fi
-if [ ! -f $HOME/.config/nvim/init.vim ]; then
-    mkdir -p $HOME/.config/nvim
-    ln -s $HOME/dotfiles/.config/nvim/init.vim $HOME/.config/nvim/init.vim
-fi
 if [ ! -f $HOME/.zshrc ]; then
     ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
 fi
