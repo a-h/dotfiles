@@ -45,3 +45,21 @@ Find more packages with `nix-env -qaP <package_name>` or by browsing https://git
 
 Once found, add them to the `darwin-configuration.nix` file and rebuild with `darwin-rebuild switch`
 
+# Other programs
+
+* EAGLE - https://www.autodesk.co.uk/products/eagle/free-download?plc=F360&term=1-YEAR&support=ADVANCED&quantity=1
+* Arduino IDE
+* Affinity Photo
+* Caffeine
+* Chrome
+* Etcher
+* Flycut
+* Giphy capture
+* Little Snitch
+* Microsoft Remote Desktop
+* NoSQL Workbench DynamoDB
+* Skype Meetings
+* Skype
+* Spotify
+* Wireshark 
+* VLC

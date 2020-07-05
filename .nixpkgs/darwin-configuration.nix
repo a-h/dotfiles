@@ -44,14 +44,15 @@ in
 	pkgs.hugo
 	pkgs.jq
 	pkgs.lynx
+	pkgs.musescore
 	pkgs.nmap
 	pkgs.nodejs
 	pkgs.ripgrep
-        # pkgs.slack # currently broken
 	pkgs.terraform
 	pkgs.tmux
 	pkgs.tree
 	pkgs.unzip
+	pkgs.vscode
 	pkgs.wget
 	pkgs.yarn
 	pkgs.zip
@@ -73,7 +74,7 @@ in
                     coverage #ruanyl/coverage.vim
                     ultisnips #SirVer/ultisnips
                     vim-snippets #honza/vim-snippets
-                    easygrep #dkprice/vim-easygrep # Also missing
+                    easygrep #dkprice/vim-easygrep
                   ]; 
 		  opt = [];
 		};
