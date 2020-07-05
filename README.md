@@ -2,8 +2,8 @@
 
 * MacOS configuration shell script at `.macos` to disable pointless animations, free up screen space and remove background processes.
 * Nix package manager used to install system.
-* Tmux configuration.
-* ZSH configuration.
+* tmux configuration.
+* zsh configuration.
 
 # New machine setup
 
