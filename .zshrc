@@ -10,8 +10,9 @@ fi
 if [ ! -f $HOME/.tmux.conf ]; then
     ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
 fi
-if [ ! -f $HOME/.vimrc ]; then
-    ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
+if [ ! -f $HOME/.config/nvim/init.vim ]; then
+    mkdir -p $HOME/.config/nvim
+    ln -s $HOME/dotfiles/.config/nvim/init.vim $HOME/.config/nvim/init.vim
 fi
 if [ ! -f $HOME/.zshrc ]; then
     ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
@@ -42,16 +43,9 @@ if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
 	export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 fi
 
-# Use brewed vim.
-alias vi=/usr/local/bin/nvim
-alias vim=/usr/local/bin/nvim
-
 # Get rid of telemetry.
 export SAM_CLI_TELEMETRY=0
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
-
-# Java configuration.
-export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Create an alias for listening.
 listening() {
