@@ -54,8 +54,8 @@ bindkey "^[[3~" delete-char
 
 # number of jobs, return code of previous command, current directory, % if not root, or # if root.
 PROMPT="%j %? %d %# "
+RPROMPT=""
 
-zle -N zle-keymap-select
 export KEYTIMEOUT=1
 
 # Configure nix package manager.
