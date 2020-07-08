@@ -16,6 +16,10 @@ fi
 if [ ! -f $HOME/.nixpkgs/darwin-configuration.nix ]; then
     ln -s $HOME/dotfiles/.nixpkgs/darwin-configuration.nix $HOME/.nixpkgs
 fi
+if [ ! -f $HOME/ssofresh ]; then
+    ln -s $HOME/dotfiles/aws/ssofresh.py $HOME/ssofresh
+    chmod +x $HOME/ssofresh
+fi
 
 # Configure Nitrokey SSH.
 unset SSH_AGENT_PID

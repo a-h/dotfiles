@@ -22,6 +22,11 @@ let
     };
   };
 
+  python-with-global-packages = pkgs.python3.withPackages(ps: with ps; [
+    pip
+    botocore
+  ]);
+
 in
 
 {
@@ -30,7 +35,9 @@ in
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
-    [ 
+    [
+	python-with-global-packages
+        pkgs.asciinema
 	pkgs.awscli
 	pkgs.docker
 	pkgs.fzf
