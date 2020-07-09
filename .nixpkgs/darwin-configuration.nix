@@ -74,6 +74,7 @@ in
                     vim-lastplace 
                     vim-nix 
                     coc-nvim
+		    coc-tsserver # neoclide/coc-tsserver
                     nerdcommenter #preservim/nerdcommenter
                     ctrlp #ctrlpvim/ctrlp.vim
                     vim-sleuth #tpope/vim-sleuth
