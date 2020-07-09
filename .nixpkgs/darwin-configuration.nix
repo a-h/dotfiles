@@ -36,61 +36,63 @@ in
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
     [
-	python-with-global-packages
-        pkgs.asciinema
-	pkgs.awscli
-	pkgs.docker
-	pkgs.fzf
-	pkgs.git
-	pkgs.gitAndTools.gh
-	pkgs.gnupg
-	pkgs.go
-	pkgs.gopass
-	pkgs.graphviz
-	pkgs.htop
-	pkgs.hugo
-	pkgs.jq
-	pkgs.lynx
-	pkgs.musescore
-	pkgs.nmap
-	pkgs.nodejs
-	pkgs.nodePackages.serverless
-	pkgs.ripgrep
-	pkgs.terraform
-	pkgs.tmux
-	pkgs.tree
-	pkgs.unzip
-	pkgs.vscode
-	pkgs.wget
-	pkgs.yarn
-	pkgs.zip
-	(
-           pkgs.neovim.override {
-	      vimAlias = true;
-	      configure = {
-		packages.myPlugins = with pkgs.vimPlugins; {
-                  start = [ 
-                    vim-go
-                    vim-lastplace 
-                    vim-nix 
-                    coc-nvim
-		    coc-tsserver # neoclide/coc-tsserver
-                    nerdcommenter #preservim/nerdcommenter
-                    ctrlp #ctrlpvim/ctrlp.vim
-                    vim-sleuth #tpope/vim-sleuth
-                    vim-surround #tpope/vim-surround
-                    vim-test #janko/vim-test
-                    coverage #ruanyl/coverage.vim
-                    ultisnips #SirVer/ultisnips
-                    vim-snippets #honza/vim-snippets
-                    easygrep #dkprice/vim-easygrep
-                  ]; 
-		  opt = [];
-		};
-                customRC = builtins.readFile ./../dotfiles/.vimrc;
-	    };
-	  }
-	)
+      python-with-global-packages
+      pkgs.asciinema
+      pkgs.awscli
+      pkgs.docker
+      pkgs.fzf
+      pkgs.git
+      pkgs.gitAndTools.gh
+      pkgs.gnupg
+      pkgs.go
+      pkgs.gopass
+      pkgs.graphviz
+      pkgs.htop
+      pkgs.hugo
+      pkgs.jq
+      pkgs.lynx
+      pkgs.musescore
+      pkgs.nmap
+      pkgs.nodejs
+      pkgs.nodePackages.serverless
+      pkgs.ripgrep
+      pkgs.terraform
+      pkgs.tmux
+      pkgs.tree
+      pkgs.unzip
+      pkgs.vscode
+      pkgs.wget
+      pkgs.yarn
+      pkgs.zip
+      (
+	 pkgs.neovim.override {
+	    vimAlias = true;
+	    configure = {
+	      packages.myPlugins = with pkgs.vimPlugins; {
+		start = [
+		  vim-go
+		  vim-lastplace
+		  vim-nix
+		  coc-nvim
+		  coc-tsserver # neoclide/coc-tsserver
+		  coc-yaml
+		  coc-json
+		  nerdcommenter #preservim/nerdcommenter
+		  ctrlp #ctrlpvim/ctrlp.vim
+		  vim-sleuth #tpope/vim-sleuth
+		  vim-surround #tpope/vim-surround
+		  vim-test #janko/vim-test
+		  coverage #ruanyl/coverage.vim
+		  ultisnips #SirVer/ultisnips
+		  vim-snippets #honza/vim-snippets
+		  easygrep #dkprice/vim-easygrep
+		];
+		opt = [];
+	      };
+	      customRC = builtins.readFile ./../dotfiles/.vimrc;
+	  };
+	}
+      )
     ];
 
   # Use a custom configuration.nix location.
