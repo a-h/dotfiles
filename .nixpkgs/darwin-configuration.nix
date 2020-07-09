@@ -54,6 +54,7 @@ in
 	pkgs.musescore
 	pkgs.nmap
 	pkgs.nodejs
+	pkgs.nodePackages.serverless
 	pkgs.ripgrep
 	pkgs.terraform
 	pkgs.tmux
