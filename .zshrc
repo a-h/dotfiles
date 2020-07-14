@@ -14,7 +14,7 @@ if [ ! -f $HOME/.zshrc ]; then
     ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
 fi
 if [ ! -f $HOME/.nixpkgs/darwin-configuration.nix ]; then
-    ln -s $HOME/dotfiles/.nixpkgs/darwin-configuration.nix $HOME/.nixpkgs
+    ln -s $HOME/dotfiles/.nixpkgs $HOME/.nixpkgs
 fi
 if [ ! -f $HOME/ssofresh ]; then
     ln -s $HOME/dotfiles/aws/ssofresh.py $HOME/ssofresh

@@ -27,6 +27,8 @@ let
     botocore
   ]);
 
+  goreleaser = pkgs.callPackage ./goreleaser.nix {};
+
 in
 
 {
@@ -36,6 +38,7 @@ in
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
     [
+      goreleaser
       python-with-global-packages
       pkgs.asciinema
       pkgs.awscli
