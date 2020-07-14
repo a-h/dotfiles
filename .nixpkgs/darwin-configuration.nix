@@ -45,6 +45,7 @@ in
       pkgs.gitAndTools.gh
       pkgs.gnupg
       pkgs.go
+      pkgs.gopls
       pkgs.gopass
       pkgs.graphviz
       pkgs.htop
@@ -54,6 +55,7 @@ in
       pkgs.musescore
       pkgs.nmap
       pkgs.nodejs
+      pkgs.nodePackages.typescript
       pkgs.nodePackages.serverless
       pkgs.ripgrep
       pkgs.terraform
