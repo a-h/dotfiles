@@ -30,6 +30,10 @@ let
   goreleaser = pkgs.callPackage ./goreleaser.nix {};
   goreplace = pkgs.callPackage ./goreplace.nix {};
 
+  nodePackages = import ./node-env/default.nix {
+    inherit pkgs;
+  };
+
 in
 
 {
@@ -41,6 +45,7 @@ in
     [
       goreleaser
       goreplace
+      nodePackages."@aws-amplify/cli"
       python-with-global-packages
       pkgs.asciinema
       pkgs.awscli
@@ -62,6 +67,7 @@ in
       pkgs.nodejs
       pkgs.nodePackages.typescript
       pkgs.nodePackages.serverless
+      pkgs.nodePackages.node2nix
       pkgs.ripgrep
       pkgs.terraform
       pkgs.tmux
