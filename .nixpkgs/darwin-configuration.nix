@@ -28,6 +28,7 @@ let
   ]);
 
   goreleaser = pkgs.callPackage ./goreleaser.nix {};
+  goreplace = pkgs.callPackage ./goreplace.nix {};
 
 in
 
@@ -39,6 +40,7 @@ in
   environment.systemPackages =
     [
       goreleaser
+      goreplace
       python-with-global-packages
       pkgs.asciinema
       pkgs.awscli
