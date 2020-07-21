@@ -32,6 +32,8 @@ let g:EasyGrepRecursive=1
 let g:EasyGrepCommand='rg'
 
 " Set colors.
+" To find available colours to set, use `:hi <name>` to search through
+" available colours.
 highlight Normal ctermfg=white ctermbg=black
 hi LineNr ctermfg=lightgray
 hi Comment ctermfg=lightgreen
@@ -41,6 +43,7 @@ hi PMenu ctermfg=white ctermbg=darkgray
 hi PMenuSel ctermfg=white ctermbg=lightgray 
 hi Label ctermfg=yellow
 hi StatusLine ctermbg=white ctermfg=darkgray
+hi CocWarningSign ctermfg=white
 
 " ultisnips configuration.
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
