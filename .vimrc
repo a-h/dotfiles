@@ -166,3 +166,4 @@ let g:coverage_interval = 5000
 let g:coverage_show_covered = 1
 " Display signs on uncovered lines
 let g:coverage_show_uncovered = 1
+

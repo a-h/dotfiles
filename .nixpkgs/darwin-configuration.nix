@@ -73,7 +73,6 @@ in
       pkgs.tmux
       pkgs.tree
       pkgs.unzip
-      pkgs.vscode
       pkgs.wget
       pkgs.yarn
       pkgs.zip
@@ -123,7 +122,5 @@ in
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
-
-  nixpkgs.config.allowUnfree = true;
 }
 
