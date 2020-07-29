@@ -85,6 +85,7 @@ in
 		  vim-go
 		  vim-lastplace
 		  vim-nix
+		  coc-prettier
 		  coc-nvim
 		  coc-tsserver # neoclide/coc-tsserver
 		  coc-yaml
