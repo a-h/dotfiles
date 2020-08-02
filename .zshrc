@@ -55,9 +55,10 @@ bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
-bindkey "${key[Home]}"     beginning-of-line
-bindkey "${key[End]}"      end-of-line
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
 bindkey "^[[3~" delete-char
+# On OSX, might need to update the terminal to send home and end as ctrl-a, ctrle.
 
 # number of jobs, return code of previous command, current directory, % if not root, or # if root.
 PROMPT="%j %? %d %# "

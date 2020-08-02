@@ -45,6 +45,8 @@ hi Label ctermfg=yellow
 hi StatusLine ctermbg=white ctermfg=darkgray
 hi CocWarningSign ctermfg=white
 hi CocErrorSign ctermfg=white
+hi CocWarningFloat ctermfg=white
+hi CocErrorFloat ctermfg=white
 
 " ultisnips configuration.
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
