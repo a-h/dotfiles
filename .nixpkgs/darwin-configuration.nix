@@ -47,10 +47,12 @@ in
       goreplace
       nodePackages."@aws-amplify/cli"
       python-with-global-packages
+      pkgs.aerc
       pkgs.asciinema
       pkgs.awscli
       pkgs.docker
       pkgs.fzf
+      pkgs.gcalcli
       pkgs.git
       pkgs.gitAndTools.gh
       pkgs.gnupg
@@ -65,6 +67,7 @@ in
       pkgs.musescore
       pkgs.nmap
       pkgs.nodejs
+      pkgs.nodePackages.prettier
       pkgs.nodePackages.typescript
       pkgs.nodePackages.serverless
       pkgs.nodePackages.node2nix
