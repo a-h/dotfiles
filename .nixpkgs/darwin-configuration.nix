@@ -29,6 +29,8 @@ let
 
   goreleaser = pkgs.callPackage ./goreleaser.nix {};
   goreplace = pkgs.callPackage ./goreplace.nix {};
+  # Gemini browser.
+  amfora = pkgs.callPackage ./amfora.nix {};
 
   nodePackages = import ./node-env/default.nix {
     inherit pkgs;
@@ -43,6 +45,7 @@ in
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
     [
+      amfora
       goreleaser
       goreplace
       nodePackages."@aws-amplify/cli"
@@ -57,14 +60,15 @@ in
       pkgs.gitAndTools.gh
       pkgs.gnupg
       pkgs.go
-      pkgs.gopls
+      pkgs.goimports
+      # Not available in stable.
+      # pkgs.gopls
       pkgs.gopass
       pkgs.graphviz
       pkgs.htop
       pkgs.hugo
       pkgs.jq
       pkgs.lynx
-      pkgs.musescore
       pkgs.nmap
       pkgs.nodejs
       pkgs.nodePackages.prettier
@@ -76,6 +80,7 @@ in
       pkgs.tmux
       pkgs.tree
       pkgs.unzip
+      pkgs.urlscan
       pkgs.wget
       pkgs.yarn
       pkgs.zip
@@ -91,7 +96,6 @@ in
 		  coc-prettier
 		  coc-nvim
 		  coc-tsserver # neoclide/coc-tsserver
-		  coc-yaml
 		  coc-json
 		  nerdcommenter #preservim/nerdcommenter
 		  ctrlp #ctrlpvim/ctrlp.vim
@@ -101,6 +105,7 @@ in
 		  coverage #ruanyl/coverage.vim
 		  ultisnips #SirVer/ultisnips
 		  vim-snippets #honza/vim-snippets
+		  vim-visual-multi #mg979/vim-visual-multi
 		  easygrep #dkprice/vim-easygrep
 		];
 		opt = [];
@@ -111,20 +116,14 @@ in
       )
     ];
 
-  # Use a custom configuration.nix location.
-  # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
-  # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin/configuration.nix";
-
-  # Auto upgrade nix package and the daemon service.
-  # services.nix-daemon.enable = true;
-  # nix.package = pkgs.nix;
-
   # Create /etc/bashrc that loads the nix-darwin environment.
   programs.zsh.enable = true;  # default shell on catalina
-  # programs.fish.enable = true;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
+
+  # Disable documentation until https://github.com/LnL7/nix-darwin/issues/217 is fixed.
+  documentation.enable = false;
 }
 

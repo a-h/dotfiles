@@ -24,26 +24,8 @@ if [ ! -f $HOME/ssofresh ]; then
     chmod +x $HOME/ssofresh
 fi
 
-# Configure Nitrokey SSH.
-unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-fi
-
-# Get rid of telemetry.
-export SAM_CLI_TELEMETRY=0
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-
-# Create an alias for listening.
-listening() {
-    if [ $# -eq 0 ]; then
-        sudo lsof -iTCP -sTCP:LISTEN -n -P
-    elif [ $# -eq 1 ]; then
-        sudo lsof -iTCP -sTCP:LISTEN -n -P | grep -i --color $1
-    else
-        echo "Usage: listening [pattern]"
-    fi
-}
+# Configure nix package manager.
+if [ -e /Users/adrian/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/adrian/.nix-profile/etc/profile.d/nix.sh; fi 
 
 # Enable vi mode for zsh.
 # See https://dougblack.io/words/zsh-vi-mode.html
@@ -66,5 +48,24 @@ RPROMPT=""
 
 export KEYTIMEOUT=1
 
-# Configure nix package manager.
-if [ -e /Users/adrian/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/adrian/.nix-profile/etc/profile.d/nix.sh; fi 
+# Get rid of telemetry.
+export SAM_CLI_TELEMETRY=0
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+# Create an alias for listening.
+listening() {
+    if [ $# -eq 0 ]; then
+        sudo lsof -iTCP -sTCP:LISTEN -n -P
+    elif [ $# -eq 1 ]; then
+        sudo lsof -iTCP -sTCP:LISTEN -n -P | grep -i --color $1
+    else
+        echo "Usage: listening [pattern]"
+    fi
+}
+
+# Configure Nitrokey SSH.
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
+
