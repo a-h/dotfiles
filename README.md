@@ -5,6 +5,7 @@
 * Nix package manager used to install system.
 * tmux configuration.
 * zsh configuration.
+* DZ60 configuration for keyboard layout (https://config.qmk.fm)
 
 ## New machine setup
 
