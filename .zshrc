@@ -2,6 +2,7 @@ export PATH=/usr/local/go:/Users/adrian/go/bin/:$PATH
 export PATH=/usr/local/bin/:$PATH
 export PATH="$PATH:/Users/adrian/.dotnet/tools"
 export PATH="$PATH:/Users/adrian/bin"
+export PATH="$PATH:/run/current-system/sw/bin"
 
 # Use the dotfiles.
 if [ ! -f $HOME/.gitconfig ]; then

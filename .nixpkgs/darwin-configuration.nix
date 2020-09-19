@@ -27,7 +27,7 @@ let
     botocore
   ]);
 
-  goreleaser = pkgs.callPackage ./goreleaser.nix {};
+  #goreleaser = pkgs.callPackage ./goreleaser.nix {};
   goreplace = pkgs.callPackage ./goreplace.nix {};
   # Gemini browser.
   amfora = pkgs.callPackage ./amfora.nix {};
@@ -46,7 +46,7 @@ in
   environment.systemPackages =
     [
       amfora
-      goreleaser
+      #goreleaser
       goreplace
       nodePackages."@aws-amplify/cli"
       python-with-global-packages
@@ -56,17 +56,18 @@ in
       pkgs.docker
       pkgs.fzf
       pkgs.gcalcli
+      pkgs.gifsicle
       pkgs.git
       pkgs.gitAndTools.gh
       pkgs.gnupg
       pkgs.go
+      pkgs.gopls
       pkgs.goimports
-      # Not available in stable.
-      # pkgs.gopls
       pkgs.gopass
       pkgs.graphviz
       pkgs.htop
       pkgs.hugo
+      pkgs.imagemagick
       pkgs.jq
       pkgs.lynx
       pkgs.nmap
