@@ -54,6 +54,7 @@ in
       pkgs.asciinema
       pkgs.awscli
       pkgs.docker
+      pkgs.dotnetCorePackages.sdk_3_1
       pkgs.fzf
       pkgs.gcalcli
       pkgs.gifsicle
