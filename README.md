@@ -12,6 +12,7 @@
 1. Import public SSH key (`gpg --import pubkey.asc`)
 1. Clone this repo to `~/dotfiles`
 1. Execute the MacOS settings: `./.macos`
+1. Install Tmux Plugin Manager (`git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`) and then install plugins from within tmux (Ctrl-B shift+I)
 1. Install nix and nix-darwin.
 1. Execute `darwin-rebuild switch` to install packages.
 

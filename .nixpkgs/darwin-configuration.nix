@@ -79,8 +79,6 @@ in
       pkgs.ripgrep
       pkgs.terraform
       pkgs.tmux
-      pkgs.tmuxPlugins.open
-      pkgs.tmuxPlugins.yank
       pkgs.tree
       pkgs.unzip
       pkgs.urlscan
@@ -119,7 +117,6 @@ in
       )
     ];
 
-  # Create /etc/bashrc that loads the nix-darwin environment.
   programs.zsh.enable = true;  # default shell on catalina
 
   # Used for backwards compatibility, please read the changelog before changing.
