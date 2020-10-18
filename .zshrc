@@ -1,8 +1,13 @@
-export PATH=/usr/local/go:/Users/adrian/go/bin/:$PATH
-export PATH=/usr/local/bin/:$PATH
+# Use my local installs first, where I've overridden something.
+export PATH="/Users/adrian/bin:$PATH"
+export PATH="/usr/local/bin/:$PATH"
+# Next, use Nix.
+export PATH="/run/current-system/sw/bin:$PATH"
+# Go comes next.
+export PATH="/usr/local/go:/Users/adrian/go/bin/:$PATH"
+# Other tools.
 export PATH="$PATH:/Users/adrian/.dotnet/tools"
-export PATH="$PATH:/Users/adrian/bin"
-export PATH="$PATH:/run/current-system/sw/bin"
+export PATH="$PATH:/Applications/SnowSQL.app/Contents/MacOS:$PATH"
 
 # Use the dotfiles.
 if [ ! -f $HOME/.gitconfig ]; then
@@ -69,4 +74,3 @@ unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
   export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 fi
-

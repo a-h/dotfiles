@@ -25,16 +25,16 @@ let
   python-with-global-packages = pkgs.python3.withPackages(ps: with ps; [
     pip
     botocore
+    boto3
+    numpy
   ]);
 
   #goreleaser = pkgs.callPackage ./goreleaser.nix {};
   goreplace = pkgs.callPackage ./goreplace.nix {};
-  # Gemini browser.
-  amfora = pkgs.callPackage ./amfora.nix {};
 
   nodePackages = import ./node-env/default.nix {
     inherit pkgs;
-  };
+  }; 
 
 in
 
@@ -45,7 +45,6 @@ in
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
     [
-      amfora
       #goreleaser
       goreplace
       nodePackages."@aws-amplify/cli"
@@ -80,6 +79,8 @@ in
       pkgs.ripgrep
       pkgs.terraform
       pkgs.tmux
+      pkgs.tmuxPlugins.open
+      pkgs.tmuxPlugins.yank
       pkgs.tree
       pkgs.unzip
       pkgs.urlscan
