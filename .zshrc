@@ -9,6 +9,11 @@ export PATH="/usr/local/go:/Users/adrian/go/bin/:$PATH"
 export PATH="$PATH:/Users/adrian/.dotnet/tools"
 export PATH="$PATH:/Applications/SnowSQL.app/Contents/MacOS:$PATH"
 
+# Configure aws-vault
+export AWS_VAULT_BACKEND=pass
+export AWS_VAULT_PASS_CMD=gopass
+export AWS_VAULT_PASS_PREFIX=aws-vault
+
 # Use the dotfiles.
 if [ ! -f $HOME/.gitconfig ]; then
     ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig

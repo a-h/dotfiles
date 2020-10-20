@@ -52,6 +52,7 @@ in
       pkgs.aerc
       pkgs.asciinema
       pkgs.awscli
+      pkgs.aws-vault
       pkgs.docker
       pkgs.dotnetCorePackages.sdk_3_1
       pkgs.fzf
