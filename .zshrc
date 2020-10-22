@@ -11,8 +11,11 @@ export PATH="$PATH:/Applications/SnowSQL.app/Contents/MacOS:$PATH"
 
 # Configure aws-vault
 export AWS_VAULT_BACKEND=pass
-export AWS_VAULT_PASS_CMD=gopass
 export AWS_VAULT_PASS_PREFIX=aws-vault
+
+# Add pass autocomplete.
+fpath=(~/dotfiles/zsh-completion $fpath)
+autoload -Uz compinit && compinit
 
 # Use the dotfiles.
 if [ ! -f $HOME/.gitconfig ]; then

@@ -52,6 +52,7 @@ in
       pkgs.aerc
       pkgs.asciinema
       pkgs.awscli
+      pkgs.aws-sam-cli
       pkgs.aws-vault
       pkgs.docker
       pkgs.dotnetCorePackages.sdk_3_1
@@ -64,7 +65,6 @@ in
       pkgs.go
       pkgs.gopls
       pkgs.goimports
-      pkgs.gopass
       pkgs.graphviz
       pkgs.htop
       pkgs.hugo
@@ -77,6 +77,7 @@ in
       pkgs.nodePackages.typescript
       pkgs.nodePackages.serverless
       pkgs.nodePackages.node2nix
+      pkgs.pass
       pkgs.ripgrep
       pkgs.terraform
       pkgs.tmux
