@@ -59,6 +59,8 @@ bindkey "^[[3~" delete-char
 # number of jobs, return code of previous command, current directory, % if not root, or # if root.
 PROMPT="%j %? %d %# "
 RPROMPT=""
+# Ensure that the prompt doesn't overwrite output that doesn't terminate with a new line.
+setopt PROMPT_SP
 
 export KEYTIMEOUT=1
 
