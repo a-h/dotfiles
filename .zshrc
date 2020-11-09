@@ -16,6 +16,7 @@ export AWS_VAULT_PASS_PREFIX=aws-vault
 # Add pass autocomplete.
 fpath=(~/dotfiles/zsh-completion $fpath)
 autoload -Uz compinit && compinit
+complete -C 'aws_completer' aws
 
 # Use the dotfiles.
 if [ ! -f $HOME/.gitconfig ]; then
