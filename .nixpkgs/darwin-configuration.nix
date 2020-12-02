@@ -22,6 +22,8 @@ let
     };
   };
 
+  awsSamCli = pkgs.callPackage ./aws-sam-cli.nix {};
+
   python-with-global-packages = pkgs.python3.withPackages(ps: with ps; [
     pip
     botocore
@@ -48,11 +50,11 @@ in
       #goreleaser
       goreplace
       nodePackages."@aws-amplify/cli"
+      awsSamCli
       python-with-global-packages
       pkgs.aerc
       pkgs.asciinema
       pkgs.awscli
-      pkgs.aws-sam-cli
       pkgs.aws-vault
       pkgs.docker
       pkgs.dotnetCorePackages.sdk_3_1
@@ -71,11 +73,11 @@ in
       pkgs.imagemagick
       pkgs.jq
       pkgs.lynx
+      pkgs.mutt
       pkgs.nmap
       pkgs.nodejs
       pkgs.nodePackages.prettier
       pkgs.nodePackages.typescript
-      pkgs.nodePackages.serverless
       pkgs.nodePackages.node2nix
       pkgs.pass
       pkgs.ripgrep
