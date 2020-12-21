@@ -68,6 +68,7 @@
     brightnessctl
     blueberry
     docker
+    git
     vim
     zsh
     polybar # UI bar.
