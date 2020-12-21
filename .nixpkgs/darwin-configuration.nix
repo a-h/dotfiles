@@ -33,6 +33,7 @@ let
 
   #goreleaser = pkgs.callPackage ./goreleaser.nix {};
   goreplace = pkgs.callPackage ./goreplace.nix {};
+  twet = pkgs.callPackage ./twet.nix {};
 
   nodePackages = import ./node-env/default.nix {
     inherit pkgs;
@@ -49,6 +50,7 @@ in
     [
       #goreleaser
       goreplace
+      twet
       nodePackages."@aws-amplify/cli"
       awsSamCli
       python-with-global-packages
@@ -101,6 +103,7 @@ in
 		  coc-prettier
 		  coc-nvim
 		  coc-tsserver # neoclide/coc-tsserver
+		  vim-jsx-typescript
 		  coc-json
 		  nerdcommenter #preservim/nerdcommenter
 		  ctrlp #ctrlpvim/ctrlp.vim
