@@ -1,0 +1,40 @@
+[bar/main]
+font-0 = pango:IBM Plex Mono:size=10;3
+module-margin = 3
+padding-bottom = 23
+modules-left = date
+modules-right = memory cpu pulseaudio
+background = #333333
+
+[module/date]
+type = internal/date
+interval = 30
+label =  %time%
+format-padding = 3
+margin-padding = 3
+format-background = #555555
+time = %Y-%m-%d %H:%M %p
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format = <ramp-coreload>
+format-background = #555555
+format-padding = 3
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+[module/memory]
+type = internal/memory
+label = %mb_used%/%mb_total%
+label-padding = 3
+format-background = #555555
