@@ -9,7 +9,7 @@ nix-channel --update
 nix-shell '<home-manager>' -A install
 
 # Copy configuration.
-cp -r ./ ~/adrian
+cp -as /home/adrian/dotfiles/nixos/home/adrian/ /home/
 
 # Run it.
 home-manager switch 

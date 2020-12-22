@@ -45,7 +45,7 @@ in
   #environment.variables = { EDITOR = "vim"; };
   programs.zsh = {
     enable = true;
-    interactiveShellInit = builtins.readFile ./.zshrc;
+    dotDir = "~/.config/zsh";
   };
 
   #system.stateVersion = 4;
