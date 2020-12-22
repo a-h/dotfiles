@@ -186,4 +186,4 @@ bindsym $mod+r mode "resize"
 #}
 #
 # startup
-exec_always --no-startup-id killall polybar; polybar -c /root/.config/polybar/config main
+exec_always --no-startup-id killall polybar; polybar main
