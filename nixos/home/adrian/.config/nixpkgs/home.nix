@@ -22,7 +22,7 @@ let
     };
   };
 
-  awsSamCli = pkgs.callPackage ./aws-sam-cli.nix {};
+  #awsSamCli = pkgs.callPackage ./aws-sam-cli.nix {};
 
   python-with-global-packages = pkgs.python3.withPackages(ps: with ps; [
     pip
@@ -43,7 +43,10 @@ in
 
 {
   #environment.variables = { EDITOR = "vim"; };
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    interactiveShellInit = builtins.readFile ./.zshrc;
+  };
 
   #system.stateVersion = 4;
   # List packages installed in system profile. To search by name, run:
@@ -51,21 +54,21 @@ in
   home.packages =
     [
       #goreleaser
-      #goreplace
-      #twet
-      #nodePackages."@aws-amplify/cli"
+      goreplace
+      twet
+      nodePackages."@aws-amplify/cli"
       #awsSamCli
-      #python-with-global-packages
+      python-with-global-packages
       pkgs.alacritty
-      #pkgs.aerc
+      pkgs.aerc
       pkgs.asciinema
       pkgs.awscli
       pkgs.aws-vault
       pkgs.docker
-      #pkgs.dotnetCorePackages.sdk_3_1
+      pkgs.dotnetCorePackages.sdk_3_1
       pkgs.fzf
-      #pkgs.gcalcli
-      #pkgs.gifsicle
+      pkgs.gcalcli
+      pkgs.gifsicle
       pkgs.git
       pkgs.gitAndTools.gh
       pkgs.gnupg
@@ -73,18 +76,17 @@ in
       pkgs.gopls
       pkgs.goimports
       pkgs.graphviz
-      pkgs.home-manager
       pkgs.htop
-      #pkgs.hugo
+      pkgs.hugo
       pkgs.imagemagick
       pkgs.jq
-      #pkgs.lynx
-      #pkgs.mutt
+      pkgs.lynx
+      pkgs.mutt
       pkgs.nmap
       pkgs.nodejs
-      #pkgs.nodePackages.prettier
-      #pkgs.nodePackages.typescript
-      #pkgs.nodePackages.node2nix
+      pkgs.nodePackages.prettier
+      pkgs.nodePackages.typescript
+      pkgs.nodePackages.node2nix
       pkgs.pass
       pkgs.ripgrep
       pkgs.terraform
@@ -123,7 +125,7 @@ in
 		];
 		opt = [];
 	      };
-	      customRC = builtins.readFile ./../../.vimrc;
+	      customRC = builtins.readFile ./.vimrc;
 	  };
 	}
       )
