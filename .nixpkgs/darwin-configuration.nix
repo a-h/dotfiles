@@ -104,6 +104,7 @@ in
 		  coc-nvim
 		  coc-tsserver # neoclide/coc-tsserver
 		  vim-jsx-typescript
+		  vim-graphql
 		  coc-json
 		  nerdcommenter #preservim/nerdcommenter
 		  ctrlp #ctrlpvim/ctrlp.vim
