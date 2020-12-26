@@ -62,6 +62,7 @@ in
       pkgs.alacritty
       pkgs.aerc
       pkgs.asciinema
+      pkgs.awslogs
       pkgs.awscli2
       pkgs.aws-vault
       pkgs.docker

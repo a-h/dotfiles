@@ -54,6 +54,7 @@ in
       nodePackages."@aws-amplify/cli"
       awsSamCli
       python-with-global-packages
+      pkgs.awslogs
       pkgs.aerc
       pkgs.asciinema
       pkgs.awscli2
