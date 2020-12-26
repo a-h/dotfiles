@@ -56,7 +56,7 @@ in
       python-with-global-packages
       pkgs.aerc
       pkgs.asciinema
-      pkgs.awscli
+      pkgs.awscli2
       pkgs.aws-vault
       pkgs.docker
       pkgs.dotnetCorePackages.sdk_3_1
