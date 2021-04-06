@@ -21,3 +21,5 @@
 	insteadOf = https://github.com/
 [pull]
 	ff = only
+[init]
+	defaultBranch = main

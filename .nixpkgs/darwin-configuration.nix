@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 let
-
   coverage = pkgs.vimUtils.buildVimPlugin {
     name = "vim-coverage";
     src = pkgs.fetchFromGitHub {
@@ -22,7 +21,25 @@ let
     };
   };
 
-  awsSamCli = pkgs.callPackage ./aws-sam-cli.nix {};
+  vimBuilder = pkgs.vimUtils.buildVimPlugin {
+    name = "builder.vim";
+    src = pkgs.fetchFromGitHub {
+      owner = "b0o";
+      repo = "builder.vim";
+      rev = "940e0deff0fb4ff2c4fdfe263cdbe669152688c6";
+      sha256 = "1synvwz7xqy68wb45rdy5lscp2z19wdd7wnp07smylv4jcnlya51";
+    };
+  };
+
+  vimQuicktemplate = pkgs.vimUtils.buildVimPlugin {
+    name = "quicktemplate.vim";
+    src = pkgs.fetchFromGitHub {
+      owner = "b0o";
+      repo = "quicktemplate.vim";
+      rev = "c2aed012c0de37303509e93d3010524a361a7795";
+      sha256 = "1lgjj01cifvkqgikr976b45j9cdhrc28wzhr7bshf400g1fwfdim";
+    };
+  };
 
   python-with-global-packages = pkgs.python3.withPackages(ps: with ps; [
     pip
@@ -31,6 +48,7 @@ let
     numpy
   ]);
 
+  awsSamCli = pkgs.callPackage ./aws-sam-cli.nix {};
   #goreleaser = pkgs.callPackage ./goreleaser.nix {};
   goreplace = pkgs.callPackage ./goreplace.nix {};
   twet = pkgs.callPackage ./twet.nix {};
@@ -42,6 +60,7 @@ let
 in
 
 {
+  nixpkgs.config.allowUnfree = true;
   environment.variables = { EDITOR = "vim"; };
 
   # List packages installed in system profile. To search by name, run:
@@ -52,12 +71,13 @@ in
       goreplace
       twet
       nodePackages."@aws-amplify/cli"
-      awsSamCli
+      #awsSamCli
       python-with-global-packages
       pkgs.awslogs
       pkgs.aerc
       pkgs.asciinema
       pkgs.awscli2
+      pkgs.ssm-session-manager-plugin
       pkgs.aws-vault
       pkgs.docker
       pkgs.dotnetCorePackages.sdk_3_1
@@ -93,34 +113,36 @@ in
       pkgs.yarn
       pkgs.zip
       (
-	 pkgs.neovim.override {
-	    vimAlias = true;
-	    configure = {
-	      packages.myPlugins = with pkgs.vimPlugins; {
-		start = [
-		  vim-go
-		  vim-lastplace
-		  vim-nix
-		  coc-prettier
-		  coc-nvim
-		  coc-tsserver # neoclide/coc-tsserver
-		  vim-jsx-typescript
-		  vim-graphql
-		  coc-json
-		  nerdcommenter #preservim/nerdcommenter
-		  ctrlp #ctrlpvim/ctrlp.vim
-		  vim-sleuth #tpope/vim-sleuth
-		  vim-surround #tpope/vim-surround
-		  vim-test #janko/vim-test
-		  coverage #ruanyl/coverage.vim
-		  ultisnips #SirVer/ultisnips
-		  vim-snippets #honza/vim-snippets
-		  vim-visual-multi #mg979/vim-visual-multi
-		  easygrep #dkprice/vim-easygrep
-		];
-		opt = [];
-	      };
-	      customRC = builtins.readFile ./../dotfiles/.vimrc;
+	pkgs.neovim.override {
+	  vimAlias = true;
+	  configure = {
+	    packages.myPlugins = with pkgs.vimPlugins; {
+	      start = [
+		vim-go
+		vim-lastplace
+		vim-nix
+		coc-prettier
+		coc-nvim
+		coc-tsserver # neoclide/coc-tsserver
+		vim-jsx-typescript
+		vim-graphql
+		coc-json
+		nerdcommenter #preservim/nerdcommenter
+		ctrlp #ctrlpvim/ctrlp.vim
+		vim-sleuth #tpope/vim-sleuth
+		vim-surround #tpope/vim-surround
+		vim-test #janko/vim-test
+		coverage #ruanyl/coverage.vim
+		ultisnips #SirVer/ultisnips
+		vim-snippets #honza/vim-snippets
+		vim-visual-multi #mg979/vim-visual-multi
+		easygrep #dkprice/vim-easygrep
+		# requires nvim 5
+		#nvim-lspconfig #https://neovim.io/doc/user/lsp.html#lsp-extension-example
+	      ];
+	      opt = [];
+	    };
+	    customRC = builtins.readFile ./../dotfiles/.vimrc;
 	  };
 	}
       )
@@ -131,8 +153,5 @@ in
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
-
-  # Disable documentation until https://github.com/LnL7/nix-darwin/issues/217 is fixed.
-  documentation.enable = false;
 }
 

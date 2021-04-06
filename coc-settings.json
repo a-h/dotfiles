@@ -1,5 +1,9 @@
 {
   "languageserver": {
+    "qtpl": {
+      "command": "/Users/adrian/github.com/a-h/qt-lsp/qt-lsp",
+      "filetypes": ["qtpl"]
+    },
     "golang": {
       "command": "gopls",
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
@@ -7,7 +11,8 @@
     }
   },
   "yaml.schemas": {
-    "https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json": "/*"
+    "https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json": "/*",
+    "https://json.schemastore.org/github-action": ".github/*"
   },
   "yaml.customTags": [
     "!Ref",

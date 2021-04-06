@@ -8,6 +8,7 @@ export PATH="/usr/local/go:/Users/adrian/go/bin/:$PATH"
 # Other tools.
 export PATH="$PATH:/Users/adrian/.dotnet/tools"
 export PATH="$PATH:/Applications/SnowSQL.app/Contents/MacOS:$PATH"
+export PATH=$PATH:/usr/sbin
 
 # Configure aws-vault
 export AWS_VAULT_BACKEND=pass
