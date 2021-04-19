@@ -36,7 +36,7 @@ let g:EasyGrepCommand='rg'
 " available colours.
 highlight Normal ctermfg=white ctermbg=black
 hi LineNr ctermfg=lightgray
-hi Comment ctermfg=lightgreen
+hi Comment ctermfg=green
 hi Statement ctermfg=lightblue
 hi Constant ctermfg=LightGray
 hi PMenu ctermfg=white ctermbg=darkgray
@@ -47,6 +47,8 @@ hi CocWarningSign ctermfg=white
 hi CocErrorSign ctermfg=white
 hi CocWarningFloat ctermfg=white
 hi CocErrorFloat ctermfg=white
+hi MatchParen ctermbg=red
+hi Type ctermfg=lightblue
 
 " ultisnips configuration.
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.

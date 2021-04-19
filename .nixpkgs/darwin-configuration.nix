@@ -73,6 +73,7 @@ in
       nodePackages."@aws-amplify/cli"
       #awsSamCli
       python-with-global-packages
+      pkgs.ag
       pkgs.awslogs
       pkgs.aerc
       pkgs.asciinema
@@ -81,6 +82,7 @@ in
       pkgs.aws-vault
       pkgs.docker
       pkgs.dotnetCorePackages.sdk_3_1
+      pkgs.entr
       pkgs.fzf
       pkgs.gcalcli
       pkgs.gifsicle

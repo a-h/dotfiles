@@ -2,6 +2,7 @@
   "languageserver": {
     "qtpl": {
       "command": "/Users/adrian/github.com/a-h/qt-lsp/qt-lsp",
+      "trace.server": "verbose",
       "filetypes": ["qtpl"]
     },
     "golang": {
