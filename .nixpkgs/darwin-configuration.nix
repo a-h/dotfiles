@@ -126,6 +126,7 @@ in
 	  configure = {
 	    packages.myPlugins = with pkgs.vimPlugins; {
 	      start = [
+		fzf-vim
 		vim-go
 		vim-lastplace
 		vim-nix
@@ -136,7 +137,6 @@ in
 		vim-graphql
 		coc-json
 		nerdcommenter #preservim/nerdcommenter
-		ctrlp #ctrlpvim/ctrlp.vim
 		vim-sleuth #tpope/vim-sleuth
 		vim-surround #tpope/vim-surround
 		vim-test #janko/vim-test

@@ -19,6 +19,9 @@ let g:netrw_banner = 0
 " Use the expandable list style.
 let g:netrw_liststyle = 3
 
+" FZF to replace ctrlP
+nnoremap <silent> <C-p> :GFiles<CR>
+
 " Snippets management.
 " Easy grep. 
 " :Grep [arg] to search (\vv to search for word under cursor)
