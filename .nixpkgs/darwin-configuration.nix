@@ -41,6 +41,16 @@ let
     };
   };
 
+  vimTempl = pkgs.vimUtils.buildVimPlugin {
+    name = "templ.vim";
+    src = pkgs.fetchFromGitHub {
+      owner = "Joe-Davidson1802";
+      repo = "templ.vim";
+      rev = "53685e70d040e311cb0fe6e4a5a02db958bb55ba";
+      sha256 = "1bi4yczxgg12ir3pisshhc35jfcyilljdxw1g46w1f76pvg8015v";
+    };
+  };
+
   python-with-global-packages = pkgs.python3.withPackages(ps: with ps; [
     pip
     botocore
@@ -147,6 +157,7 @@ in
 		easygrep #dkprice/vim-easygrep
 		# requires nvim 5
 		#nvim-lspconfig #https://neovim.io/doc/user/lsp.html#lsp-extension-example
+		vimTempl
 	      ];
 	      opt = [];
 	    };
