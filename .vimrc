@@ -31,7 +31,6 @@ nnoremap <silent> <C-p> :GFiles<CR>
 " vim-easygrep config.
 let g:EasyGrepRoot="repository"
 let g:EasyGrepRecursive=1
-" use ripgrep (brew install ripgrep)
 let g:EasyGrepCommand='rg'
 
 " Set colors.

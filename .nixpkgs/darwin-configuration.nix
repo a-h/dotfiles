@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 let
+
   coverage = pkgs.vimUtils.buildVimPlugin {
     name = "vim-coverage";
     src = pkgs.fetchFromGitHub {
@@ -116,7 +117,7 @@ in
       pkgs.lynx
       pkgs.mutt
       pkgs.nmap
-      pkgs.nodejs
+      pkgs.nodejs_latest
       pkgs.nodePackages.prettier
       pkgs.nodePackages.typescript
       pkgs.nodePackages.node2nix

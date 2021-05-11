@@ -1,8 +1,8 @@
+# Use Nix.
+export PATH="/run/current-system/sw/bin:$PATH"
 # Use my local installs first, where I've overridden something.
 export PATH="/Users/adrian/bin:$PATH"
 export PATH="/usr/local/bin/:$PATH"
-# Next, use Nix.
-export PATH="/run/current-system/sw/bin:$PATH"
 # Go comes next.
 export PATH="/usr/local/go:/Users/adrian/go/bin/:$PATH"
 # Other tools.
@@ -39,6 +39,11 @@ if [ ! -f $HOME/ssofresh ]; then
     ln -s $HOME/dotfiles/aws/ssofresh.py $HOME/ssofresh
     chmod +x $HOME/ssofresh
 fi
+
+# Git aliases.
+alias gs="git status -s"
+alias gl='git log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short'
+alias gd="git diff"
 
 # Configure nix package manager.
 if [ -e /Users/adrian/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/adrian/.nix-profile/etc/profile.d/nix.sh; fi 

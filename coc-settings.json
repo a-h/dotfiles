@@ -1,12 +1,18 @@
 {
   "languageserver": {
-    "qtpl": {
-      "command": "/Users/adrian/github.com/a-h/qt-lsp/qt-lsp",
+    "templ": {
+      "command": "templ",
+      "args": ["lsp",
+        "--log", "/Users/adrian/github.com/a-h/templ/cmd/lspcmd/templ-log.txt", 
+	"--goplsLog", "/Users/adrian/github.com/a-h/templ/cmd/lspcmd/gopls-log.txt",
+	"--goplsRPCTrace", "true"
+      ],
       "trace.server": "verbose",
-      "filetypes": ["qtpl"]
+      "filetypes": ["templ"]
     },
     "golang": {
       "command": "gopls",
+      "args": ["-logfile", "/Users/adrian/github.com/a-h/templ/cmd/lspcmd/vim-gopls-log.txt", "-rpc.trace"],
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"]
     }
