@@ -1,0 +1,114 @@
+{
+  "telemetry.enableTelemetry": false,
+  "telemetry.enableCrashReporter": false,
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "editor.folding": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "ms-vsliveshare.vsliveshare"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "git.confirmSync": false,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "go.coverOnSave": true,
+  "go.testOnSave": true,
+  "go.autocompleteUnimportedPackages": true,
+  "editor.renderWhitespace": "all",
+  "editor.minimap.enabled": false,
+  "workbench.colorCustomizations": {
+    "terminal.foreground": "#ffffff",
+    "foreground": "#ffffff",
+    "editor.background": "#000000",
+    "activityBar.background": "#000000",
+    "panel.background": "#000000",
+    "panel.border": "#222222",
+    "sideBar.background": "#000000",
+    "sideBar.foreground": "#999999",
+    "contrastBorder": "#222222",
+    "statusBar.background": "#222222",
+    "badge.background": "#222222",
+    "activityBarBadge.background": "#444444",
+    "editorSuggestWidget.background": "#000000",
+    "editorSuggestWidget.selectedBackground": "#444444",
+    "editorHoverWidget.background": "#000000"
+  },
+  "workbench.iconTheme": null,
+  "files.associations": {
+    "*.tf": "terraform"
+  },
+  "terraform.path": "/usr/local/bin/terraform",
+  "git.autofetch": true,
+  "go.vetOnSave": "workspace",
+  "editor.hover.delay": 100,
+  "editor.tabSize": 2,
+  "workbench.editor.showIcons": false,
+  "workbench.editor.tabCloseButton": "off",
+  "workbench.activityBar.visible": false,
+  "explorer.decorations.badges": false,
+  "explorer.decorations.colors": false,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": ["variable", "constant", "variable.parameter", ""],
+        "settings": {
+          "foreground": "#ffffff"
+        }
+      },
+      {
+        "scope": ["constant.numeric"],
+        "settings": {
+          "foreground": "#e2ffd2"
+        }
+      },
+      {
+        "scope": ["keyword"],
+        "settings": {
+          "foreground": "#74bdf9"
+        }
+      },
+      {
+        "scope": ["entity.name.function"],
+        "settings": {
+          "foreground": "#ffffc4"
+        }
+      },
+      {
+        "scope": [
+          "storage.type.string.go",
+          "storage.type.boolean.go",
+          "entity.name.type"
+        ],
+        "settings": {
+          "foreground": "#66ffe0"
+        }
+      },
+      {
+        "scope": ["keyword.control"],
+        "settings": {
+          "foreground": "#ffb1f9"
+        }
+      },
+      {
+        "scope": ["support.function", "constant.language"],
+        "settings": {
+          "foreground": "#67bbff"
+        }
+      }
+    ]
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "liveshare.authenticationProvider": "GitHub",
+  "typescript.tsserver.trace": "verbose"
+}
+

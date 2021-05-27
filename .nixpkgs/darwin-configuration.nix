@@ -117,7 +117,7 @@ in
       pkgs.lynx
       pkgs.mutt
       pkgs.nmap
-      pkgs.nodejs_latest
+      pkgs.nodejs-14_x
       pkgs.nodePackages.prettier
       pkgs.nodePackages.typescript
       pkgs.nodePackages.node2nix
