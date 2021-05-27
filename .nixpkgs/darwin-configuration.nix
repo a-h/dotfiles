@@ -62,6 +62,7 @@ let
   awsSamCli = pkgs.callPackage ./aws-sam-cli.nix {};
   #goreleaser = pkgs.callPackage ./goreleaser.nix {};
   goreplace = pkgs.callPackage ./goreplace.nix {};
+  air = pkgs.callPackage ./air.nix {};
   twet = pkgs.callPackage ./twet.nix {};
 
   nodePackages = import ./node-env/default.nix {
@@ -84,7 +85,7 @@ in
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
     [
-      #goreleaser
+      air
       goreplace
       twet
       nodePackages."@aws-amplify/cli"
@@ -108,6 +109,7 @@ in
       pkgs.gnupg
       pkgs.go
       pkgs.gopls
+      pkgs.goreleaser
       pkgs.goimports
       pkgs.graphviz
       pkgs.htop
