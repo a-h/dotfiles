@@ -32,23 +32,13 @@ let
     };
   };
 
-  vimQuicktemplate = pkgs.vimUtils.buildVimPlugin {
-    name = "quicktemplate.vim";
-    src = pkgs.fetchFromGitHub {
-      owner = "b0o";
-      repo = "quicktemplate.vim";
-      rev = "c2aed012c0de37303509e93d3010524a361a7795";
-      sha256 = "1lgjj01cifvkqgikr976b45j9cdhrc28wzhr7bshf400g1fwfdim";
-    };
-  };
-
   vimTempl = pkgs.vimUtils.buildVimPlugin {
     name = "templ.vim";
     src = pkgs.fetchFromGitHub {
       owner = "Joe-Davidson1802";
       repo = "templ.vim";
-      rev = "53685e70d040e311cb0fe6e4a5a02db958bb55ba";
-      sha256 = "1bi4yczxgg12ir3pisshhc35jfcyilljdxw1g46w1f76pvg8015v";
+      rev = "2d1ca014c360a46aade54fc9b94f065f1deb501a";
+      sha256 = "1bc3p0i3jsv7cbhrsxffnmf9j3zxzg6gz694bzb5d3jir2fysn4h";
     };
   };
 
@@ -88,7 +78,7 @@ in
       air
       goreplace
       twet
-      nodePackages."@aws-amplify/cli"
+      nodePackages."aws-cdk"
       #awsSamCli
       python-with-global-packages
       pkgs.ag
@@ -106,11 +96,12 @@ in
       pkgs.gifsicle
       pkgs.git
       pkgs.gitAndTools.gh
-      pkgs.gnupg
       pkgs.go
+      pkgs.google-cloud-sdk
       pkgs.gopls
       pkgs.goreleaser
       pkgs.goimports
+      pkgs.gnupg
       pkgs.graphviz
       pkgs.htop
       pkgs.hugo
