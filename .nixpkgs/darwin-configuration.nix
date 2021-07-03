@@ -49,7 +49,6 @@ let
     numpy
   ]);
 
-  awsSamCli = pkgs.callPackage ./aws-sam-cli.nix {};
   #goreleaser = pkgs.callPackage ./goreleaser.nix {};
   goreplace = pkgs.callPackage ./goreplace.nix {};
   air = pkgs.callPackage ./air.nix {};
@@ -78,8 +77,6 @@ in
       air
       goreplace
       twet
-      nodePackages."aws-cdk"
-      #awsSamCli
       python-with-global-packages
       pkgs.ag
       pkgs.awslogs
