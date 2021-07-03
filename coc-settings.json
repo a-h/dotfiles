@@ -3,8 +3,8 @@
     "templ": {
       "command": "templ",
       "args": ["lsp",
-        "--log", "/Users/adrian/github.com/a-h/templ/cmd/lspcmd/templ-log.txt", 
-	"--goplsLog", "/Users/adrian/github.com/a-h/templ/cmd/lspcmd/gopls-log.txt",
+        "--log", "/Users/adrian/github.com/a-h/templ/cmd/templ/lspcmd/templ-log.txt", 
+	"--goplsLog", "/Users/adrian/github.com/a-h/templ/cmd/templ/lspcmd/gopls-log.txt",
 	"--goplsRPCTrace", "true"
       ],
       "trace.server": "verbose",
@@ -12,7 +12,7 @@
     },
     "golang": {
       "command": "gopls",
-      "args": ["-logfile", "/Users/adrian/github.com/a-h/templ/cmd/lspcmd/vim-gopls-log.txt", "-rpc.trace"],
+      "args": ["-logfile", "/Users/adrian/github.com/a-h/templ/cmd/templ/lspcmd/vim-gopls-log.txt", "-rpc.trace"],
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"]
     }
