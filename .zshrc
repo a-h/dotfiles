@@ -2,6 +2,7 @@
 export PATH="/run/current-system/sw/bin:$PATH"
 # Use my local installs first, where I've overridden something.
 export PATH="/Users/adrian/bin:$PATH"
+export PATH="/Users/adrian/bin/tinygo/bin:$PATH"
 export PATH="/usr/local/bin/:$PATH"
 # Go comes next.
 export PATH="/usr/local/go:/Users/adrian/go/bin/:$PATH"
@@ -34,6 +35,9 @@ if [ ! -f $HOME/.nixpkgs/darwin-configuration.nix ]; then
 fi
 if [ ! -f $HOME/.config/nvim/coc-settings.json ]; then
     ln -s $HOME/dotfiles/coc-settings.json $HOME/.config/nvim/coc-settings.json
+fi
+if [ ! -f $HOME/.mailcap ]; then
+    ln -s $HOME/dotfiles/.mailcap $HOME/.mailcap
 fi
 if [ ! -f $HOME/ssofresh ]; then
     ln -s $HOME/dotfiles/aws/ssofresh.py $HOME/ssofresh

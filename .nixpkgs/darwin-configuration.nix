@@ -51,6 +51,7 @@ let
 
   #goreleaser = pkgs.callPackage ./goreleaser.nix {};
   goreplace = pkgs.callPackage ./goreplace.nix {};
+  html2text = pkgs.callPackage ./html2text.nix {};
   air = pkgs.callPackage ./air.nix {};
   twet = pkgs.callPackage ./twet.nix {};
 
@@ -85,6 +86,8 @@ in
       pkgs.awscli2
       pkgs.ssm-session-manager-plugin
       pkgs.aws-vault
+      pkgs.cmake
+      pkgs.llvm
       pkgs.docker
       pkgs.dotnetCorePackages.sdk_3_1
       pkgs.entr
@@ -101,11 +104,13 @@ in
       pkgs.gnupg
       pkgs.graphviz
       pkgs.htop
+      pkgs.html2text
       pkgs.hugo
       pkgs.imagemagick
       pkgs.jq
       pkgs.lynx
       pkgs.mutt
+      pkgs.ninja
       pkgs.nmap
       pkgs.nodejs-14_x
       pkgs.nodePackages.prettier
