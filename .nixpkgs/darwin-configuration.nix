@@ -50,6 +50,7 @@ let
   ]);
 
   #goreleaser = pkgs.callPackage ./goreleaser.nix {};
+  adr-tools = pkgs.callPackage ./adr-tools.nix {};
   goreplace = pkgs.callPackage ./goreplace.nix {};
   html2text = pkgs.callPackage ./html2text.nix {};
   air = pkgs.callPackage ./air.nix {};
@@ -75,6 +76,7 @@ in
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
     [
+      adr-tools
       air
       goreplace
       twet
