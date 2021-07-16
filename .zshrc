@@ -52,6 +52,9 @@ alias gp="git push"
 
 # Configure nix package manager.
 if [ -e /Users/adrian/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/adrian/.nix-profile/etc/profile.d/nix.sh; fi 
+# Fed up of waiting for npx - JavaScript wins. :(
+npm set prefix ~/.npm-global
+export PATH=$PATH:~/.npm-global/bin
 
 # Enable vi mode for zsh.
 # See https://dougblack.io/words/zsh-vi-mode.html
