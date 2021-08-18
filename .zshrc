@@ -11,6 +11,9 @@ export PATH="$PATH:/Users/adrian/.dotnet/tools"
 export PATH="$PATH:/Applications/SnowSQL.app/Contents/MacOS:$PATH"
 export PATH=$PATH:/usr/sbin
 
+# Raspberry Pi Pico SDK
+export PICO_SDK_PATH=$HOME/github.com/raspberrypi/pico-sdk
+
 # Configure aws-vault
 export AWS_VAULT_BACKEND=pass
 export AWS_VAULT_PASS_PREFIX=aws-vault

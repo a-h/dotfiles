@@ -15,7 +15,25 @@
       "args": ["-logfile", "/Users/adrian/github.com/a-h/templ/cmd/templ/lspcmd/vim-gopls-log.txt", "-rpc.trace"],
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"]
-    }
+    },
+    "ccls": {
+      "command": "ccls",
+      "filetypes": [
+	  "c",
+	  "cpp",
+	  "objc",
+	  "objcpp"
+      ],
+      "rootPatterns": [
+	  ".ccls",
+	  "compile_commands.json"
+      ],
+      "initializationOptions": {
+	  "cache": {
+	      "directory": "/tmp/ccls"
+	  }
+      }
+  }
   },
   "yaml.schemas": {
     "https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json": "/*",

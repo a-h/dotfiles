@@ -60,41 +60,44 @@ let
     inherit pkgs;
   }; 
 
+  specificRevision = import (builtins.fetchTarball {
+    name = "nixos-unstable-2021-08-18";
+    url = "https://github.com/nixos/nixpkgs/archive/51e3fe53462eb72aa038f2b47735acea8b1fcae2.tar.gz";
+    # Hash obtained using `nix-prefetch-url --unpack <url>`
+    sha256 = "018njpwyhzwxlm8l4rc80qakzgyfqq9yzmr2nimv0033rvjcvxa4";
+  }) {};
+  neovim5 = specificRevision.neovim;
+
 in
 
 {
   nixpkgs.config.allowUnfree = true;
   environment.variables = { EDITOR = "vim"; };
 
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-  ];
-
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
     [
       adr-tools
-      air
+      air # Hot reload for Go.
       goreplace
       twet
       python-with-global-packages
-      pkgs.ag
+      pkgs.ag # Silver Searcher.
       pkgs.awslogs
       pkgs.aerc
       pkgs.asciinema
       pkgs.awscli2
       pkgs.ssm-session-manager-plugin
       pkgs.aws-vault
-      pkgs.cmake
-      pkgs.llvm
+      pkgs.ccls # C LSP Server.
+      pkgs.cmake # Used by Raspberry Pi Pico SDK.
+      pkgs.llvm # Used by Raspberry Pi Pico SDK.
       pkgs.docker
       pkgs.dotnetCorePackages.sdk_3_1
-      pkgs.entr
-      pkgs.fzf
-      pkgs.gcalcli
+      pkgs.entr # Execute command when files change.
+      pkgs.fzf # Fuzzy search.
+      pkgs.gcalcli # Google Calendar CLI.
       pkgs.gifsicle
       pkgs.git
       pkgs.gitAndTools.gh
@@ -112,7 +115,7 @@ in
       pkgs.jq
       pkgs.lynx
       pkgs.mutt
-      pkgs.ninja
+      pkgs.ninja # Used by Raspberry Pi Pico SDK, build tool.
       pkgs.nmap
       pkgs.nodejs-14_x
       pkgs.nodePackages.prettier
@@ -129,7 +132,7 @@ in
       pkgs.yarn
       pkgs.zip
       (
-	pkgs.neovim.override {
+	neovim5.override {
 	  vimAlias = true;
 	  configure = {
 	    packages.myPlugins = with pkgs.vimPlugins; {
