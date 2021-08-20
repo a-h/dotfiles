@@ -121,6 +121,7 @@ in
       pkgs.nodePackages.prettier
       pkgs.nodePackages.typescript
       pkgs.nodePackages.node2nix
+      pkgs.nodePackages.typescript-language-server
       pkgs.pass
       pkgs.ripgrep
       pkgs.terraform
@@ -138,15 +139,11 @@ in
 	    packages.myPlugins = with pkgs.vimPlugins; {
 	      start = [
 		fzf-vim
-		vim-go
 		vim-lastplace
 		vim-nix
-		coc-prettier
-		coc-nvim
-		coc-tsserver # neoclide/coc-tsserver
+		neoformat
 		vim-jsx-typescript
 		vim-graphql
-		coc-json
 		nerdcommenter #preservim/nerdcommenter
 		vim-sleuth #tpope/vim-sleuth
 		vim-surround #tpope/vim-surround
@@ -156,9 +153,9 @@ in
 		vim-snippets #honza/vim-snippets
 		vim-visual-multi #mg979/vim-visual-multi
 		easygrep #dkprice/vim-easygrep
-		# requires nvim 5
-		#nvim-lspconfig #https://neovim.io/doc/user/lsp.html#lsp-extension-example
+		nvim-lspconfig #https://neovim.io/doc/user/lsp.html#lsp-extension-example
 		vimTempl
+		nvim-compe
 	      ];
 	      opt = [];
 	    };
