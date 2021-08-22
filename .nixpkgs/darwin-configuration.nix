@@ -98,6 +98,7 @@ in
       pkgs.entr # Execute command when files change.
       pkgs.fzf # Fuzzy search.
       pkgs.gcalcli # Google Calendar CLI.
+      pkgs.gcc-arm-embedded # Raspberry Pi Pico GCC.
       pkgs.gifsicle
       pkgs.git
       pkgs.gitAndTools.gh
