@@ -60,13 +60,21 @@ let
     inherit pkgs;
   }; 
 
-  specificRevision = import (builtins.fetchTarball {
+  neovim5Revision = import (builtins.fetchTarball {
     name = "nixos-unstable-2021-08-18";
     url = "https://github.com/nixos/nixpkgs/archive/51e3fe53462eb72aa038f2b47735acea8b1fcae2.tar.gz";
     # Hash obtained using `nix-prefetch-url --unpack <url>`
     sha256 = "018njpwyhzwxlm8l4rc80qakzgyfqq9yzmr2nimv0033rvjcvxa4";
   }) {};
-  neovim5 = specificRevision.neovim;
+  neovim5 = neovim5Revision.neovim;
+
+  awscli_v2_2_14 = import (builtins.fetchTarball {
+    name = "awscli_v2_2_14";
+    url = "https://github.com/nixos/nixpkgs/archive/aab3c48aef2260867272bf6797a980e32ccedbe0.tar.gz";
+    # Hash obtained using `nix-prefetch-url --unpack <url>`
+    sha256 = "0mhihlpmizn7dhcd8pjj9wvb13fxgx4qqr24qgq79w1rhxzzk6mv";
+  }) {};
+  awscli2 = awscli_v2_2_14.awscli2;
 
 in
 
@@ -87,7 +95,7 @@ in
       pkgs.awslogs
       pkgs.aerc
       pkgs.asciinema
-      pkgs.awscli2
+      awscli2
       pkgs.astyle # Code formatter for C.
       pkgs.ssm-session-manager-plugin
       pkgs.aws-vault
