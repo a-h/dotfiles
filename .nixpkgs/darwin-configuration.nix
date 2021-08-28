@@ -88,6 +88,7 @@ in
       pkgs.aerc
       pkgs.asciinema
       pkgs.awscli2
+      pkgs.astyle # Code formatter for C.
       pkgs.ssm-session-manager-plugin
       pkgs.aws-vault
       pkgs.ccls # C LSP Server.
@@ -115,6 +116,7 @@ in
       pkgs.imagemagick
       pkgs.jq
       pkgs.lynx
+      pkgs.minicom # Serial monitor.
       pkgs.mutt
       pkgs.ninja # Used by Raspberry Pi Pico SDK, build tool.
       pkgs.nmap

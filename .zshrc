@@ -56,8 +56,13 @@ alias gp="git push"
 # Configure nix package manager.
 if [ -e /Users/adrian/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/adrian/.nix-profile/etc/profile.d/nix.sh; fi 
 # Fed up of waiting for npx - JavaScript wins. :(
-npm set prefix ~/.npm-global
-export PATH=$PATH:~/.npm-global/bin
+if command -v npm &> /dev/null
+then
+  npm set prefix ~/.npm-global
+  export PATH=$PATH:~/.npm-global/bin
+else
+  echo "NPM is not installed, skipping path changes..."
+fi
 
 # Enable vi mode for zsh.
 # See https://dougblack.io/words/zsh-vi-mode.html
@@ -100,5 +105,10 @@ listening() {
 # Configure Nitrokey SSH.
 unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+  if command -v gpgconf &> /dev/null
+  then
+    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+  else
+    echo "gpgconf is not installed, skipping starting GPG SSH agent..."
+  fi
 fi
