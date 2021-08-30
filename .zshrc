@@ -1,3 +1,6 @@
+# Enable profiling, see end of file for usage.
+#zmodload zsh/zprof 
+
 # Use Nix.
 export PATH="/run/current-system/sw/bin:$PATH"
 # Use my local installs first, where I've overridden something.
@@ -21,7 +24,10 @@ export AWS_VAULT_PASS_PREFIX=aws-vault
 
 # Add pass autocomplete.
 fpath=(~/dotfiles/zsh-completion $fpath)
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
 complete -C 'aws_completer' aws
 
 # Use the dotfiles.
@@ -112,3 +118,6 @@ if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
     echo "gpgconf is not installed, skipping starting GPG SSH agent..."
   fi
 fi
+
+# Execute profiling, see start of file to load.
+#zprof
