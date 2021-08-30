@@ -94,7 +94,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
@@ -194,7 +193,8 @@ function PrintDiagnostics(opts, bufnr, line_nr, client_id)
   vim.api.nvim_echo({{diagnostic_message, "Normal"}}, false, {})
 end
 
-vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
+--TODO: Work out what keybinding I want to see the big version.
+--vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
 
 -- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#show-line-diagnostics-automatically-in-hover-window
 vim.o.updatetime = 100

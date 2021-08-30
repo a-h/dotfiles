@@ -13,6 +13,7 @@ export PATH=$PATH:/usr/sbin
 
 # Raspberry Pi Pico SDK
 export PICO_SDK_PATH=$HOME/github.com/raspberrypi/pico-sdk
+export PICO_EXTRAS_PATH=$HOME/github.com/raspberrypi/pico-extras
 
 # Configure aws-vault
 export AWS_VAULT_BACKEND=pass
