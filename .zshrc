@@ -56,13 +56,12 @@ alias gp="git push"
 
 # Configure nix package manager.
 if [ -e /Users/adrian/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/adrian/.nix-profile/etc/profile.d/nix.sh; fi 
-# Fed up of waiting for npx - JavaScript wins. :(
-if command -v npm &> /dev/null
+# Configure globally installed NPM modules to be in a sensible location.
+# I don't want any globally installed NPM modules, but CDK is a nuisance.
+if grep prefix ~/.npmrc &> /dev/null;
 then
-  npm set prefix ~/.npm-global
+  echo "prefix=$HOME/.npm-global" >> ~/.npmrc
   export PATH=$PATH:~/.npm-global/bin
-else
-  echo "NPM is not installed, skipping path changes..."
 fi
 
 # Enable vi mode for zsh.
