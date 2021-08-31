@@ -60,6 +60,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
 
+" Autoformat Go files on save.
+autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync()
+
 " https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
 lua << EOF
 local nvim_lsp = require('lspconfig')
