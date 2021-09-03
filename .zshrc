@@ -25,9 +25,11 @@ export AWS_VAULT_PASS_PREFIX=aws-vault
 # Add pass autocomplete.
 fpath=(~/dotfiles/zsh-completion $fpath)
 autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
-  compinit
-done
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+	compinit;
+else
+	compinit -C;
+fi;
 complete -C 'aws_completer' aws
 
 # Use the dotfiles.
