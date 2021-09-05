@@ -123,6 +123,7 @@ in
       pkgs.hugo
       pkgs.imagemagick
       pkgs.jq
+      pkgs.lima # Alternative to Docker desktop https://github.com/lima-vm/lima
       pkgs.lynx
       pkgs.minicom # Serial monitor.
       pkgs.mutt
