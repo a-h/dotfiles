@@ -51,19 +51,29 @@ Once found, add them to the `darwin-configuration.nix` file and rebuild with
 
 ## Other programs
 
-* EAGLE
-* Arduino IDE
+* ARM SDK
+* Affinity Designer
 * Affinity Photo
-* Caffeine
+* Amphetamine
+* Arduino IDE
 * Chrome
-* Etcher
+* EAGLE
 * Flycut
+* Fritzing
 * Giphy capture
 * Little Snitch
 * Microsoft Remote Desktop
 * NoSQL Workbench DynamoDB
-* Skype Meetings
+* QMK Toolbox
+* Raspberry Pi Imager
 * Skype
+* Skype Meetings
+* Slack
+* SnowSQL
 * Spotify
-* Wireshark
+* Transporter
 * VLC
+* VMWare Fusion
+* VSCode
+* Wireshark
+* Yubico Authenticator
