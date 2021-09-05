@@ -45,9 +45,6 @@ fi
 if [ ! -f $HOME/.nixpkgs/darwin-configuration.nix ]; then
     ln -s $HOME/dotfiles/.nixpkgs $HOME/.nixpkgs
 fi
-if [ ! -f $HOME/.config/nvim/coc-settings.json ]; then
-    ln -s $HOME/dotfiles/coc-settings.json $HOME/.config/nvim/coc-settings.json
-fi
 if [ ! -f $HOME/.mailcap ]; then
     ln -s $HOME/dotfiles/.mailcap $HOME/.mailcap
 fi
