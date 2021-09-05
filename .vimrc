@@ -1,5 +1,5 @@
 filetype plugin indent on
-# Switch off detection of gmi files as "conf".
+" Switch off detection of gmi files as "conf".
 au BufRead,BufNewFile *.gmi set filetype=gemini
 
 " Move the preview screen.
