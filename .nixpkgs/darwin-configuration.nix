@@ -121,6 +121,7 @@ in
       pkgs.htop
       pkgs.html2text
       pkgs.hugo
+      pkgs.ibm-plex
       pkgs.imagemagick
       pkgs.jq
       pkgs.lima # Alternative to Docker desktop https://github.com/lima-vm/lima
