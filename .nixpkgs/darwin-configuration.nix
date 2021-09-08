@@ -88,20 +88,18 @@ in
     [
       adr-tools
       air # Hot reload for Go.
-      goreplace
-      twet
-      python-with-global-packages
-      pkgs.ag # Silver Searcher.
-      pkgs.awslogs
-      pkgs.aerc
-      pkgs.asciinema
       awscli2
+      goreplace
+      python-with-global-packages
+      twet
+      pkgs.aerc
+      pkgs.ag # Silver Searcher.
+      pkgs.asciinema
       pkgs.astyle # Code formatter for C.
-      pkgs.ssm-session-manager-plugin
       pkgs.aws-vault
+      pkgs.awslogs
       pkgs.ccls # C LSP Server.
       pkgs.cmake # Used by Raspberry Pi Pico SDK.
-      pkgs.llvm # Used by Raspberry Pi Pico SDK.
       pkgs.docker
       pkgs.dotnetCorePackages.sdk_3_1
       pkgs.entr # Execute command when files change.
@@ -111,32 +109,35 @@ in
       pkgs.gifsicle
       pkgs.git
       pkgs.gitAndTools.gh
+      pkgs.gnupg
       pkgs.go
+      pkgs.go-swagger
+      pkgs.goimports
       pkgs.google-cloud-sdk
       pkgs.gopls
       pkgs.goreleaser
-      pkgs.goimports
-      pkgs.gnupg
       pkgs.graphviz
-      pkgs.htop
       pkgs.html2text
+      pkgs.htop
       pkgs.hugo
       pkgs.ibm-plex
       pkgs.imagemagick
       pkgs.jq
       pkgs.lima # Alternative to Docker desktop https://github.com/lima-vm/lima
+      pkgs.llvm # Used by Raspberry Pi Pico SDK.
       pkgs.lynx
       pkgs.minicom # Serial monitor.
       pkgs.mutt
       pkgs.ninja # Used by Raspberry Pi Pico SDK, build tool.
       pkgs.nmap
-      pkgs.nodejs-14_x
+      pkgs.nodePackages.node2nix
       pkgs.nodePackages.prettier
       pkgs.nodePackages.typescript
-      pkgs.nodePackages.node2nix
       pkgs.nodePackages.typescript-language-server
+      pkgs.nodejs-14_x
       pkgs.pass
       pkgs.ripgrep
+      pkgs.ssm-session-manager-plugin
       pkgs.terraform
       pkgs.tmux
       pkgs.tree
