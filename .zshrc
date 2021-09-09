@@ -1,5 +1,5 @@
 # Enable profiling, see end of file for usage.
-#zmodload zsh/zprof 
+# zmodload zsh/zprof 
 
 # Use Nix.
 export PATH="/run/current-system/sw/bin:$PATH"
@@ -25,12 +25,17 @@ export AWS_VAULT_PASS_PREFIX=aws-vault
 # Add pass autocomplete.
 fpath=(~/dotfiles/zsh-completion $fpath)
 autoload -Uz compinit
-if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-	compinit;
+# Cache for 1 day.
+comp_last_updated=`date -r ~/.zcompdump +%s` &> /dev/null;
+now=$(date +%s)
+file_age=$((now - comp_last_updated))
+if [[ $file_age -gt 86400 ]]; then;
+  echo "Updating completion..."
+  compinit;
+  complete -C 'aws_completer' aws;
 else
-	compinit -C;
+  compinit -C;
 fi;
-complete -C 'aws_completer' aws
 
 # Use the dotfiles.
 if [ ! -f $HOME/.gitconfig ]; then
@@ -119,4 +124,4 @@ if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
 fi
 
 # Execute profiling, see start of file to load.
-#zprof
+# zprof
