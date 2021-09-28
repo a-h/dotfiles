@@ -1,4 +1,4 @@
-# Creat the standard environment.
+# Create the standard environment.
 source $stdenv/setup
 # Extract the source code.
 tar xvfz $src

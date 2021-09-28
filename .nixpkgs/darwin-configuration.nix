@@ -55,6 +55,7 @@ let
   html2text = pkgs.callPackage ./html2text.nix {};
   air = pkgs.callPackage ./air.nix {};
   twet = pkgs.callPackage ./twet.nix {};
+  pact = pkgs.callPackage ./pact.nix {};
 
   nodePackages = import ./node-env/default.nix {
     inherit pkgs;
@@ -90,6 +91,7 @@ in
       air # Hot reload for Go.
       awscli2
       goreplace
+      pact
       python-with-global-packages
       twet
       pkgs.aerc
@@ -139,6 +141,7 @@ in
       pkgs.ripgrep
       pkgs.ssm-session-manager-plugin
       pkgs.terraform
+      pkgs.tmate
       pkgs.tmux
       pkgs.tree
       pkgs.unzip
