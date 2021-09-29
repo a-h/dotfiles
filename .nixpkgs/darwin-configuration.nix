@@ -105,6 +105,7 @@ in
       pkgs.docker
       pkgs.dotnetCorePackages.sdk_3_1
       pkgs.entr # Execute command when files change.
+      pkgs.fd # Find that respects .gitignore.
       pkgs.fzf # Fuzzy search.
       pkgs.gcalcli # Google Calendar CLI.
       pkgs.gcc-arm-embedded # Raspberry Pi Pico GCC.
