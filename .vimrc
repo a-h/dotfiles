@@ -135,6 +135,16 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- jdtls is a pain.
+nvim_lsp["jdtls"].setup {
+  cmd = { "jdtls" },
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  root_dir = nvim_lsp.util.root_pattern("Makefile", ".git", "build.gradle"),
+}
+
 -- https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
 -- Compe setup
 require'compe'.setup {

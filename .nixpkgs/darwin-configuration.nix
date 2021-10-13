@@ -56,18 +56,19 @@ let
   air = pkgs.callPackage ./air.nix {};
   twet = pkgs.callPackage ./twet.nix {};
   pact = pkgs.callPackage ./pact.nix {};
+  jdtls = pkgs.callPackage ./jdtls.nix {};
 
   nodePackages = import ./node-env/default.nix {
     inherit pkgs;
   }; 
 
-  neovim5Revision = import (builtins.fetchTarball {
-    name = "nixos-unstable-2021-08-18";
-    url = "https://github.com/nixos/nixpkgs/archive/51e3fe53462eb72aa038f2b47735acea8b1fcae2.tar.gz";
-    # Hash obtained using `nix-prefetch-url --unpack <url>`
-    sha256 = "018njpwyhzwxlm8l4rc80qakzgyfqq9yzmr2nimv0033rvjcvxa4";
-  }) {};
-  neovim5 = neovim5Revision.neovim;
+  #neovim5Revision = import (builtins.fetchTarball {
+    #name = "nixos-unstable-2021-08-18";
+    #url = "https://github.com/nixos/nixpkgs/archive/51e3fe53462eb72aa038f2b47735acea8b1fcae2.tar.gz";
+    ## Hash obtained using `nix-prefetch-url --unpack <url>`
+    #sha256 = "018njpwyhzwxlm8l4rc80qakzgyfqq9yzmr2nimv0033rvjcvxa4";
+  #}) {};
+  #neovim5 = neovim5Revision.neovim;
 
   awscli_v2_2_14 = import (builtins.fetchTarball {
     name = "awscli_v2_2_14";
@@ -94,6 +95,12 @@ in
       pact
       python-with-global-packages
       twet
+      # Java development.
+      pkgs.jdk # Development.
+      pkgs.jre # Runtime.
+      pkgs.gradle # Build tool.
+      jdtls # Language server.
+      # Other.
       pkgs.aerc
       pkgs.ag # Silver Searcher.
       pkgs.asciinema
@@ -151,7 +158,7 @@ in
       pkgs.yarn
       pkgs.zip
       (
-	neovim5.override {
+	pkgs.neovim.override {
 	  vimAlias = true;
 	  configure = {
 	    packages.myPlugins = with pkgs.vimPlugins; {
@@ -174,6 +181,7 @@ in
 		nvim-lspconfig #https://neovim.io/doc/user/lsp.html#lsp-extension-example
 		vimTempl
 		nvim-compe
+		nvim-jdtls
 	      ];
 	      opt = [];
 	    };
