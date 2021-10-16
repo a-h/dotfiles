@@ -109,7 +109,6 @@ in
       pkgs.awslogs
       pkgs.ccls # C LSP Server.
       pkgs.cmake # Used by Raspberry Pi Pico SDK.
-      pkgs.docker
       pkgs.dotnetCorePackages.sdk_3_1
       pkgs.entr # Execute command when files change.
       pkgs.fd # Find that respects .gitignore.
@@ -181,7 +180,6 @@ in
 		nvim-lspconfig #https://neovim.io/doc/user/lsp.html#lsp-extension-example
 		vimTempl
 		nvim-compe
-		nvim-jdtls
 	      ];
 	      opt = [];
 	    };

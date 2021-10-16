@@ -101,6 +101,9 @@ export KEYTIMEOUT=1
 export SAM_CLI_TELEMETRY=0
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
+# Go module proxies mess with private repos. Waiting for https://github.com/golang/go/issues/33985
+export GONOSUMDB=*
+
 # Create an alias for listening.
 listening() {
     if [ $# -eq 0 ]; then
