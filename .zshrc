@@ -33,6 +33,7 @@ if [[ $file_age -gt 86400 ]]; then;
   echo "Updating completion..."
   compinit;
   complete -C 'aws_completer' aws;
+  complete -o nospace -C /run/current-system/sw/bin/xc xc
 else
   compinit -C;
 fi;

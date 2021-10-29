@@ -57,6 +57,7 @@ let
   twet = pkgs.callPackage ./twet.nix {};
   pact = pkgs.callPackage ./pact.nix {};
   jdtls = pkgs.callPackage ./jdtls.nix {};
+  xc = pkgs.callPackage ./xc.nix {};
 
   nodePackages = import ./node-env/default.nix {
     inherit pkgs;
@@ -95,6 +96,7 @@ in
       pact
       python-with-global-packages
       twet
+      xc # Task executor.
       # Java development.
       pkgs.jdk # Development.
       pkgs.jre # Runtime.
