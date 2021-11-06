@@ -9,7 +9,11 @@
 
 ## New machine setup
 
-1. Import public SSH key (`gpg --import pubkey.asc`)
+1. Import public key (`gpg --import public-key.gpg`)
+1. Remembers to use `keytocard` to migrate the key onto the new card https://developers.yubico.com/PGP/Importing_keys.html
+1. Setup the GPG card (`gpg --card-status`)
+1. Update the `.gitconfig` to use the new card ID.
+1. Set up the ~/.gnupg/sshcontrol file.
 1. Clone this repo to `~/dotfiles`
 1. Execute the MacOS settings: `./.macos`
 1. Install Tmux Plugin Manager (`git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`) and then install plugins from within tmux (Ctrl-B shift+I)

@@ -105,7 +105,7 @@ in
       awscli2
       goreplace
       pact
-      python-with-global-packages
+      # python-with-global-packages # No Darwin ARM support.
       twet
       xc # Task executor.
       # Java development.
@@ -122,12 +122,12 @@ in
       pkgs.awslogs
       pkgs.ccls # C LSP Server.
       pkgs.cmake # Used by Raspberry Pi Pico SDK.
-      pkgs.dotnetCorePackages.sdk_3_1
+      # pkgs.dotnet-sdk # No Darwin ARM support.
       pkgs.entr # Execute command when files change.
       pkgs.fd # Find that respects .gitignore.
       pkgs.fzf # Fuzzy search.
-      pkgs.gcalcli # Google Calendar CLI.
-      pkgs.gcc-arm-embedded # Raspberry Pi Pico GCC.
+      # pkgs.gcalcli # Google Calendar CLI.
+      # pkgs.gcc-arm-embedded # Raspberry Pi Pico GCC. # No Darwin ARM support.
       pkgs.gifsicle
       pkgs.git
       pkgs.gitAndTools.gh
@@ -135,7 +135,7 @@ in
       go
       pkgs.go-swagger
       pkgs.goimports
-      pkgs.google-cloud-sdk
+      # pkgs.google-cloud-sdk # No Darwin ARM support.
       pkgs.gopls
       pkgs.goreleaser
       pkgs.graphviz
@@ -159,7 +159,7 @@ in
       pkgs.nodejs-14_x
       pkgs.pass
       pkgs.ripgrep
-      pkgs.ssm-session-manager-plugin
+      # pkgs.ssm-session-manager-plugin # No Darwin ARM support. 
       pkgs.terraform
       pkgs.tmate
       pkgs.tmux
@@ -208,5 +208,6 @@ in
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
+  services.nix-daemon.enable = true;
 }
 
