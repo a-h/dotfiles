@@ -21,6 +21,9 @@ let g:netrw_banner = 0
 " Use the expandable list style.
 let g:netrw_liststyle = 3
 
+" instant.nvim configuration.
+let g:instant_username="a-h"
+
 " FZF to replace ctrlP
 nnoremap <silent> <C-p> :GFiles<CR>
 

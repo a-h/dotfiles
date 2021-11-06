@@ -42,6 +42,16 @@ let
     };
   };
 
+  instantNvim = pkgs.vimUtils.buildVimPlugin {
+    name = "instant.nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "jbyuki";
+      repo = "instant.nvim";
+      rev = "c02d72267b12130609b7ad39b76cf7f4a3bc9554";
+      sha256 = "1wk43a8lnwkvfl0m2bxxgidbj4p03322xvn5j1wsl678xw1gdypc";
+    };
+  };
+
   python-with-global-packages = pkgs.python3.withPackages(ps: with ps; [
     pip
     botocore
@@ -58,6 +68,7 @@ let
   pact = pkgs.callPackage ./pact.nix {};
   jdtls = pkgs.callPackage ./jdtls.nix {};
   xc = pkgs.callPackage ./xc.nix {};
+  go = pkgs.callPackage ./go.nix {};
 
   nodePackages = import ./node-env/default.nix {
     inherit pkgs;
@@ -121,7 +132,7 @@ in
       pkgs.git
       pkgs.gitAndTools.gh
       pkgs.gnupg
-      pkgs.go
+      go
       pkgs.go-swagger
       pkgs.goimports
       pkgs.google-cloud-sdk
@@ -182,6 +193,7 @@ in
 		nvim-lspconfig #https://neovim.io/doc/user/lsp.html#lsp-extension-example
 		vimTempl
 		nvim-compe
+		instantNvim
 	      ];
 	      opt = [];
 	    };
