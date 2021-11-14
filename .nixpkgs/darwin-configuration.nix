@@ -2,6 +2,16 @@
 
 let
 
+  metalVim = pkgs.vimUtils.buildVimPlugin {
+    name = "Metal-Vim-Syntax-Highlighting";
+    src = pkgs.fetchFromGitHub {
+      owner = "tklebanoff";
+      repo = "metal-vim";
+      rev = "6970494a5490a17033650849f0a1ad07506cef2e";
+      sha256 = "14i8q9ikp3v4q7mpid9ir1azfqfm7fbksc65cpp51424clnqcapl";
+    };
+  };
+
   coverage = pkgs.vimUtils.buildVimPlugin {
     name = "vim-coverage";
     src = pkgs.fetchFromGitHub {
@@ -175,6 +185,7 @@ in
 	  configure = {
 	    packages.myPlugins = with pkgs.vimPlugins; {
 	      start = [
+		metalVim # Metal-Vim-Syntax-Highlighting
 		fzf-vim
 		vim-lastplace
 		vim-nix

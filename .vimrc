@@ -1,6 +1,7 @@
 filetype plugin indent on
 " Switch off detection of gmi files as "conf".
 au BufRead,BufNewFile *.gmi set filetype=gemini
+au BufRead,BufNewFile *.metal setfiletype metal
 
 " Move the preview screen.
 set splitbelow
