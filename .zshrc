@@ -54,10 +54,6 @@ fi
 if [ ! -f $HOME/.mailcap ]; then
     ln -s $HOME/dotfiles/.mailcap $HOME/.mailcap
 fi
-if [ ! -f $HOME/ssofresh ]; then
-    ln -s $HOME/dotfiles/aws/ssofresh.py $HOME/ssofresh
-    chmod +x $HOME/ssofresh
-fi
 
 # Git aliases.
 alias gs="git status -s"
