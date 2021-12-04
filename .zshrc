@@ -23,20 +23,20 @@ export AWS_VAULT_BACKEND=pass
 export AWS_VAULT_PASS_PREFIX=aws-vault
 
 # Add pass autocomplete.
-fpath=(~/dotfiles/zsh-completion $fpath)
+fpath+="$HOME/dotfiles/autocomplete"
 autoload -Uz compinit
 # Cache for 1 day.
-comp_last_updated=`date -r ~/.zcompdump +%s` &> /dev/null;
-now=$(date +%s)
-file_age=$((now - comp_last_updated))
-if [[ $file_age -gt 86400 ]]; then;
-  echo "Updating completion..."
-  compinit;
+# comp_last_updated=`date -r ~/.zcompdump +%s` &> /dev/null;
+# now=$(date +%s)
+# file_age=$((now - comp_last_updated))
+# if [[ $file_age -gt 86400 || $file_age -eq 0 ]]; then;
+#  echo "Updating completion..."
   complete -C 'aws_completer' aws;
   complete -o nospace -C /run/current-system/sw/bin/xc xc
-else
-  compinit -C;
-fi;
+  compinit;
+# else
+#  compinit -C;
+# fi;
 
 # Use the dotfiles.
 if [ ! -f $HOME/.gitconfig ]; then

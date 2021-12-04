@@ -201,10 +201,16 @@ in
 		vim-snippets #honza/vim-snippets
 		vim-visual-multi #mg979/vim-visual-multi
 		easygrep #dkprice/vim-easygrep
-		nvim-lspconfig #https://neovim.io/doc/user/lsp.html#lsp-extension-example
 		vimTempl
-		nvim-compe
 		instantNvim
+		# https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
+		nvim-lspconfig #https://neovim.io/doc/user/lsp.html#lsp-extension-example
+		nvim-cmp
+		cmp-nvim-lsp
+		cmp_luasnip
+		luasnip
+		# Add signature to autocomplete.
+		lsp_signature-nvim
 	      ];
 	      opt = [];
 	    };

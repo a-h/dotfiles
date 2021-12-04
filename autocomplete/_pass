@@ -35,7 +35,7 @@ _pass () {
 					"--path[gpg-id will only be applied to this subfolder]"
 				_pass_complete_keys
 				;;
-		ls|list|edit)
+			ls|list|edit)
 				_pass_complete_entries_with_subdirs
 				;;
 			insert)
@@ -124,7 +124,7 @@ _pass_complete_entries_helper () {
 	local IFS=$'\n'
 	local prefix
 	zstyle -s ":completion:${curcontext}:" prefix prefix || prefix="${PASSWORD_STORE_DIR:-$HOME/.password-store}"
-	_values -C 'passwords' ${$(find -L "$prefix" \( -name .git -o -name .gpg-id \) -prune -o $@ -print 2>/dev/null | sed -e "s#${prefix}/\{0,1\}##" -e 's#\.gpg##' -e 's#\\#\\\\#' | sort):-""}
+	_values -C 'passwords' ${$(find -L "$prefix" \( -name .git -o -name .gpg-id \) -prune -o $@ -print 2>/dev/null | sed -e "s#${prefix}/\{0,1\}##" -e 's#\.gpg##' -e 's#\\#\\\\#g' -e 's#:#\\:#g' | sort):-""}
 }
 
 _pass_complete_entries_with_subdirs () {
@@ -141,4 +141,4 @@ _pass_complete_keys () {
 	_values 'gpg keys' $(gpg2 --list-secret-keys --with-colons | cut -d : -f 10 | sort -u | sed '/^$/d')
 }
 
-_pass	
+_pass
