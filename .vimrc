@@ -57,15 +57,6 @@ hi StatusLine ctermbg=white ctermfg=darkgray
 hi MatchParen ctermbg=red
 hi Type ctermfg=lightblue
 
-" ultisnips configuration.
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
-
 " Autoformat Go files on save and add goimports style fix-up.
 " See https://github.com/neovim/nvim-lspconfig/issues/115
 lua <<EOF
@@ -117,7 +108,6 @@ lsp_signature_cfg = {
   hint_enable = false, -- virtual hint enable
   hint_prefix = "🐼 ",  -- Panda for parameter
   hint_scheme = "String",
-  use_lspsaga = false,  -- set to true if you want to use lspsaga popup
   hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
   max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
                    -- to view the hiding contents
@@ -226,12 +216,15 @@ cmp.setup {
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
     ['<Tab>'] = function(fallback)
       if cmp.visible() then
-        cmp.select_next_item()
+        local entry = cmp.get_selected_entry()
+	if not entry then
+	  cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+	end
+	cmp.confirm()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
       else

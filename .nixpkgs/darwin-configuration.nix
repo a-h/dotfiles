@@ -62,6 +62,16 @@ let
     };
   };
 
+  lspSignatureNvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "lsp_signature.nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "ray-x";
+      repo = "lsp_signature.nvim";
+      rev = "a4ea841be9014b73a31376ad78d97f41432e002a";
+      sha256 = "0m5jzi5hczm1z67djk1rv408jzy48rpdf4n8p5z2flmz1xd39mzx";
+    };
+  };
+
   python-with-global-packages = pkgs.python3.withPackages(ps: with ps; [
     pip
     botocore
@@ -197,8 +207,6 @@ in
 		vim-surround #tpope/vim-surround
 		vim-test #janko/vim-test
 		coverage #ruanyl/coverage.vim
-		ultisnips #SirVer/ultisnips
-		vim-snippets #honza/vim-snippets
 		vim-visual-multi #mg979/vim-visual-multi
 		easygrep #dkprice/vim-easygrep
 		vimTempl
@@ -210,7 +218,7 @@ in
 		cmp_luasnip
 		luasnip
 		# Add signature to autocomplete.
-		lsp_signature-nvim
+		lspSignatureNvim
 	      ];
 	      opt = [];
 	    };
