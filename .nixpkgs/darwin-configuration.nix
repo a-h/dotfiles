@@ -94,13 +94,13 @@ let
     inherit pkgs;
   }; 
 
-  #neovim5Revision = import (builtins.fetchTarball {
-    #name = "nixos-unstable-2021-08-18";
-    #url = "https://github.com/nixos/nixpkgs/archive/51e3fe53462eb72aa038f2b47735acea8b1fcae2.tar.gz";
-    ## Hash obtained using `nix-prefetch-url --unpack <url>`
-    #sha256 = "018njpwyhzwxlm8l4rc80qakzgyfqq9yzmr2nimv0033rvjcvxa4";
-  #}) {};
-  #neovim5 = neovim5Revision.neovim;
+  neovim6Revision = import (builtins.fetchTarball {
+    name = "nixos-unstable-2021-12-05";
+    url = "https://github.com/nixos/nixpkgs/archive/8ae277122450529fb973a364f3527f3ef2ca7999.tar.gz";
+    # Hash obtained using `nix-prefetch-url --unpack <url>`
+    sha256 = "0g1i2sp80f71xncvcjhdv2xz8phn88hzymwscqljfwq8wvpw75yk";
+  }) {};
+  neovim6 = neovim6Revision.neovim;
 
   awscli_v2_2_14 = import (builtins.fetchTarball {
     name = "awscli_v2_2_14";
@@ -190,7 +190,7 @@ in
       pkgs.yarn
       pkgs.zip
       (
-	pkgs.neovim.override {
+	neovim6.override {
 	  vimAlias = true;
 	  configure = {
 	    packages.myPlugins = with pkgs.vimPlugins; {
