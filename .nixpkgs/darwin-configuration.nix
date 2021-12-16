@@ -12,6 +12,16 @@ let
     };
   };
 
+  nvimGoCoverage = pkgs.vimUtils.buildVimPlugin {
+    name = "nvim-goc.lua";
+    src = pkgs.fetchFromGitHub {
+      owner = "rafaelsq";
+      repo = "nvim-goc.lua";
+      rev = "7c03112ce77b7df2b124d46c1188cc3c66d06f66";
+      sha256 = "1sl3f770aw52cbrqvx96ys741qwk0lv2v39qhmn2lppsp4ymk5bn";
+    };
+  };
+
   coverage = pkgs.vimUtils.buildVimPlugin {
     name = "vim-coverage";
     src = pkgs.fetchFromGitHub {
@@ -219,6 +229,9 @@ in
 		luasnip
 		# Add signature to autocomplete.
 		lspSignatureNvim
+		# Go coverage needs treesitter.
+		nvim-treesitter #github.com/nvim-treesitter/nvim-treesitter
+		nvimGoCoverage #rafaelsq/nvim-goc.lua
 	      ];
 	      opt = [];
 	    };
