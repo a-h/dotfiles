@@ -140,9 +140,11 @@ in
       xc # Task executor.
       # Java development.
       pkgs.jdk # Development.
+      pkgs.openjdk17 # Development.
       pkgs.jre # Runtime.
       pkgs.gradle # Build tool.
       jdtls # Language server.
+      pkgs.maven
       # Other.
       pkgs.aerc
       pkgs.ag # Silver Searcher.
@@ -186,7 +188,7 @@ in
       pkgs.nodePackages.prettier
       pkgs.nodePackages.typescript
       pkgs.nodePackages.typescript-language-server
-      pkgs.nodejs-14_x
+      pkgs.nodejs-16_x
       pkgs.pass
       pkgs.ripgrep
       # pkgs.ssm-session-manager-plugin # No Darwin ARM support. 
