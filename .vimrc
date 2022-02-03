@@ -57,6 +57,9 @@ hi StatusLine ctermbg=white ctermfg=darkgray
 hi MatchParen ctermbg=red
 hi Type ctermfg=lightblue
 
+" Run xc tasks.
+:map <leader>xc :call fzf#run({'source':'xc -short', 'options': '--prompt "xc> " --preview "xc -md {}"', 'sink': 'RunInInteractiveShell xc', 'window': {'width': 0.9, 'height': 0.6}})
+
 " Autoformat Go files on save and add goimports style fix-up.
 " See https://github.com/neovim/nvim-lspconfig/issues/115
 lua <<EOF
@@ -165,17 +168,15 @@ local on_attach = function(client, bufnr)
 end
 
 -- Add templ configuration.
-local configs = require'lspconfig/configs'
-if not nvim_lsp.templ then
-  configs.templ = {
-    default_config = {
-      cmd = {"templ", "lsp"},
-      filetypes = {'templ'},
-      root_dir = nvim_lsp.util.root_pattern("go.mod", ".git"),
-      settings = {},
-    };
-  }
-end
+local configs = require'lspconfig.configs'
+configs.templ = {
+  default_config = {
+    cmd = {"templ", "lsp"},
+    filetypes = {'templ'},
+    root_dir = nvim_lsp.util.root_pattern("go.mod", ".git"),
+    settings = {},
+  };
+}
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()

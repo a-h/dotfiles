@@ -183,6 +183,7 @@ in
       pkgs.minicom # Serial monitor.
       pkgs.mutt
       pkgs.ninja # Used by Raspberry Pi Pico SDK, build tool.
+      pkgs.nix-prefetch-git
       pkgs.nmap
       pkgs.nodePackages.node2nix
       pkgs.nodePackages.prettier
