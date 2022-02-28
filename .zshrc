@@ -9,6 +9,8 @@ export PATH="$HOME/bin/tinygo/bin:$PATH"
 export PATH="/usr/local/bin/:$PATH"
 # Go comes next.
 export PATH="/usr/local/go:$HOME/go/bin/:$PATH"
+# JavaScript.
+export PATH=$PATH:~/.npm/bin
 # Other tools.
 export PATH="$PATH:$HOME/.dotnet/tools"
 export PATH="$PATH:/Applications/SnowSQL.app/Contents/MacOS:$PATH"
@@ -65,10 +67,8 @@ alias gp="git push"
 if [ -e /Users/adrian/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/adrian/.nix-profile/etc/profile.d/nix.sh; fi 
 # Configure globally installed NPM modules to be in a sensible location.
 # I don't want any globally installed NPM modules, but CDK is a nuisance.
-if grep prefix ~/.npmrc &> /dev/null;
-then
-  echo "prefix=$HOME/.npm-global" >> ~/.npmrc
-  export PATH=$PATH:~/.npm-global/bin
+if [ ! -f $HOME/.npmrc ]; then
+  echo "prefix=$HOME/.npm" >> ~/.npmrc
 fi
 
 # Enable vi mode for zsh.
