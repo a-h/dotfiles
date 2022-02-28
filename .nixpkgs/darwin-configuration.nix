@@ -94,6 +94,17 @@ let
     };
   };
 
+  # nix-prefetch-url --unpack https://github.com/neovim/nvim-lspconfig/archive/ea29110765cb42e842dc8372c793a6173d89b0c4.tar.gz
+  nvimLspConfig = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "nvim-lspconfig";
+    src = pkgs.fetchFromGitHub {
+      owner = "neovim";
+      repo = "nvim-lspconfig";
+      rev = "ea29110765cb42e842dc8372c793a6173d89b0c4";
+      sha256 = "1i1yjk939pxfk9dpv4rh229srx02yxklzwk051a9qprq3hjhwl6v";
+    };
+  };
+
   python-with-global-packages = pkgs.python3.withPackages(ps: with ps; [
     pip
     botocore
@@ -238,7 +249,7 @@ in
 		vimTempl
 		instantNvim
 		# https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
-		nvim-lspconfig #https://neovim.io/doc/user/lsp.html#lsp-extension-example
+		nvimLspConfig #https://neovim.io/doc/user/lsp.html#lsp-extension-example
 		nvimCmp
 		cmp-nvim-lsp
 		cmp_luasnip
