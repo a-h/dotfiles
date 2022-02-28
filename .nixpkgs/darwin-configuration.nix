@@ -72,13 +72,25 @@ let
     };
   };
 
+  # nix-prefetch-url --unpack https://github.com/ray-x/lsp_signature.nvim/archive/f7c308e99697317ea572c6d6bafe6d4be91ee164.tar.gz
   lspSignatureNvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "lsp_signature.nvim";
     src = pkgs.fetchFromGitHub {
       owner = "ray-x";
       repo = "lsp_signature.nvim";
-      rev = "a4ea841be9014b73a31376ad78d97f41432e002a";
-      sha256 = "0m5jzi5hczm1z67djk1rv408jzy48rpdf4n8p5z2flmz1xd39mzx";
+      rev = "f7c308e99697317ea572c6d6bafe6d4be91ee164";
+      sha256 = "0s48bamqwhixlzlyn431z7k3bhp0y2mx16d36g66c9ccgrs5ifmm";
+    };
+  };
+
+  # nix-prefetch-url --unpack https://github.com/hrsh7th/nvim-cmp/archive/13d64460cba64950aff41e230cc801225bd9a3e2.tar.gz
+  nvimCmp = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "nvim-cmp";
+    src = pkgs.fetchFromGitHub {
+      owner = "hrsh7th";
+      repo = "nvim-cmp";
+      rev = "13d64460cba64950aff41e230cc801225bd9a3e2";
+      sha256 = "091argbivsnjp3ibsnci2qj5jrr2b39gicrlz2ky41kmb4pmw36b";
     };
   };
 
@@ -105,10 +117,11 @@ let
   }; 
 
   neovim6Revision = import (builtins.fetchTarball {
-    name = "nixos-unstable-2021-12-05";
-    url = "https://github.com/nixos/nixpkgs/archive/8ae277122450529fb973a364f3527f3ef2ca7999.tar.gz";
+    name = "nixos-unstable-2022-01-01";
+    url = "https://github.com/nixos/nixpkgs/archive/9d6d1a474b946c98168bf7fee9e4185ed11cfd8f.tar.gz";
     # Hash obtained using `nix-prefetch-url --unpack <url>`
-    sha256 = "0g1i2sp80f71xncvcjhdv2xz8phn88hzymwscqljfwq8wvpw75yk";
+    # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/neovim/default.nix
+    sha256 = "183q04asndwganf31q4fx0aigc20ad6ixs56m92y3d4iry70qv91";
   }) {};
   neovim6 = neovim6Revision.neovim;
 
@@ -226,7 +239,7 @@ in
 		instantNvim
 		# https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
 		nvim-lspconfig #https://neovim.io/doc/user/lsp.html#lsp-extension-example
-		nvim-cmp
+		nvimCmp
 		cmp-nvim-lsp
 		cmp_luasnip
 		luasnip
