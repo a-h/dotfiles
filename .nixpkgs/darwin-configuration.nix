@@ -105,6 +105,28 @@ let
     };
   };
 
+  # nix-prefetch-url --unpack https://github.com/L3MON4D3/LuaSnip/archive/7c634ddf7ff99245ef993b5fa459c3b61e905075.tar.gz 
+  luasnip = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "luasnip";
+    src = pkgs.fetchFromGitHub {
+      owner = "L3MON4D3";
+      repo = "LuaSnip";
+      rev = "7c634ddf7ff99245ef993b5fa459c3b61e905075";
+      sha256 = "0s3qsl79nalkbb4fbrhbnqdcfrw4ln1ff6kajxs7lnlhkrymg3jv";
+    };
+  };
+
+  # nix-prefetch-url --unpack https://github.com/saadparwaiz1/cmp_luasnip/archive/d6f837f4e8fe48eeae288e638691b91b97d1737f.tar.gz
+  cmpLuasnip = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "cmp_luasnip";
+    src = pkgs.fetchFromGitHub {
+      owner = "saadparwaiz1";
+      repo = "cmp_luasnip";
+      rev = "d6f837f4e8fe48eeae288e638691b91b97d1737f";
+      sha256 = "0cmfjqps7j3056y8avkrfz40kx8qcdxf4v1xvfv03nrw9xdwwh5y";
+    };
+  };
+
   python-with-global-packages = pkgs.python3.withPackages(ps: with ps; [
     pip
     botocore
@@ -252,7 +274,7 @@ in
 		nvimLspConfig #https://neovim.io/doc/user/lsp.html#lsp-extension-example
 		nvimCmp
 		cmp-nvim-lsp
-		cmp_luasnip
+		cmpLuasnip
 		luasnip
 		# Add signature to autocomplete.
 		lspSignatureNvim
