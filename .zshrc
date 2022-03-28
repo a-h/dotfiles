@@ -26,7 +26,8 @@ export AWS_VAULT_PASS_PREFIX=aws-vault
 
 # Add pass autocomplete.
 fpath+="$HOME/dotfiles/autocomplete"
-autoload -Uz compinit
+autoload -U +X bashcompinit && bashcompinit
+autoload -U +X compinit && compinit
 # Cache for 1 day.
 # comp_last_updated=`date -r ~/.zcompdump +%s` &> /dev/null;
 # now=$(date +%s)
@@ -62,6 +63,7 @@ alias gs="git status -s"
 alias gl='git log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short'
 alias gd="git diff"
 alias gp="git push"
+alias gu="git pull"
 
 # Configure nix package manager.
 if [ -e /Users/adrian/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/adrian/.nix-profile/etc/profile.d/nix.sh; fi 
@@ -125,3 +127,4 @@ fi
 
 # Execute profiling, see start of file to load.
 # zprof
+

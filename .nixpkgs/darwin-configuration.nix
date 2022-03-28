@@ -1,4 +1,5 @@
-{ config, pkgs, ... }:
+# See https://nixos.org/guides/towards-reproducibility-pinning-nixpkgs.html and https://status.nixos.org
+{ config, pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/e80f8f4d8336f5249d475d5c671a4e53b9d36634.tar.gz") {}, ... }:
 
 let
 
@@ -193,13 +194,14 @@ in
       pkgs.maven
       # Other.
       pkgs.aerc
-      pkgs.ag # Silver Searcher.
+      pkgs.silver-searcher
       pkgs.asciinema
       pkgs.astyle # Code formatter for C.
       pkgs.aws-vault
       pkgs.awslogs
       pkgs.ccls # C LSP Server.
       pkgs.cmake # Used by Raspberry Pi Pico SDK.
+      pkgs.cargo # Rust tooling.
       # pkgs.dotnet-sdk # No Darwin ARM support.
       pkgs.entr # Execute command when files change.
       pkgs.fd # Find that respects .gitignore.
@@ -212,7 +214,7 @@ in
       pkgs.gnupg
       go
       pkgs.go-swagger
-      pkgs.goimports
+      pkgs.gotools
       # pkgs.google-cloud-sdk # No Darwin ARM support.
       pkgs.gopls
       pkgs.goreleaser
@@ -238,6 +240,9 @@ in
       pkgs.nodejs-16_x
       pkgs.pass
       pkgs.ripgrep
+      pkgs.rustc # Rust compiler.
+      pkgs.rustfmt # Rust formatter.
+      pkgs.rls # Rust language server.
       # pkgs.ssm-session-manager-plugin # No Darwin ARM support. 
       pkgs.terraform
       pkgs.tmate
@@ -281,6 +286,7 @@ in
 		# Go coverage needs treesitter.
 		nvim-treesitter #github.com/nvim-treesitter/nvim-treesitter
 		nvimGoCoverage #rafaelsq/nvim-goc.lua
+		rust-vim
 	      ];
 	      opt = [];
 	    };
