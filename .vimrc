@@ -56,6 +56,9 @@ hi Label ctermfg=yellow
 hi StatusLine ctermbg=white ctermfg=darkgray
 hi MatchParen ctermbg=red
 hi Type ctermfg=lightblue
+# Diagnostic errors.
+hi DiagnosticError ctermfg=red ctermbg=red
+hi DiagnosticWarning ctermfg=yellow ctermbg=yellow
 
 " Run xc tasks.
 :map <leader>xc :call fzf#run({'source':'xc -short', 'options': '--prompt "xc> " --preview "xc -md {}"', 'sink': 'RunInInteractiveShell xc', 'window': {'width': 0.9, 'height': 0.6}})
