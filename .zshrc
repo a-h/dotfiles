@@ -11,6 +11,8 @@ export PATH="/usr/local/bin/:$PATH"
 export PATH="/usr/local/go:$HOME/go/bin/:$PATH"
 # JavaScript.
 export PATH=$PATH:~/.npm/bin
+# play.date
+export PATH="$PATH:$HOME/Developer/PlaydateSDK/bin"
 # Other tools.
 export PATH="$PATH:$HOME/.dotnet/tools"
 export PATH="$PATH:/Applications/SnowSQL.app/Contents/MacOS:$PATH"
