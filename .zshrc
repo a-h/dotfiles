@@ -69,6 +69,7 @@ alias gu="git pull"
 
 # Configure nix package manager.
 if [ -e /Users/adrian/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/adrian/.nix-profile/etc/profile.d/nix.sh; fi 
+alias nix="nix --extra-experimental-features nix-command --extra-experimental-features flakes"
 # Configure globally installed NPM modules to be in a sensible location.
 # I don't want any globally installed NPM modules, but CDK is a nuisance.
 if [ ! -f $HOME/.npmrc ]; then
