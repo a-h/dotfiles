@@ -170,10 +170,11 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   -- TypeScript organise imports.
   buf_set_keymap('n', '<space>tsoi', '<cmd>lua vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}})<CR>', opts)
+  buf_set_keymap('n', '<space>tsf', '<cmd>EslintFixAll<CR>', opts)
 end
 
 -- Add templ configuration.
-local configs = require'lspconfig.configs'
+local configs = require('lspconfig.configs')
 configs.templ = {
   default_config = {
     cmd = {"templ", "lsp"},
@@ -182,19 +183,36 @@ configs.templ = {
     settings = {},
   };
 }
+-- Java language server.
+configs.jdtls = {
+  default_config = {
+    cmd = { "jdtls" },
+    filetypes = {'java'},
+    root_dir = nvim_lsp.util.root_pattern("Makefile", ".git", "build.gradle"),
+  };
+}
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
--- lua-language-server
-nvim_lsp.sumneko_lua.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
+local server_settings = {
+  tsserver = {
+    format = { enable = false },
   },
-  settings = {
+  eslint = {
+    enable = true,
+    format = { enable = true }, -- this will enable formatting
+    packageManager = "npm",
+    autoFixOnSave = true,
+    codeActionsOnSave = {
+      mode = "all",
+      rules = { "!debugger", "!no-only-tests/*" },
+    },
+    lintTask = {
+      enable = true,
+    },
+  },
+  sumneko_lua = {
     Lua = {
       runtime = {
         version = 'Lua 5.4',
@@ -215,15 +233,19 @@ nvim_lsp.sumneko_lua.setup {
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'gopls', 'ccls', 'cmake', 'tsserver', 'templ', 'rls' }
+-- eslint comes from:
+-- npm i -g vscode-langservers-extracted
+local servers = { 'gopls', 'ccls', 'cmake', 'tsserver', 'templ', 'rls', 'eslint', 'sumneko_lua', 'jdtls' }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+  local opts = { 
     on_attach = on_attach,
     capabilities = capabilities,
     flags = {
       debounce_text_changes = 150,
     },
   }
+  if server_settings[lsp] then opts.settings = server_settings[lsp] end
+  nvim_lsp[lsp].setup(opts)
 end
 
 -- Set completeopt to have a better completion experience
@@ -277,17 +299,6 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
   },
-}
-
--- jdtls is a pain.
-nvim_lsp["jdtls"].setup {
-  cmd = { "jdtls" },
-  on_attach = on_attach,
-  capabilies = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  root_dir = nvim_lsp.util.root_pattern("Makefile", ".git", "build.gradle"),
 }
 
 --TODO: Work out what keybinding I want to see the big version.
