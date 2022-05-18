@@ -289,6 +289,7 @@ in
 		nvim-treesitter #github.com/nvim-treesitter/nvim-treesitter
 		nvimGoCoverage #rafaelsq/nvim-goc.lua
 		rust-vim
+		targets-vim # https://github.com/wellle/targets.vim
 	      ];
 	      opt = [];
 	    };
