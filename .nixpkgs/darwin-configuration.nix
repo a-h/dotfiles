@@ -194,6 +194,7 @@ in
       pkgs.maven
       # Other.
       pkgs.aerc
+      pkgs.bat
       pkgs.silver-searcher
       pkgs.asciinema
       pkgs.astyle # Code formatter for C.
