@@ -127,7 +127,12 @@ if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
     echo "gpgconf is not installed, skipping starting GPG SSH agent..."
   fi
 fi
+#
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/adrian/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/adrian/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/adrian/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/adrian/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Execute profiling, see start of file to load.
 # zprof
-

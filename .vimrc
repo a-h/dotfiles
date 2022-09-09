@@ -168,6 +168,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_set_keymap('n', '<space>clr', '<cmd>lua vim.lsp.codelens.refresh()<CR>', opts)
+  buf_set_keymap('n', '<space>cln', '<cmd>lua vim.lsp.codelens.run()<CR>', opts)
   -- TypeScript organise imports.
   buf_set_keymap('n', '<space>tsoi', '<cmd>lua vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}})<CR>', opts)
   buf_set_keymap('n', '<space>tsf', '<cmd>EslintFixAll<CR>', opts)
@@ -196,6 +198,14 @@ configs.jdtls = {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 local server_settings = {
+  gopls = {
+    codelenses = {
+      generate = true, -- show the `go generate` lens.
+      gc_details = true, --  // Show a code lens toggling the display of gc's choices.
+      test = true,
+      tidy = true,
+    },
+  },
   tsserver = {
     format = { enable = false },
   },

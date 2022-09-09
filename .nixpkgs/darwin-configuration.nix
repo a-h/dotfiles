@@ -194,6 +194,8 @@ in
       pkgs.maven
       # Other.
       pkgs.aerc
+      pkgs.aha # Converts shell output to HTML.
+      pkgs.expect # Provides the unbuffer command used to force programs to pipe color: `unbuffer fd | aha -b -n` (https://joshbode.github.io/remark/ansi.html#5)
       pkgs.bat
       pkgs.silver-searcher
       pkgs.asciinema
@@ -247,6 +249,7 @@ in
       pkgs.rustfmt # Rust formatter.
       pkgs.rls # Rust language server.
       # pkgs.ssm-session-manager-plugin # No Darwin ARM support. 
+      pkgs.slides
       pkgs.terraform
       pkgs.tmate
       pkgs.tmux
