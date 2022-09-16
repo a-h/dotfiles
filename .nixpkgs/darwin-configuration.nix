@@ -1,17 +1,10 @@
 # See https://nixos.org/guides/towards-reproducibility-pinning-nixpkgs.html and https://status.nixos.org
-{ config, pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/e80f8f4d8336f5249d475d5c671a4e53b9d36634.tar.gz") { }, ... }:
+# https://github.com/NixOS/nixpkgs/releases/tag/22.05
+{ config, pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/ce6aa13369b667ac2542593170993504932eb836.tar.gz") { }, ... }:
 
 let
   neovim = pkgs.callPackage ./nvim.nix { };
 
-  python-with-global-packages = pkgs.python3.withPackages (ps: with ps; [
-    pip
-    botocore
-    boto3
-    numpy
-  ]);
-
-  #goreleaser = pkgs.callPackage ./goreleaser.nix {};
   adr-tools = pkgs.callPackage ./adr-tools.nix { };
   goreplace = pkgs.callPackage ./goreplace.nix { };
   html2text = pkgs.callPackage ./html2text.nix { };
@@ -52,7 +45,6 @@ in
       goreplace
       neovim
       pact
-      # python-with-global-packages # No Darwin ARM support.
       twet
       xc # Task executor.
       # Java development.
