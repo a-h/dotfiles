@@ -59,6 +59,9 @@ fi
 if [ ! -f $HOME/.mailcap ]; then
     ln -s $HOME/dotfiles/.mailcap $HOME/.mailcap
 fi
+if [ ! -f "$HOME/.config/nvim/" ]; then
+  ln -s $HOME/dotfiles/.config/nvim $HOME/.config/nvim
+fi
 
 # Git aliases.
 alias gs="git status -s"

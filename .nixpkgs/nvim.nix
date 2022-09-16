@@ -17,8 +17,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "rafaelsq";
       repo = "nvim-goc.lua";
-      rev = "7c03112ce77b7df2b124d46c1188cc3c66d06f66";
-      sha256 = "1sl3f770aw52cbrqvx96ys741qwk0lv2v39qhmn2lppsp4ymk5bn";
+      rev = "7d23d820feeb30c6346b8a4f159466ee77e855fd";
+      sha256 = "1b9ri5s4mcs0k539kfhf5zd3fajcr7d4lc0216pbjq2bvg8987wn";
     };
   };
 
@@ -42,16 +42,6 @@ let
     };
   };
 
-  vimBuilder = pkgs.vimUtils.buildVimPlugin {
-    name = "builder.vim";
-    src = pkgs.fetchFromGitHub {
-      owner = "b0o";
-      repo = "builder.vim";
-      rev = "940e0deff0fb4ff2c4fdfe263cdbe669152688c6";
-      sha256 = "1synvwz7xqy68wb45rdy5lscp2z19wdd7wnp07smylv4jcnlya51";
-    };
-  };
-
   vimTempl = pkgs.vimUtils.buildVimPlugin {
     name = "templ.vim";
     src = pkgs.fetchFromGitHub {
@@ -62,39 +52,30 @@ let
     };
   };
 
-  instantNvim = pkgs.vimUtils.buildVimPlugin {
-    name = "instant.nvim";
-    src = pkgs.fetchFromGitHub {
-      owner = "jbyuki";
-      repo = "instant.nvim";
-      rev = "c02d72267b12130609b7ad39b76cf7f4a3bc9554";
-      sha256 = "1wk43a8lnwkvfl0m2bxxgidbj4p03322xvn5j1wsl678xw1gdypc";
-    };
-  };
-
   # nix-prefetch-url --unpack https://github.com/ray-x/lsp_signature.nvim/archive/f7c308e99697317ea572c6d6bafe6d4be91ee164.tar.gz
   lspSignatureNvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "lsp_signature.nvim";
     src = pkgs.fetchFromGitHub {
       owner = "ray-x";
       repo = "lsp_signature.nvim";
-      rev = "f7c308e99697317ea572c6d6bafe6d4be91ee164";
-      sha256 = "0s48bamqwhixlzlyn431z7k3bhp0y2mx16d36g66c9ccgrs5ifmm";
+      rev = "e65a63858771db3f086c8d904ff5f80705fd962b";
+      sha256 = "17qxn2ldvh1gas3i55vigqsz4mm7sxfl721v7lix9xs9bqgm73n1";
     };
   };
 
-  # nix-prefetch-url --unpack https://github.com/hrsh7th/nvim-cmp/archive/13d64460cba64950aff41e230cc801225bd9a3e2.tar.gz
+  # nix-prefetch-git https://github.com/hrsh7th/nvim-cmp 983453e32cb35533a119725883c04436d16c0120
   nvimCmp = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "nvim-cmp";
     src = pkgs.fetchFromGitHub {
       owner = "hrsh7th";
       repo = "nvim-cmp";
-      rev = "13d64460cba64950aff41e230cc801225bd9a3e2";
-      sha256 = "091argbivsnjp3ibsnci2qj5jrr2b39gicrlz2ky41kmb4pmw36b";
+      rev = "983453e32cb35533a119725883c04436d16c0120";
+      sha256 = "0649n476jd6dqd79fmywmigz19sb0s344ablwr25gr23fp46hzaz";
     };
   };
 
-  # nix-prefetch-url --unpack https://github.com/neovim/nvim-lspconfig/archive/ea29110765cb42e842dc8372c793a6173d89b0c4.tar.gz
+  # nix-prefetch-git https://github.com/neovim/nvim-lspconfig ea29110765cb42e842dc8372c793a6173d89b0c4
+  # https://github.com/neovim/nvim-lspconfig/releases/tag/v0.1.2
   nvimLspConfig = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "nvim-lspconfig";
     src = pkgs.fetchFromGitHub {
@@ -127,19 +108,8 @@ let
     };
   };
 
-  neovim6Revision = import
-    (builtins.fetchTarball {
-      name = "nixos-unstable-2022-01-01";
-      url = "https://github.com/nixos/nixpkgs/archive/9d6d1a474b946c98168bf7fee9e4185ed11cfd8f.tar.gz";
-      # Hash obtained using `nix-prefetch-url --unpack <url>`
-      # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/neovim/default.nix
-      sha256 = "183q04asndwganf31q4fx0aigc20ad6ixs56m92y3d4iry70qv91";
-    })
-    { };
-  neovim6 = neovim6Revision.neovim;
-
 in
-neovim6.override {
+pkgs.neovim.override {
   vimAlias = true;
   configure = {
     packages.myPlugins = with pkgs.vimPlugins; {
@@ -159,7 +129,6 @@ neovim6.override {
         vim-visual-multi #mg979/vim-visual-multi
         easygrep #dkprice/vim-easygrep
         vimTempl
-        instantNvim
         # https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
         nvimLspConfig #https://neovim.io/doc/user/lsp.html#lsp-extension-example
         nvimCmp
