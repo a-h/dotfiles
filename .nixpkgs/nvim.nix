@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 
-let 
+let
 
   metalVim = pkgs.vimUtils.buildVimPlugin {
     name = "Metal-Vim-Syntax-Highlighting";
@@ -127,53 +127,55 @@ let
     };
   };
 
-  neovim6Revision = import (builtins.fetchTarball {
-    name = "nixos-unstable-2022-01-01";
-    url = "https://github.com/nixos/nixpkgs/archive/9d6d1a474b946c98168bf7fee9e4185ed11cfd8f.tar.gz";
-    # Hash obtained using `nix-prefetch-url --unpack <url>`
-    # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/neovim/default.nix
-    sha256 = "183q04asndwganf31q4fx0aigc20ad6ixs56m92y3d4iry70qv91";
-  }) {};
+  neovim6Revision = import
+    (builtins.fetchTarball {
+      name = "nixos-unstable-2022-01-01";
+      url = "https://github.com/nixos/nixpkgs/archive/9d6d1a474b946c98168bf7fee9e4185ed11cfd8f.tar.gz";
+      # Hash obtained using `nix-prefetch-url --unpack <url>`
+      # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/neovim/default.nix
+      sha256 = "183q04asndwganf31q4fx0aigc20ad6ixs56m92y3d4iry70qv91";
+    })
+    { };
   neovim6 = neovim6Revision.neovim;
 
-  in
-	neovim6.override {
-	  vimAlias = true;
-	  configure = {
-	    packages.myPlugins = with pkgs.vimPlugins; {
-	      start = [
-		metalVim # Metal-Vim-Syntax-Highlighting
-		fzf-vim
-		vim-lastplace
-		vim-nix
-		neoformat
-		vim-jsx-typescript
-		vim-graphql
-		nerdcommenter #preservim/nerdcommenter
-		vim-sleuth #tpope/vim-sleuth
-		vim-surround #tpope/vim-surround
-		vim-test #janko/vim-test
-		coverage #ruanyl/coverage.vim
-		vim-visual-multi #mg979/vim-visual-multi
-		easygrep #dkprice/vim-easygrep
-		vimTempl
-		instantNvim
-		# https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
-		nvimLspConfig #https://neovim.io/doc/user/lsp.html#lsp-extension-example
-		nvimCmp
-		cmp-nvim-lsp
-		cmpLuasnip
-		luasnip
-		# Add signature to autocomplete.
-		lspSignatureNvim
-		# Go coverage needs treesitter.
-		nvim-treesitter #github.com/nvim-treesitter/nvim-treesitter
-		nvimGoCoverage #rafaelsq/nvim-goc.lua
-		rust-vim
-		targets-vim # https://github.com/wellle/targets.vim
-	      ];
-	      opt = [];
-	    };
-	    customRC = builtins.readFile ./../dotfiles/.vimrc;
-	  };
-      }
+in
+neovim6.override {
+  vimAlias = true;
+  configure = {
+    packages.myPlugins = with pkgs.vimPlugins; {
+      start = [
+        metalVim # Metal-Vim-Syntax-Highlighting
+        fzf-vim
+        vim-lastplace
+        vim-nix
+        neoformat
+        vim-jsx-typescript
+        vim-graphql
+        nerdcommenter #preservim/nerdcommenter
+        vim-sleuth #tpope/vim-sleuth
+        vim-surround #tpope/vim-surround
+        vim-test #janko/vim-test
+        coverage #ruanyl/coverage.vim
+        vim-visual-multi #mg979/vim-visual-multi
+        easygrep #dkprice/vim-easygrep
+        vimTempl
+        instantNvim
+        # https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
+        nvimLspConfig #https://neovim.io/doc/user/lsp.html#lsp-extension-example
+        nvimCmp
+        cmp-nvim-lsp
+        cmpLuasnip
+        luasnip
+        # Add signature to autocomplete.
+        lspSignatureNvim
+        # Go coverage needs treesitter.
+        nvim-treesitter #github.com/nvim-treesitter/nvim-treesitter
+        nvimGoCoverage #rafaelsq/nvim-goc.lua
+        rust-vim
+        targets-vim # https://github.com/wellle/targets.vim
+      ];
+      opt = [ ];
+    };
+    customRC = builtins.readFile ./../dotfiles/.vimrc;
+  };
+}

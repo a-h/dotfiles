@@ -1,10 +1,10 @@
 # See https://nixos.org/guides/towards-reproducibility-pinning-nixpkgs.html and https://status.nixos.org
-{ config, pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/e80f8f4d8336f5249d475d5c671a4e53b9d36634.tar.gz") {}, ... }:
+{ config, pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/e80f8f4d8336f5249d475d5c671a4e53b9d36634.tar.gz") { }, ... }:
 
 let
-  neovim = pkgs.callPackage ./nvim.nix {};
+  neovim = pkgs.callPackage ./nvim.nix { };
 
-  python-with-global-packages = pkgs.python3.withPackages(ps: with ps; [
+  python-with-global-packages = pkgs.python3.withPackages (ps: with ps; [
     pip
     botocore
     boto3
@@ -12,26 +12,28 @@ let
   ]);
 
   #goreleaser = pkgs.callPackage ./goreleaser.nix {};
-  adr-tools = pkgs.callPackage ./adr-tools.nix {};
-  goreplace = pkgs.callPackage ./goreplace.nix {};
-  html2text = pkgs.callPackage ./html2text.nix {};
-  air = pkgs.callPackage ./air.nix {};
-  twet = pkgs.callPackage ./twet.nix {};
-  pact = pkgs.callPackage ./pact.nix {};
-  jdtls = pkgs.callPackage ./jdtls.nix {};
-  xc = pkgs.callPackage ./xc.nix {};
-  go = pkgs.callPackage ./go.nix {};
+  adr-tools = pkgs.callPackage ./adr-tools.nix { };
+  goreplace = pkgs.callPackage ./goreplace.nix { };
+  html2text = pkgs.callPackage ./html2text.nix { };
+  air = pkgs.callPackage ./air.nix { };
+  twet = pkgs.callPackage ./twet.nix { };
+  pact = pkgs.callPackage ./pact.nix { };
+  jdtls = pkgs.callPackage ./jdtls.nix { };
+  xc = pkgs.callPackage ./xc.nix { };
+  go = pkgs.callPackage ./go.nix { };
 
   nodePackages = import ./node-env/default.nix {
     inherit pkgs;
-  }; 
+  };
 
-  awscli_v2_2_14 = import (builtins.fetchTarball {
-    name = "awscli_v2_2_14";
-    url = "https://github.com/nixos/nixpkgs/archive/aab3c48aef2260867272bf6797a980e32ccedbe0.tar.gz";
-    # Hash obtained using `nix-prefetch-url --unpack <url>`
-    sha256 = "0mhihlpmizn7dhcd8pjj9wvb13fxgx4qqr24qgq79w1rhxzzk6mv";
-  }) {};
+  awscli_v2_2_14 = import
+    (builtins.fetchTarball {
+      name = "awscli_v2_2_14";
+      url = "https://github.com/nixos/nixpkgs/archive/aab3c48aef2260867272bf6797a980e32ccedbe0.tar.gz";
+      # Hash obtained using `nix-prefetch-url --unpack <url>`
+      sha256 = "0mhihlpmizn7dhcd8pjj9wvb13fxgx4qqr24qgq79w1rhxzzk6mv";
+    })
+    { };
   awscli2 = awscli_v2_2_14.awscli2;
 
 in
@@ -104,6 +106,7 @@ in
       pkgs.minicom # Serial monitor.
       pkgs.mutt
       pkgs.ninja # Used by Raspberry Pi Pico SDK, build tool.
+      pkgs.nixpkgs-fmt
       pkgs.nix-prefetch-git
       pkgs.nmap
       pkgs.nodePackages.node2nix
@@ -129,7 +132,7 @@ in
       pkgs.zip
     ];
 
-  programs.zsh.enable = true;  # default shell on catalina
+  programs.zsh.enable = true; # default shell on catalina
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog

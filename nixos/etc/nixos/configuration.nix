@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -97,9 +98,9 @@
   services.xserver = {
     enable = true;
     displayManager = {
-      	startx = {
-          enable = true;
-        };
+      startx = {
+        enable = true;
+      };
     };
     desktopManager = {
       xterm.enable = false;
