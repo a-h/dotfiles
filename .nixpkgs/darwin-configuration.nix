@@ -19,16 +19,6 @@ let
     inherit pkgs;
   };
 
-  awscli_v2_2_14 = import
-    (builtins.fetchTarball {
-      name = "awscli_v2_2_14";
-      url = "https://github.com/nixos/nixpkgs/archive/aab3c48aef2260867272bf6797a980e32ccedbe0.tar.gz";
-      # Hash obtained using `nix-prefetch-url --unpack <url>`
-      sha256 = "0mhihlpmizn7dhcd8pjj9wvb13fxgx4qqr24qgq79w1rhxzzk6mv";
-    })
-    { };
-  awscli2 = awscli_v2_2_14.awscli2;
-
 in
 
 {
@@ -41,7 +31,6 @@ in
     [
       adr-tools
       air # Hot reload for Go.
-      awscli2
       goreplace
       neovim
       pact
@@ -63,6 +52,7 @@ in
       pkgs.asciinema
       pkgs.astyle # Code formatter for C.
       pkgs.aws-vault
+      pkgs.awscli2
       pkgs.awslogs
       pkgs.ccls # C LSP Server.
       pkgs.cmake # Used by Raspberry Pi Pico SDK.
