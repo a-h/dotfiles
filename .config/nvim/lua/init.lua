@@ -1,0 +1,8 @@
+require('easygrep')
+require('filetype')
+require('fzf')
+require('goimports')
+require('lsp')
+require('settings')
+require('theme')
+require('vimtest')

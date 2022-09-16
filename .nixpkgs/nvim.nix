@@ -86,30 +86,39 @@ let
     };
   };
 
-  # nix-prefetch-url --unpack https://github.com/L3MON4D3/LuaSnip/archive/7c634ddf7ff99245ef993b5fa459c3b61e905075.tar.gz 
+  # nix-prefetch-url --unpack https://github.com/L3MON4D3/LuaSnip/archive/e687d78fc95a7c04b0762d29cf36c789a6d94eda.tar.gz 
   luasnip = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "luasnip";
     src = pkgs.fetchFromGitHub {
       owner = "L3MON4D3";
       repo = "LuaSnip";
-      rev = "7c634ddf7ff99245ef993b5fa459c3b61e905075";
-      sha256 = "0s3qsl79nalkbb4fbrhbnqdcfrw4ln1ff6kajxs7lnlhkrymg3jv";
+      rev = "e687d78fc95a7c04b0762d29cf36c789a6d94eda";
+      sha256 = "11a9b744cgr3w2nvnpq1bjblqp36klwda33r2xyhcvhzdcz0h53v";
     };
   };
 
-  # nix-prefetch-url --unpack https://github.com/saadparwaiz1/cmp_luasnip/archive/d6f837f4e8fe48eeae288e638691b91b97d1737f.tar.gz
+  # nix-prefetch-git https://github.com/saadparwaiz1/cmp_luasnip a9de941bcbda508d0a45d28ae366bb3f08db2e36
   cmpLuasnip = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "cmp_luasnip";
     src = pkgs.fetchFromGitHub {
       owner = "saadparwaiz1";
       repo = "cmp_luasnip";
-      rev = "d6f837f4e8fe48eeae288e638691b91b97d1737f";
-      sha256 = "0cmfjqps7j3056y8avkrfz40kx8qcdxf4v1xvfv03nrw9xdwwh5y";
+      rev = "a9de941bcbda508d0a45d28ae366bb3f08db2e36";
+      sha256 = "0mh7gimav9p6cgv4j43l034dknz8szsnmrz49b2ra04yk9ihk1zj";
     };
   };
 
+  neovim7Revision = import (builtins.fetchTarball {
+    name = "nixos-unstable-2022-09-16";
+    url = "https://github.com/nixos/nixpkgs/archive/38e16b192af13ff6cffc8a35a25f390f1e96b585.tar.gz";
+    # Hash obtained using `nix-prefetch-url --unpack <url>`
+    # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/neovim/default.nix
+    sha256 = "0pcy4s3khmccpz4xv8wfy2crwgxfvc31r9nlgrn8v9pgmm7z40ic";
+  }) {};
+  neovim7 = neovim7Revision.neovim;
+
 in
-pkgs.neovim.override {
+  neovim7.override {
   vimAlias = true;
   configure = {
     packages.myPlugins = with pkgs.vimPlugins; {
@@ -145,6 +154,6 @@ pkgs.neovim.override {
       ];
       opt = [ ];
     };
-    customRC = builtins.readFile ./../dotfiles/.vimrc;
+    customRC = "lua require('init')";
   };
 }
