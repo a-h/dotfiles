@@ -59,7 +59,7 @@ fi
 if [ ! -f $HOME/.mailcap ]; then
     ln -s $HOME/dotfiles/.mailcap $HOME/.mailcap
 fi
-if [ ! -f "$HOME/.config/nvim/" ]; then
+if [ ! -d "$HOME/.config/nvim/" ]; then
   ln -s $HOME/dotfiles/.config/nvim $HOME/.config/nvim
 fi
 
