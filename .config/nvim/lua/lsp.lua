@@ -2,6 +2,7 @@ local nvim_lsp = require('lspconfig')
 
 -- https://github.com/ray-x/lsp_signature.nvim
 local lsp_signature_cfg = {
+  hint_prefix = '',
   handler_opts = {
     border = "none"
   },
@@ -191,13 +192,6 @@ cmp.setup {
     { name = 'buffer' },
   }),
 }
-
---TODO: Work out what keybinding I want to see the big version.
---vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
-
--- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#show-line-diagnostics-automatically-in-hover-window
--- vim.o.updatetime = 100
--- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
 
 -- https://github.com/samhh/dotfiles/blob/ba63ff91a33419dfb08e412a7d832b2aca38148c/home/.config/nvim/plugins.vim#L151
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
