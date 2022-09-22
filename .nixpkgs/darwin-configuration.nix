@@ -57,6 +57,7 @@ in
       pkgs.ccls # C LSP Server.
       pkgs.cmake # Used by Raspberry Pi Pico SDK.
       pkgs.cargo # Rust tooling.
+      pkgs.delve # Go debugger.
       # pkgs.dotnet-sdk # No Darwin ARM support.
       pkgs.entr # Execute command when files change.
       pkgs.fd # Find that respects .gitignore.

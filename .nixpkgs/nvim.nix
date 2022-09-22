@@ -108,6 +108,28 @@ let
     };
   };
 
+  # nix-prefetch-git https://github.com/folke/trouble.nvim 929315ea5f146f1ce0e784c76c943ece6f36d786
+  trouble-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "trouble.nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "folke";
+      repo = "trouble.nvim";
+      rev = "929315ea5f146f1ce0e784c76c943ece6f36d786";
+      sha256 = "07nyhg5mmy1fhf6v4480wb8gq3dh7g9fz9l5ksv4v94sdp5pgzvz";
+    };
+  };
+
+  # nix-prefetch-git https://github.com/sebdah/vim-delve 5c8809d9c080fd00cc82b4c31900d1bc13733571
+  vim-delve = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "vim-delve";
+    src = pkgs.fetchFromGitHub {
+      owner = "sebdah";
+      repo = "vim-delve";
+      rev = "5c8809d9c080fd00cc82b4c31900d1bc13733571";
+      sha256 = "01nlzfwfmpvp0q09h1k1j5z82i925hrl9cg9n6gbmcdqsvdrzy55";
+    };
+  };
+
   neovim7Revision = import (builtins.fetchTarball {
     name = "nixos-unstable-2022-09-16";
     url = "https://github.com/nixos/nixpkgs/archive/38e16b192af13ff6cffc8a35a25f390f1e96b585.tar.gz";
@@ -127,6 +149,7 @@ in
         fzf-vim
         vim-lastplace
         vim-nix
+        vim-delve
         neoformat
         vim-jsx-typescript
         vim-graphql
@@ -151,6 +174,7 @@ in
         nvimGoCoverage #rafaelsq/nvim-goc.lua
         rust-vim
         targets-vim # https://github.com/wellle/targets.vim
+        trouble-nvim
       ];
       opt = [ ];
     };
