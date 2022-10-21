@@ -130,6 +130,17 @@ let
     };
   };
 
+  # nix-prefetch-git https://github.com/hashivim/vim-terraform 
+  hashivim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "hashivim";
+    src = pkgs.fetchFromGitHub {
+      owner = "hashivim";
+      repo = "vim-terraform";
+      rev = "f0b17ac9f1bbdf3a29dba8b17ab429b1eed5d443";
+      sha256 = "0j87i6kxafwl8a8szy2gzv7d0qhzwynd93iw8k0i42jnpqm8rp3a";
+    };
+  };
+
   neovim7Revision = import (builtins.fetchTarball {
     name = "nixos-unstable-2022-09-16";
     url = "https://github.com/nixos/nixpkgs/archive/38e16b192af13ff6cffc8a35a25f390f1e96b585.tar.gz";
@@ -150,6 +161,7 @@ in
         vim-lastplace
         vim-nix
         vim-delve
+        hashivim
         neoformat
         vim-jsx-typescript
         vim-graphql
