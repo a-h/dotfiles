@@ -2,6 +2,18 @@
 
 let
 
+  dracula = pkgs.vimUtils.buildVimPlugin {
+    name = "dracula";
+    version = "55f24e76a978c73c63d22951b0700823f21253b7";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "Mofiqul";
+      repo = "dracula.nvim";
+      rev = "55f24e76a978c73c63d22951b0700823f21253b7";
+      sha256 = "YwcbSj+121/QaEIAqqG4EvCpCYj3VzgCE8Ndl1ABbFI=";
+    };
+  };
+
   metalVim = pkgs.vimUtils.buildVimPlugin {
     name = "Metal-Vim-Syntax-Highlighting";
     src = pkgs.fetchFromGitHub {
@@ -141,17 +153,19 @@ let
     };
   };
 
-  neovim7Revision = import (builtins.fetchTarball {
-    name = "nixos-unstable-2022-09-16";
-    url = "https://github.com/nixos/nixpkgs/archive/38e16b192af13ff6cffc8a35a25f390f1e96b585.tar.gz";
-    # Hash obtained using `nix-prefetch-url --unpack <url>`
-    # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/neovim/default.nix
-    sha256 = "0pcy4s3khmccpz4xv8wfy2crwgxfvc31r9nlgrn8v9pgmm7z40ic";
-  }) {};
-  neovim7 = neovim7Revision.neovim;
+  neovim8Revision = import
+    (builtins.fetchTarball {
+      name = "nixos-unstable-2022-10-30";
+      url = "https://github.com/nixos/nixpkgs/archive/217b2d0662cd6c37a7eda2db72215477c2efc215.tar.gz";
+      # Hash obtained using `nix-prefetch-url --unpack <url>`
+      # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/neovim/default.nix
+      sha256 = "0278q24vgcxj5x259aq4zys13v83n8sv9cf6wr5x2wmj3n6b058r";
+    })
+    { };
+  neovim8 = neovim8Revision.neovim;
 
 in
-  neovim7.override {
+neovim8.override {
   vimAlias = true;
   configure = {
     packages.myPlugins = with pkgs.vimPlugins; {
@@ -164,6 +178,7 @@ in
         hashivim
         neoformat
         vim-jsx-typescript
+        dracula # Color scheme
         vim-graphql
         nerdcommenter #preservim/nerdcommenter
         vim-sleuth #tpope/vim-sleuth
