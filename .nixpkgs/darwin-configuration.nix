@@ -86,6 +86,7 @@ in
       pkgs.lima # Alternative to Docker desktop https://github.com/lima-vm/lima
       pkgs.llvm # Used by Raspberry Pi Pico SDK.
       pkgs.lynx
+      pkgs.mob
       pkgs.minicom # Serial monitor.
       pkgs.mutt
       pkgs.ninja # Used by Raspberry Pi Pico SDK, build tool.
