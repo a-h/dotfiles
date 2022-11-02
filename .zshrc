@@ -102,6 +102,9 @@ setopt PROMPT_SP
 
 export KEYTIMEOUT=1
 
+# Enable colours in ls etc.
+export CLICOLOR=1
+
 # Get rid of telemetry.
 export SAM_CLI_TELEMETRY=0
 export DOTNET_CLI_TELEMETRY_OPTOUT=1

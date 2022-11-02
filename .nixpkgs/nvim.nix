@@ -14,6 +14,34 @@ let
     };
   };
 
+  # Use :TSHighlightCapturesUnderCursor to see the syntax under cursor.
+  nvim-treesitter-playground = pkgs.vimUtils.buildVimPlugin {
+    name = "nvim-treesitter-playground";
+    version = "e6a0bfaf9b5e36e3a327a1ae9a44a989eae472cf";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "nvim-treesitter";
+      repo = "playground";
+      rev = "e6a0bfaf9b5e36e3a327a1ae9a44a989eae472cf";
+      sha256 = "wst6YwtTJbR65+jijSSgsS9Isv1/vO9uAjuoUg6tVQc=";
+    };
+  };
+
+  # https://github.com/NixOS/nixpkgs/commits/cf7f4393f3f953faf5765c7a0168c6710baa1423/pkgs/development/tools/parsing/tree-sitter
+  treesitterRevisionPkgs = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/cf7f4393f3f953faf5765c7a0168c6710baa1423.tar.gz") { };
+
+  treesitter-grammars = treesitterRevisionPkgs.tree-sitter.allGrammars;
+
+  nvim-treesitter-with-plugins = (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: treesitter-grammars)).overrideAttrs (old: {
+      version = "2022-08-31";
+      src = pkgs.fetchFromGitHub {
+          owner = "nvim-treesitter";
+          repo = "nvim-treesitter";
+          rev = "4cccb6f494eb255b32a290d37c35ca12584c74d0";
+          sha256 = "XtZAXaYEMAvp6VYNRth6Y64UtKoZt3a3q8l4kSxkZQA=";
+      };
+  });
+
   metalVim = pkgs.vimUtils.buildVimPlugin {
     name = "Metal-Vim-Syntax-Highlighting";
     src = pkgs.fetchFromGitHub {
@@ -87,14 +115,14 @@ let
   };
 
   # nix-prefetch-git https://github.com/neovim/nvim-lspconfig ea29110765cb42e842dc8372c793a6173d89b0c4
-  # https://github.com/neovim/nvim-lspconfig/releases/tag/v0.1.2
+  # https://github.com/neovim/nvim-lspconfig/releases/tag/v0.1.3
   nvimLspConfig = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "nvim-lspconfig";
     src = pkgs.fetchFromGitHub {
       owner = "neovim";
       repo = "nvim-lspconfig";
-      rev = "ea29110765cb42e842dc8372c793a6173d89b0c4";
-      sha256 = "1i1yjk939pxfk9dpv4rh229srx02yxklzwk051a9qprq3hjhwl6v";
+      rev = "99596a8cabb050c6eab2c049e9acde48f42aafa4";
+      sha256 = "qU9D2bGRS6gDIxY8pgjwTVEwDTa8GXHUUQkXk9pBK/U=";
     };
   };
 
@@ -197,7 +225,8 @@ neovim8.override {
         # Add signature to autocomplete.
         lspSignatureNvim
         # Go coverage needs treesitter.
-        nvim-treesitter #github.com/nvim-treesitter/nvim-treesitter
+        nvim-treesitter-with-plugins #github.com/nvim-treesitter/nvim-treesitter
+        nvim-treesitter-playground
         nvimGoCoverage #rafaelsq/nvim-goc.lua
         rust-vim
         targets-vim # https://github.com/wellle/targets.vim
