@@ -2,7 +2,7 @@
 
 buildGoModule rec {
   pname = "gopls";
-  version = "2.6";
+  version = "0.10.1";
 
   src = fetchFromGitHub {
     owner = "golang";
