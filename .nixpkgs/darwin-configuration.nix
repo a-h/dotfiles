@@ -14,6 +14,7 @@ let
   jdtls = pkgs.callPackage ./jdtls.nix { };
   xc = pkgs.callPackage ./xc.nix { };
   go = pkgs.callPackage ./go.nix { };
+  gopls = pkgs.callPackage ./gopls.nix { };
 
   nodePackages = import ./node-env/default.nix {
     inherit pkgs;
@@ -72,7 +73,7 @@ in
       pkgs.go-swagger
       pkgs.gotools
       # pkgs.google-cloud-sdk # No Darwin ARM support.
-      pkgs.gopls
+      gopls
       pkgs.goreleaser
       pkgs.graphviz
       pkgs.html2text
