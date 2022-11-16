@@ -18,8 +18,3 @@ vim.opt.signcolumn = "yes"
 
 -- Set line numbers to be visible all of the time.
 vim.opt.number = true
-
--- netrw settings
--- vim.g.netrw_banner = 0
--- Use the expandable list style.
--- vim.g.netrw_liststyle = 3

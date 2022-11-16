@@ -10,6 +10,9 @@ local lsp_signature_cfg = {
 }
 require'lsp_signature'.setup(lsp_signature_cfg) -- no need to specify bufnr if you don't use toggle_key
 
+-- Format on save.
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+
 -- Mappings.
 local opts = { noremap=true, silent=true }
 
