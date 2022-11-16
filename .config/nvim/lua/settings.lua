@@ -1,6 +1,15 @@
 vim.opt.autoindent = true
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
+vim.opt.tabstop = 2
+
+-- Disable netrw (using nvim-tree instead).
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- Set termguicolors to enable highlight groups.
+vim.opt.termguicolors = true
+
 -- Move the preview screen.
 vim.opt.splitbelow = true
 
@@ -11,6 +20,6 @@ vim.opt.signcolumn = "yes"
 vim.opt.number = true
 
 -- netrw settings
-vim.g.netrw_banner = 0
+-- vim.g.netrw_banner = 0
 -- Use the expandable list style.
-vim.g.netrw_liststyle = 3
+-- vim.g.netrw_liststyle = 3

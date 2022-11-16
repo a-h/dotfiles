@@ -20,6 +20,8 @@ let
     inherit pkgs;
   };
 
+  nerdfonts = (pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; });
+
 in
 
 {
@@ -34,6 +36,7 @@ in
       air # Hot reload for Go.
       goreplace
       neovim
+      nerdfonts
       pact
       twet
       xc # Task executor.
@@ -73,7 +76,7 @@ in
       pkgs.go-swagger
       pkgs.gotools
       # pkgs.google-cloud-sdk # No Darwin ARM support.
-      gopls
+      #gopls
       pkgs.goreleaser
       pkgs.graphviz
       pkgs.html2text
@@ -118,6 +121,11 @@ in
     ];
 
   programs.zsh.enable = true; # default shell on catalina
+
+  fonts = {
+     enableFontDir = true;
+     fonts = [ nerdfonts ];
+  };
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
