@@ -15,6 +15,9 @@ let
   xc = pkgs.callPackage ./xc.nix { };
   go = pkgs.callPackage ./go.nix { };
   gopls = pkgs.callPackage ./gopls.nix { };
+  upterm = pkgs.callPackage ./upterm.nix {
+    go = go;
+  };
 
   nodePackages = import ./node-env/default.nix {
     inherit pkgs;
@@ -38,6 +41,7 @@ in
       neovim
       nerdfonts
       pact
+      upterm
       twet
       xc # Task executor.
       # Java development.
