@@ -78,6 +78,7 @@ in
       pkgs.gnupg
       go
       pkgs.go-swagger
+      pkgs.gomuks
       pkgs.gotools
       # pkgs.google-cloud-sdk # No Darwin ARM support.
       #gopls
