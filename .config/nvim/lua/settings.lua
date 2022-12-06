@@ -18,3 +18,6 @@ vim.opt.signcolumn = "yes"
 
 -- Set line numbers to be visible all of the time.
 vim.opt.number = true
+
+-- Use system clipboard.
+-- vim.api.nvim_command('set clipboard+=unnamedplus')

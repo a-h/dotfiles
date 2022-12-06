@@ -1,6 +1,6 @@
 # See https://nixos.org/guides/towards-reproducibility-pinning-nixpkgs.html and https://status.nixos.org
-# https://github.com/NixOS/nixpkgs/releases/tag/22.05
-{ config, pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/ce6aa13369b667ac2542593170993504932eb836.tar.gz") { }, ... }:
+# https://github.com/NixOS/nixpkgs/releases/tag/22.11
+{ config, pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/4d2b37a84fad1091b9de401eb450aae66f1a741e.tar.gz") { }, ... }:
 
 let
   neovim = pkgs.callPackage ./nvim.nix { };

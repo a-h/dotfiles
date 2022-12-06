@@ -104,6 +104,7 @@ export KEYTIMEOUT=1
 
 # Enable colours in ls etc.
 export CLICOLOR=1
+export LSCOLORS=gxfxcxdxbxgggdabagacad
 
 # Get rid of telemetry.
 export SAM_CLI_TELEMETRY=0
