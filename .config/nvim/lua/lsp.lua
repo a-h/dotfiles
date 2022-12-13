@@ -76,11 +76,14 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 local server_settings = {
   gopls = {
-    codelenses = {
-      generate = true, -- show the `go generate` lens.
-      gc_details = true, --  // Show a code lens toggling the display of gc's choices.
-      test = true,
-      tidy = true,
+    gopls = {
+      codelenses = {
+        generate = true, -- show the `go generate` lens.
+        gc_details = true, -- show a code lens toggling the display of gc's choices.
+        test = true,
+        upgrade_dependency = true,
+        tidy = true,
+      },
     },
   },
   tsserver = {
@@ -135,6 +138,8 @@ for _, lsp in ipairs(servers) do
   if server_settings[lsp] then opts.settings = server_settings[lsp] end
   nvim_lsp[lsp].setup(opts)
 end
+--vim.lsp.set_log_level("debug")
+-- Use :LspLog to see logs.
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
