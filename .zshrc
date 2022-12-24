@@ -18,9 +18,13 @@ export PATH="$PATH:$HOME/.dotnet/tools"
 export PATH="$PATH:/Applications/SnowSQL.app/Contents/MacOS:$PATH"
 export PATH=$PATH:/usr/sbin
 
-# Raspberry Pi Pico SDK
+# Raspberry Pi Pico SDK.
 export PICO_SDK_PATH=$HOME/github.com/raspberrypi/pico-sdk
 export PICO_EXTRAS_PATH=$HOME/github.com/raspberrypi/pico-extras
+
+# Playdate SDK config.
+export PLAYDATE_SDK_PATH=/Users/adrian/Developer/PlaydateSDK
+alias pds="open $PLAYDATE_SDK_PATH/bin/Playdate\ Simulator.app"
 
 # Configure aws-vault
 export AWS_VAULT_BACKEND=pass
@@ -123,6 +127,11 @@ listening() {
         echo "Usage: listening [pattern]"
     fi
 }
+
+# Don't use the Pinentry GUI for gpg.
+# However, it seems to conflict with git signing etc.
+# export GPG_TTY=$(tty)
+# export PINENTRY_USER_DATA="USE_CURSES=1"
 
 # Configure Nitrokey SSH.
 unset SSH_AGENT_PID
