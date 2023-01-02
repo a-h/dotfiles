@@ -135,6 +135,44 @@ in
 
   fonts.fontconfig.enable = true;
 
+  qt = {
+    enable = true;
+    style = {
+      name = "adwaita-dark";
+    };
+    platformTheme = "gtk";
+  };
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita-dark"; # Enable dark mode for GTK2
+    };
+    gtk2.extraConfig = "gtk-application-prefer-dark-theme = \"true\"";
+    gtk3.extraConfig = {"gtk-application-prefer-dark-theme" = "true";};
+    gtk4.extraConfig = {"gtk-application-prefer-dark-theme" = "true";};
+  };
+  dconf = {
+    enable = true;
+    settings = {
+    "org/gnome/desktop/interface" = {
+      clock-format = "24h";
+      color-scheme = "prefer-dark"; # Enable dark mode on GNOME
+    };
+    "org/gnome/nautilus/compression" = {
+      default-compression-format = "7z";
+    };
+    "org/gnome/nautilus/icon-view" = {
+      default-zoom-level = "medium";
+    };
+    "org/gnome/nautilus/list-view" = {
+      default-zoom-level = "small";
+      use-tree-view = true;
+      default-column-order = [ "name" "size" "type" "owner" "group" "permissions" "mime_type" "where" "date_modified" "date_modified_with_time" "date_accessed" "date_created" "recency" "starred" ];
+      default-visible-columns = ["name" "size" "date_modified"];
+    };
+   };
+ };
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
