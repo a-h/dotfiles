@@ -75,13 +75,15 @@ in
       pkgs.gifsicle
       pkgs.git
       pkgs.gitAndTools.gh
+      pkgs.gnomeExtensions.appindicator
+      pkgs.gnomeExtensions.hide-top-bar
       pkgs.gnupg
       go
       pkgs.go-swagger
       pkgs.gomuks
       pkgs.gotools
       # pkgs.google-cloud-sdk # No Darwin ARM support.
-      #gopls
+      gopls
       pkgs.goreleaser
       pkgs.graphviz
       pkgs.html2text
@@ -169,6 +171,9 @@ in
       use-tree-view = true;
       default-column-order = [ "name" "size" "type" "owner" "group" "permissions" "mime_type" "where" "date_modified" "date_modified_with_time" "date_accessed" "date_created" "recency" "starred" ];
       default-visible-columns = ["name" "size" "date_modified"];
+    };
+    "org/gnome/shell/extensions/dash-to-dock" = {
+      dock-fixed = false;
     };
    };
  };
