@@ -110,6 +110,8 @@ in
       pkgs.nodePackages.typescript-language-server
       pkgs.nodejs-16_x
       pkgs.pass
+      pkgs.powerline
+      pkgs.source-code-pro
       pkgs.ripgrep
       pkgs.rustc # Rust compiler.
       pkgs.rustfmt # Rust formatter.
