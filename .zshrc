@@ -57,14 +57,17 @@ fi
 if [ ! -f $HOME/.zshrc ]; then
     ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
 fi
-if [ ! -f $HOME/.nixpkgs/darwin-configuration.nix ]; then
-    ln -s $HOME/dotfiles/.nixpkgs $HOME/.nixpkgs
+if [ ! -f $HOME/.config/nixpkgs/darwin-configuration.nix ]; then
+    ln -s $HOME/dotfiles/.config/nixpkgs $HOME/.nixpkgs
 fi
 if [ ! -f $HOME/.mailcap ]; then
     ln -s $HOME/dotfiles/.mailcap $HOME/.mailcap
 fi
 if [ ! -d "$HOME/.config/nvim/" ]; then
   ln -s $HOME/dotfiles/.config/nvim $HOME/.config/nvim
+fi
+if [ ! -d "$HOME/.config/nixpkgs/" ]; then
+  ln -sf $HOME/dotfiles/.config/nixpkgs/ ~/.config/
 fi
 
 # Git aliases.
@@ -143,7 +146,7 @@ if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
     echo "gpgconf is not installed, skipping starting GPG SSH agent..."
   fi
 fi
-#
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/adrian/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/adrian/google-cloud-sdk/path.zsh.inc'; fi
 
