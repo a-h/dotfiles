@@ -54,6 +54,7 @@ in
       # Other.
       pkgs.aerc
       pkgs.aha # Converts shell output to HTML.
+      pkgs.adwaita-qt # QT theme to bend Qt applications to look like they belong into GNOME Shell
       pkgs.expect # Provides the unbuffer command used to force programs to pipe color: `unbuffer fd | aha -b -n` (https://joshbode.github.io/remark/ansi.html#5)
       pkgs.bat
       pkgs.silver-searcher
@@ -135,6 +136,7 @@ in
   services.gpg-agent = {
     enable = true;
     enableScDaemon = true;
+    pinentryFlavor = "gnome3"; # can be "curses", "tty", "gtk2", "emacs", "gnome3", "qt"
   };
 
   fonts.fontconfig.enable = true;
@@ -151,6 +153,7 @@ in
     theme = {
       name = "Adwaita-dark"; # Enable dark mode for GTK2
     };
+#    font = "";
     gtk2.extraConfig = "gtk-application-prefer-dark-theme = \"true\"";
     gtk3.extraConfig = {"gtk-application-prefer-dark-theme" = "true";};
     gtk4.extraConfig = {"gtk-application-prefer-dark-theme" = "true";};
@@ -178,6 +181,102 @@ in
       dock-fixed = false;
     };
    };
+ };
+
+  
+programs.gnome-terminal = {
+  enable = true;
+  showMenubar = false;
+  profile = {
+    "5ddfe964-7ee6-4131-b449-26bdd97518f7" = {
+      default = true;
+      visibleName = "Home Manager Custom";
+      cursorShape = "block";
+      font = "BlexMono Nerd Font 11"; # Size: 11
+      showScrollbar = false;
+      colors = {
+        backgroundColor = "#000000";
+        foregroundColor = "#ffffff";
+        palette = [
+          "#000000"
+          "#aa0000"
+          "#00aa00"
+          "#aa5500"
+          "#0000aa"
+          "#aa00aa"
+          "#00aaaa"
+          "#aaaaaa"
+          "#555555"
+          "#ff5555"
+          "#55ff55"
+          "#ffff55"
+          "#5555ff"
+          "#ff55ff"
+          "#55ffff"
+          "#ffffff"
+        ];
+      };
+    };
+  };
+};
+
+  programs.zsh = {
+    enable = true;
+    enableAutosuggestions = true;
+#    oh-my-zsh = {
+#      enable = true;
+#      plugins = [ "aws" "git" ];
+    };
+    #initExtra = ''
+    #  export ZSH_HIGHLIGHT_STYLES[comment]=fg=245,bold
+    #'';
+    plugins = [
+      {
+        name = "zsh-syntax-highlighting";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-syntax-highlighting";
+          rev = "0.7.1";
+          sha256 = "gOG0NLlaJfotJfs+SUhGgLTNOnGLjoqnUp54V9aFJg8=";
+        };
+      }
+      {
+        name = "zsh-autosuggestions";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-autosuggestions";
+          rev = "v0.7.0";
+          sha256 = "IT3wpfw8zhiNQsrw59lbSWYh0NQ1CUdUtFzRzHlURH0=";
+        };
+      }
+      # zsh-nix-shell enables ZSH inside of nix-shell.
+#      {
+#        name = "zsh-nix-shell";
+#        file = "nix-shell.plugin.zsh";
+#        src = pkgs.fetchFromGitHub {
+#          owner = "chisui";
+#          repo = "zsh-nix-shell";
+#          rev = "v0.5.0";
+#          sha256 = "IT3wpfw8zhiNQsrw59lbSWYh0NQ1CUdUtFzRzHlURH0=";
+#        };
+#      }
+    ];
+#    localVariables = {
+#      GOPATH = "/home/$USER/go";
+#      GOBIN = "/home/$USER/go/bin";
+#      PATH = "$GOBIN:$PATH";
+#    };
+#    shellAliases = {
+#      ns = "nix-shell -p";
+#    };
+  };
+
+   programs.fzf = {
+   enable = true;
+   enableZshIntegration = true;
+   #defaultOptions = [
+   #  "--preview 'bat --style=numbers --color=always --line-range :500 {}'"
+   #];
  };
 
   # This value determines the Home Manager release that your
