@@ -13,11 +13,14 @@ vim.opt.termguicolors = true
 -- Move the preview screen.
 vim.opt.splitbelow = true
 
---- Make it so that the gutter (left column) doesn't move.
+-- Make it so that the gutter (left column) doesn't move.
 vim.opt.signcolumn = "yes"
 
 -- Set line numbers to be visible all of the time.
 vim.opt.number = true
 
+-- Disable mouse control.
+vim.cmd("set mouse=")
+
 -- Use system clipboard.
--- vim.api.nvim_command('set clipboard+=unnamedplus')
+--vim.api.nvim_command('set clipboard+=unnamedplus')

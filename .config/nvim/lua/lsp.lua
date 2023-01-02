@@ -8,13 +8,13 @@ local lsp_signature_cfg = {
   },
   padding = ' '
 }
-require'lsp_signature'.setup(lsp_signature_cfg) -- no need to specify bufnr if you don't use toggle_key
+require 'lsp_signature'.setup(lsp_signature_cfg) -- no need to specify bufnr if you don't use toggle_key
 
 -- Format on save.
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
 -- Mappings.
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -25,6 +25,7 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
   --Enable completion triggered by <c-x><c-o>
@@ -48,7 +49,9 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>clr', '<cmd>lua vim.lsp.codelens.refresh()<CR>', opts)
   buf_set_keymap('n', '<space>cln', '<cmd>lua vim.lsp.codelens.run()<CR>', opts)
   -- TypeScript organise imports.
-  buf_set_keymap('n', '<space>tsoi', '<cmd>lua vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}})<CR>', opts)
+  buf_set_keymap('n', '<space>tsoi',
+    '<cmd>lua vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}})<CR>'
+    , opts)
   buf_set_keymap('n', '<space>tsf', '<cmd>EslintFixAll<CR>', opts)
 end
 
@@ -56,8 +59,8 @@ end
 local configs = require('lspconfig.configs')
 configs.templ = {
   default_config = {
-    cmd = {"templ", "lsp"},
-    filetypes = {'templ'},
+    cmd = { "templ", "lsp" },
+    filetypes = { 'templ' },
     root_dir = nvim_lsp.util.root_pattern("go.mod", ".git"),
     settings = {},
   };
@@ -66,14 +69,14 @@ configs.templ = {
 configs.jdtls = {
   default_config = {
     cmd = { "jdtls" },
-    filetypes = {'java'},
+    filetypes = { 'java' },
     root_dir = nvim_lsp.util.root_pattern("Makefile", ".git", "build.gradle"),
   };
 }
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 local server_settings = {
   gopls = {
     gopls = {
@@ -106,12 +109,13 @@ local server_settings = {
     Lua = {
       runtime = {
         version = 'Lua 5.4',
+        nonstandardSymbol = { "+=", "-=", "*=", "/=" },
       },
       diagnostics = {
-        globals = {'playdate', 'import','vim'},
+        globals = { 'playdate', 'import', 'vim' },
       },
       workspace = {
-        library = "/Users/adrian/Developer/PlaydateSDK/CoreLibs"
+        library = { "/Users/adrian/Developer/PlaydateSDK/CoreLibs" },
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
@@ -156,43 +160,43 @@ cmp.setup {
     end,
   },
   window = {
-      -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-      completion = {
-          border = { "", "", "", "", "", "", " ", "" },
-          winhighlight = 'NormalFloat:NormalFloat,FloatBorder:FloatBorder',
-      },
-      documentation = {
-          border = { "", "", "", "", "", "", "", "" },
-          winhighlight = 'NormalFloat:NormalFloat,FloatBorder:FloatBorder',
-      },
+    -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    completion = {
+      border = { "", "", "", "", "", "", " ", "" },
+      winhighlight = 'NormalFloat:NormalFloat,FloatBorder:FloatBorder',
+    },
+    documentation = {
+      border = { "", "", "", "", "", "", "", "" },
+      winhighlight = 'NormalFloat:NormalFloat,FloatBorder:FloatBorder',
+    },
   },
   mapping = {
-      ['<tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-      ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-      ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-      ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.close(),
-      ['<CR>'] = cmp.mapping.confirm({
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
-      }),
-      ['<C-d>'] = cmp.mapping(function(fallback)
-        if luasnip.jumpable(1) then
-          luasnip.jump(1)
-        else
-          cmp.mapping.scroll_docs(-4)
-          fallback()
-        end
-      end, {'i', 's'}),
-      ['<C-b>'] = cmp.mapping(function(fallback)
-        if luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        else
-          cmp.mapping.scroll_docs(4)
-          fallback()
-        end
-      end, {'i', 's'}),
+    ['<tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+    ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    }),
+    ['<C-d>'] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(1) then
+        luasnip.jump(1)
+      else
+        cmp.mapping.scroll_docs(-4)
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<C-b>'] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        cmp.mapping.scroll_docs(4)
+        fallback()
+      end
+    end, { 'i', 's' }),
   },
   preselect = cmp.PreselectMode.None,
   sources = cmp.config.sources({
@@ -230,14 +234,14 @@ vim.g.coverage_show_uncovered = 1
 
 -- https://github.com/rafaelsq/nvim-goc.lua
 vim.opt.switchbuf = 'useopen'
-local goc = require'nvim-goc'
+local goc = require 'nvim-goc'
 goc.setup({ verticalSplit = false })
 
-vim.api.nvim_set_keymap('n', '<Leader>gcr', ':lua require("nvim-goc").Coverage()<CR>', {silent=true})
-vim.api.nvim_set_keymap('n', '<Leader>gcc', ':lua require("nvim-goc").ClearCoverage()<CR>', {silent=true})
-vim.api.nvim_set_keymap('n', '<Leader>gct', ':lua require("nvim-goc").CoverageFunc()<CR>', {silent=true})
-vim.api.nvim_set_keymap('n', '<Leader>gca', ':lua cf(false)<CR><CR>', {silent=true})
-vim.api.nvim_set_keymap('n', '<Leader>gcb', ':lua cf(true)<CR><CR>', {silent=true})
+vim.api.nvim_set_keymap('n', '<Leader>gcr', ':lua require("nvim-goc").Coverage()<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>gcc', ':lua require("nvim-goc").ClearCoverage()<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>gct', ':lua require("nvim-goc").CoverageFunc()<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>gca', ':lua cf(false)<CR><CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>gcb', ':lua cf(true)<CR><CR>', { silent = true })
 
 _G.cf = function(testCurrentFunction)
   local cb = function(path)
