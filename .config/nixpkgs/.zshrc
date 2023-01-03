@@ -1,8 +1,3 @@
-# Enable profiling, see end of file for usage.
-# zmodload zsh/zprof 
-
-# Use Nix.
-export PATH="/run/current-system/sw/bin:$PATH"
 # Use my local installs first, where I've overridden something.
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/bin/tinygo/bin:$PATH"
@@ -30,32 +25,12 @@ alias pds="open $PLAYDATE_SDK_PATH/bin/Playdate\ Simulator.app"
 export AWS_VAULT_BACKEND=pass
 export AWS_VAULT_PASS_PREFIX=aws-vault
 
-# Add pass autocomplete.
-fpath+="$HOME/dotfiles/autocomplete"
-autoload -U +X bashcompinit && bashcompinit
-autoload -U +X compinit && compinit
-# Cache for 1 day.
-# comp_last_updated=`date -r ~/.zcompdump +%s` &> /dev/null;
-# now=$(date +%s)
-# file_age=$((now - comp_last_updated))
-# if [[ $file_age -gt 86400 || $file_age -eq 0 ]]; then;
-#  echo "Updating completion..."
-  complete -C 'aws_completer' aws;
-  complete -o nospace -C /run/current-system/sw/bin/xc xc
-  compinit;
-# else
-#  compinit -C;
-# fi;
-
 # Use the dotfiles.
 if [ ! -f $HOME/.gitconfig ]; then
     ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
 fi
 if [ ! -f $HOME/.tmux.conf ]; then
     ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
-fi
-if [ ! -f $HOME/.zshrc ]; then
-    ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
 fi
 if [ ! -f $HOME/.config/nixpkgs/darwin-configuration.nix ]; then
     ln -s $HOME/dotfiles/.config/nixpkgs $HOME/.nixpkgs
@@ -77,8 +52,10 @@ alias gd="git diff"
 alias gp="git push"
 alias gu="git pull"
 
+# Take over from the annoying Gnome keyring.
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+
 # Configure nix package manager.
-if [ -e /Users/adrian/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/adrian/.nix-profile/etc/profile.d/nix.sh; fi 
 alias nix="nix --extra-experimental-features nix-command --extra-experimental-features flakes"
 # Configure globally installed NPM modules to be in a sensible location.
 # I don't want any globally installed NPM modules, but CDK is a nuisance.
@@ -131,27 +108,8 @@ listening() {
     fi
 }
 
-# Don't use the Pinentry GUI for gpg.
-# However, it seems to conflict with git signing etc.
-# export GPG_TTY=$(tty)
-# export PINENTRY_USER_DATA="USE_CURSES=1"
-
-# Configure Nitrokey SSH.
-unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  if command -v gpgconf &> /dev/null
-  then
-    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-  else
-    echo "gpgconf is not installed, skipping starting GPG SSH agent..."
-  fi
-fi
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/adrian/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/adrian/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/adrian/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/adrian/google-cloud-sdk/completion.zsh.inc'; fi
-
-# Execute profiling, see start of file to load.
-# zprof

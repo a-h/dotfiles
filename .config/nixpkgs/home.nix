@@ -130,13 +130,18 @@ in
       pkgs.zip
     ];
 
-    programs.gpg = {
-      enable = true;
+  programs.gpg = {
+    enable = true;
+  };
+  services.gnome-keyring = {
+    enable = false;
   };
   services.gpg-agent = {
     enable = true;
     enableScDaemon = true;
     pinentryFlavor = "gnome3"; # can be "curses", "tty", "gtk2", "emacs", "gnome3", "qt"
+    enableSshSupport = true;
+    sshKeys = [ "FFC73CEA6D1594D7F473F1FB0ED190BDE0909FE2" ];
   };
 
   fonts.fontconfig.enable = true;
@@ -148,136 +153,90 @@ in
     };
     platformTheme = "gtk";
   };
+
   gtk = {
     enable = true;
     theme = {
       name = "Adwaita-dark"; # Enable dark mode for GTK2
     };
-#    font = "";
     gtk2.extraConfig = "gtk-application-prefer-dark-theme = \"true\"";
     gtk3.extraConfig = {"gtk-application-prefer-dark-theme" = "true";};
     gtk4.extraConfig = {"gtk-application-prefer-dark-theme" = "true";};
   };
+
   dconf = {
     enable = true;
     settings = {
-    "org/gnome/desktop/interface" = {
-      clock-format = "24h";
-      color-scheme = "prefer-dark"; # Enable dark mode on GNOME
-    };
-    "org/gnome/nautilus/compression" = {
-      default-compression-format = "7z";
-    };
-    "org/gnome/nautilus/icon-view" = {
-      default-zoom-level = "medium";
-    };
-    "org/gnome/nautilus/list-view" = {
-      default-zoom-level = "small";
-      use-tree-view = true;
-      default-column-order = [ "name" "size" "type" "owner" "group" "permissions" "mime_type" "where" "date_modified" "date_modified_with_time" "date_accessed" "date_created" "recency" "starred" ];
-      default-visible-columns = ["name" "size" "date_modified"];
-    };
-    "org/gnome/shell/extensions/dash-to-dock" = {
-      dock-fixed = false;
-    };
-   };
- };
+      "org/gnome/desktop/interface" = {
+        clock-format = "24h";
+        color-scheme = "prefer-dark"; # Enable dark mode on GNOME
+      };
+      "org/gnome/nautilus/compression" = {
+        default-compression-format = "7z";
+      };
+      "org/gnome/nautilus/icon-view" = {
+        default-zoom-level = "medium";
+      };
+      "org/gnome/nautilus/list-view" = {
+        default-zoom-level = "small";
+        use-tree-view = true;
+        default-column-order = [ "name" "size" "type" "owner" "group" "permissions" "mime_type" "where" "date_modified" "date_modified_with_time" "date_accessed" "date_created" "recency" "starred" ];
+        default-visible-columns = ["name" "size" "date_modified"];
+      };
+      "org/gnome/shell/extensions/dash-to-dock" = {
+        dock-fixed = false;
+      };
+     };
+  };
 
-  
-programs.gnome-terminal = {
-  enable = true;
-  showMenubar = false;
-  profile = {
-    "5ddfe964-7ee6-4131-b449-26bdd97518f7" = {
-      default = true;
-      visibleName = "Home Manager Custom";
-      cursorShape = "block";
-      font = "BlexMono Nerd Font 11"; # Size: 11
-      showScrollbar = false;
-      colors = {
-        backgroundColor = "#000000";
-        foregroundColor = "#ffffff";
-        palette = [
-          "#000000"
-          "#aa0000"
-          "#00aa00"
-          "#aa5500"
-          "#0000aa"
-          "#aa00aa"
-          "#00aaaa"
-          "#aaaaaa"
-          "#555555"
-          "#ff5555"
-          "#55ff55"
-          "#ffff55"
-          "#5555ff"
-          "#ff55ff"
-          "#55ffff"
-          "#ffffff"
-        ];
+  programs.gnome-terminal = {
+    enable = true;
+    showMenubar = false;
+    profile = {
+      "5ddfe964-7ee6-4131-b449-26bdd97518f7" = {
+        default = true;
+        visibleName = "Home Manager Custom";
+        cursorShape = "block";
+        font = "BlexMono Nerd Font 11"; # Size: 11
+        showScrollbar = false;
+        colors = {
+          backgroundColor = "#000000";
+          foregroundColor = "#ffffff";
+          palette = [
+            "#000000"
+            "#aa0000"
+            "#00aa00"
+            "#aa5500"
+            "#0000aa"
+            "#aa00aa"
+            "#00aaaa"
+            "#aaaaaa"
+            "#555555"
+            "#ff5555"
+            "#55ff55"
+            "#ffff55"
+            "#5555ff"
+            "#ff55ff"
+            "#55ffff"
+            "#ffffff"
+          ];
+        };
       };
     };
   };
-};
 
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
-#    oh-my-zsh = {
-#      enable = true;
-#      plugins = [ "aws" "git" ];
-    };
-    #initExtra = ''
-    #  export ZSH_HIGHLIGHT_STYLES[comment]=fg=245,bold
-    #'';
-    plugins = [
-      {
-        name = "zsh-syntax-highlighting";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-syntax-highlighting";
-          rev = "0.7.1";
-          sha256 = "gOG0NLlaJfotJfs+SUhGgLTNOnGLjoqnUp54V9aFJg8=";
-        };
-      }
-      {
-        name = "zsh-autosuggestions";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-autosuggestions";
-          rev = "v0.7.0";
-          sha256 = "IT3wpfw8zhiNQsrw59lbSWYh0NQ1CUdUtFzRzHlURH0=";
-        };
-      }
-      # zsh-nix-shell enables ZSH inside of nix-shell.
-#      {
-#        name = "zsh-nix-shell";
-#        file = "nix-shell.plugin.zsh";
-#        src = pkgs.fetchFromGitHub {
-#          owner = "chisui";
-#          repo = "zsh-nix-shell";
-#          rev = "v0.5.0";
-#          sha256 = "IT3wpfw8zhiNQsrw59lbSWYh0NQ1CUdUtFzRzHlURH0=";
-#        };
-#      }
-    ];
-#    localVariables = {
-#      GOPATH = "/home/$USER/go";
-#      GOBIN = "/home/$USER/go/bin";
-#      PATH = "$GOBIN:$PATH";
-#    };
-#    shellAliases = {
-#      ns = "nix-shell -p";
-#    };
+    enableCompletion = true;
+    enableSyntaxHighlighting = true;
+    initExtra = (builtins.readFile ./.zshrc);
   };
 
-   programs.fzf = {
+  programs.fzf = {
    enable = true;
    enableZshIntegration = true;
-   #defaultOptions = [
-   #  "--preview 'bat --style=numbers --color=always --line-range :500 {}'"
-   #];
- };
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
