@@ -5,8 +5,6 @@ local dracula = require("dracula")
 dracula.setup({
   -- set custom lualine background color
   lualine_bg_color = "#44475a", -- default nil
-  -- set italic comment
-  italic_comment = true, -- default false
   transparent_bg = true,
   -- overrides the default highlights see `:h synIDattr`
   overrides = {
