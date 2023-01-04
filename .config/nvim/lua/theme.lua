@@ -12,6 +12,10 @@ dracula.setup({
     -- NonText = { fg = dracula.colors().white }, -- set NonText fg to white
     -- NvimTreeIndentMarker = { link = "NonText" }, -- link to NonText highlight
     -- Nothing = {} -- clear highlight of Nothing
+    ['@type.builtin'] = {
+      fg = dracula.colors().cyan,
+      italic = false,
+    },
   },
 })
 vim.cmd [[colorscheme dracula]]

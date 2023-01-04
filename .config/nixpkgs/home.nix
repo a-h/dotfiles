@@ -72,6 +72,7 @@ in
       pkgs.fd # Find that respects .gitignore.
       pkgs.fzf # Fuzzy search.
       # pkgs.gcalcli # Google Calendar CLI.
+      pkgs.gcc
       # pkgs.gcc-arm-embedded # Raspberry Pi Pico GCC. # No Darwin ARM support.
       pkgs.gifsicle
       pkgs.git
