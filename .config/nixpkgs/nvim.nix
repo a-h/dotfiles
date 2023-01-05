@@ -28,9 +28,9 @@ neovim8.override {
   vimAlias = true;
   configure = {
     packages.myPlugins = with pkgs.vimPlugins; {
-      start = [
-      (pluginGit "nvim-lualine" "lualine.nvim" "32a7382a75a52e8ad05f4cec7eeb8bbfbe80d461" "gm6nGdbx466xEXI6s/Wd4xBTLbydn7tMnG32m/jgA7U=")
-      (pluginGit "Mofiqul" "dracula.nvim" "55f24e76a978c73c63d22951b0700823f21253b7" "YwcbSj+121/QaEIAqqG4EvCpCYj3VzgCE8Ndl1ABbFI=")
+     start = [
+        (pluginGit "nvim-lualine" "lualine.nvim" "d8c392dd75778d6258da4e7c55522e94ac389732" "s4bIwha2ZWvF5jYuIfUBcT/JKK9gcMH0vms2pOO5uKs=")
+        (pluginGit "Mofiqul" "dracula.nvim" "55f24e76a978c73c63d22951b0700823f21253b7" "YwcbSj+121/QaEIAqqG4EvCpCYj3VzgCE8Ndl1ABbFI=")
         # Metal syntax highlighting.
         (pluginGit "tklebanoff" "metal-vim" "6970494a5490a17033650849f0a1ad07506cef2e" "14i8q9ikp3v4q7mpid9ir1azfqfm7fbksc65cpp51424clnqcapl")
         # Add fuzzy searching (Ctrl-P to search file names, space-p to search content).

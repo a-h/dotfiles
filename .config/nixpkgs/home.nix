@@ -67,6 +67,7 @@ in
       pkgs.cmake # Used by Raspberry Pi Pico SDK.
       pkgs.cargo # Rust tooling.
       pkgs.delve # Go debugger.
+      pkgs.docker
       # pkgs.dotnet-sdk # No Darwin ARM support.
       pkgs.entr # Execute command when files change.
       pkgs.fd # Find that respects .gitignore.
@@ -96,7 +97,6 @@ in
       pkgs.jq
       pkgs.lua5_4
       pkgs.sumneko-lua-language-server
-      pkgs.lima # Alternative to Docker desktop https://github.com/lima-vm/lima
       pkgs.llvm # Used by Raspberry Pi Pico SDK.
       pkgs.lynx
       pkgs.mob
