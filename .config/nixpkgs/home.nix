@@ -126,7 +126,9 @@ in
       pkgs.tree
       pkgs.unzip
       pkgs.urlscan
+      pkgs.wl-clipboard # wayland clipboard
       pkgs.wget
+      pkgs.xclip
       pkgs.yarn
       pkgs.zip
     ];
