@@ -10,6 +10,8 @@
 ## New machine setup
 
 1. Import public key (`gpg --import public-key.gpg`)
+  1. https://security.stackexchange.com/questions/129474/how-to-raise-a-key-to-ultimate-trust-on-another-machine
+  1. Remember to disable the Gnome Keyring, since it starts an SSH agent.
 1. Remembers to use `keytocard` to migrate the key onto the new card https://developers.yubico.com/PGP/Importing_keys.html
 1. Setup the GPG card (`gpg --card-status`)
 1. Update the `.gitconfig` to use the new card ID.

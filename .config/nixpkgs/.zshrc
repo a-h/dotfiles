@@ -12,6 +12,12 @@ export PATH="$PATH:$HOME/Developer/PlaydateSDK/bin"
 export PATH="$PATH:$HOME/.dotnet/tools"
 export PATH="$PATH:/Applications/SnowSQL.app/Contents/MacOS:$PATH"
 export PATH=$PATH:/usr/sbin
+fpath=($HOME/.nix-profile/share/zsh/site-functions $fpath)
+
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
 
 # Raspberry Pi Pico SDK.
 export PICO_SDK_PATH=$HOME/github.com/raspberrypi/pico-sdk
