@@ -4,6 +4,7 @@ with import <nixpkgs> { };
 let
   neovim = pkgs.callPackage ./nvim.nix { };
   adr-tools = pkgs.callPackage ./adr-tools.nix { };
+  d2 = pkgs.callPackage ./d2.nix { };
   goreplace = pkgs.callPackage ./goreplace.nix { };
   html2text = pkgs.callPackage ./html2text.nix { };
   air = pkgs.callPackage ./air.nix { };
@@ -37,6 +38,7 @@ in
   home.packages = [
       adr-tools
       air # Hot reload for Go.
+      d2 # Diagramming
       goreplace
       neovim
       nerdfonts
@@ -108,8 +110,8 @@ in
       pkgs.nmap
       pkgs.nodePackages.node2nix
       pkgs.nodePackages.prettier
-      pkgs.nodePackages.typescript
-      pkgs.nodePackages.typescript-language-server
+      #pkgs.nodePackages.typescript
+      #pkgs.nodePackages.typescript-language-server
       pkgs.nodejs-16_x
       pkgs.pass
       pkgs.powerline
