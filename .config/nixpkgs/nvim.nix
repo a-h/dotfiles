@@ -12,16 +12,20 @@ let
     };
   };
 
-  neovim8Revision = import
-    (builtins.fetchTarball {
-      name = "nixos-unstable-2022-10-30";
-      url = "https://github.com/nixos/nixpkgs/archive/217b2d0662cd6c37a7eda2db72215477c2efc215.tar.gz";
-      # Hash obtained using `nix-prefetch-url --unpack <url>`
-      # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/neovim/default.nix
-      sha256 = "0278q24vgcxj5x259aq4zys13v83n8sv9cf6wr5x2wmj3n6b058r";
-    })
-    { };
-  neovim8 = neovim8Revision.neovim;
+  nix22_11 = import
+    (fetchTarball "https://github.com/nixos/nixpkgs/archive/4d2b37a84fad1091b9de401eb450aae66f1a741e.tar.gz") {};
+
+  neovim8 = nix22_11.neovim;
+  treesitter-grammars = nix22_11.tree-sitter.allGrammars;
+  nvim-treesitter-with-plugins = (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: treesitter-grammars)).overrideAttrs (old: {
+      version = "v0.8.1";
+      src = pkgs.fetchFromGitHub {
+          owner = "nvim-treesitter";
+          repo = "nvim-treesitter";
+          rev = "v0.8.1";
+          sha256 = "/hWyN4RsPt76hlusq4DPYSa6rnHzvxsxrQK4NRzpZjg=";
+      };
+  });
 
 in
 neovim8.override {
@@ -30,7 +34,7 @@ neovim8.override {
     packages.myPlugins = with pkgs.vimPlugins; {
      start = [
         (pluginGit "nvim-lualine" "lualine.nvim" "d8c392dd75778d6258da4e7c55522e94ac389732" "s4bIwha2ZWvF5jYuIfUBcT/JKK9gcMH0vms2pOO5uKs=")
-        (pluginGit "Mofiqul" "dracula.nvim" "55f24e76a978c73c63d22951b0700823f21253b7" "YwcbSj+121/QaEIAqqG4EvCpCYj3VzgCE8Ndl1ABbFI=")
+        (pluginGit "Mofiqul" "dracula.nvim" "a0b129d7dea51b317fa8064f13b29f68004839c4" "snCRLw/QtKPDAkh1CXZfto2iCoyaQIx++kOEC0vy9GA=")
         # Metal syntax highlighting.
         (pluginGit "tklebanoff" "metal-vim" "6970494a5490a17033650849f0a1ad07506cef2e" "14i8q9ikp3v4q7mpid9ir1azfqfm7fbksc65cpp51424clnqcapl")
         # Add fuzzy searching (Ctrl-P to search file names, space-p to search content).
@@ -43,7 +47,7 @@ neovim8.override {
         # Use :TSHighlightCapturesUnderCursor to see the syntax under cursor.
         (pluginGit "nvim-treesitter" "playground" "8a887bcf66017bd775a0fb19c9d8b7a4d6759c48" "uBSSGdlpj3g2wEYYaZCvPz+gHlwxjJP+C0ES8JcKPrA=")
         # Tressiter syntax highlighting.
-        nvim-treesitter.withAllGrammars
+        nvim-treesitter-with-plugins
         # Go test coverage highlighting.
         (pluginGit "rafaelsq" "nvim-goc.lua" "7d23d820feeb30c6346b8a4f159466ee77e855fd" "1b9ri5s4mcs0k539kfhf5zd3fajcr7d4lc0216pbjq2bvg8987wn")
         # General test coverage highlighting.
@@ -77,7 +81,7 @@ neovim8.override {
         vim-surround #tpope/vim-surround
         vim-test #janko/vim-test
         vim-visual-multi #mg979/vim-visual-multi
-        cmp-nvim-lsp
+        (pluginGit "hrsh7th" "cmp-nvim-lsp" "59224771f91b86d1de12570b4070fe4ad7cd1eeb" "Mqkp8IH/laUx0cK7S0BjusTT+OtOOJOamZM4+93RHdU=")
         targets-vim # https://github.com/wellle/targets.vim
       ];
       opt = [ ];

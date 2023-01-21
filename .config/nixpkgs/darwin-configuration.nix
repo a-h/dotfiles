@@ -125,11 +125,18 @@ in
       pkgs.zip
     ];
 
-  programs.zsh.enable = true; # default shell on catalina
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableSyntaxHighlighting = true;
+    promptInit = (builtins.readFile ./.zshrc);
+  };
 
   fonts = {
-     enableFontDir = true;
      fonts = [ nerdfonts ];
+     fontDir = {
+       enable = true;
+     };
   };
 
   # Used for backwards compatibility, please read the changelog before changing.

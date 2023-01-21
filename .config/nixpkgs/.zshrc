@@ -50,6 +50,9 @@ fi
 if [ ! -d "$HOME/.config/nixpkgs/" ]; then
   ln -sf $HOME/dotfiles/.config/nixpkgs/ ~/.config/
 fi
+if [ ! -d "$HOME/.config/alacritty/" ]; then
+  ln -sf $HOME/dotfiles/.config/alacritty/ ~/.config/
+fi
 
 # Git aliases.
 alias gs="git status -s"
