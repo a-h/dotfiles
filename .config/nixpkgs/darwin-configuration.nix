@@ -64,6 +64,7 @@ in
       pkgs.awslogs
       pkgs.ccls # C LSP Server.
       pkgs.cmake # Used by Raspberry Pi Pico SDK.
+      #pkgs.cmake-language-server # Broken on Darwin?
       pkgs.cargo # Rust tooling.
       pkgs.delve # Go debugger.
       # pkgs.dotnet-sdk # No Darwin ARM support.

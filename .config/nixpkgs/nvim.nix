@@ -12,18 +12,18 @@ let
     };
   };
 
-  nix22_11 = import
-    (fetchTarball "https://github.com/nixos/nixpkgs/archive/4d2b37a84fad1091b9de401eb450aae66f1a741e.tar.gz") {};
+  nixpkgs_2023_01_22 = import
+    (fetchTarball "https://github.com/nixos/nixpkgs/archive/8308b25bb73da76f714b8e305ef0d130db616b18.tar.gz") {};
 
-  neovim8 = nix22_11.neovim;
-  treesitter-grammars = nix22_11.tree-sitter.allGrammars;
+  neovim8 = nixpkgs_2023_01_22.neovim;
+  treesitter-grammars = nixpkgs_2023_01_22.tree-sitter.allGrammars;
   nvim-treesitter-with-plugins = (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: treesitter-grammars)).overrideAttrs (old: {
-      version = "v0.8.1";
+      version = "405fe27cd1b81faadd08fd5895dc54a34154103e";
       src = pkgs.fetchFromGitHub {
           owner = "nvim-treesitter";
           repo = "nvim-treesitter";
-          rev = "v0.8.1";
-          sha256 = "/hWyN4RsPt76hlusq4DPYSa6rnHzvxsxrQK4NRzpZjg=";
+          rev = "405fe27cd1b81faadd08fd5895dc54a34154103e";
+          sha256 = "mbIKj3qa2ka/N6c5THiPn2QDHHlb6L6YLBziAgTIxJU=";
       };
   });
 
