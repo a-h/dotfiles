@@ -97,7 +97,7 @@ local server_settings = {
     format = { enable = true }, -- this will enable formatting
     packageManager = "npm",
     autoFixOnSave = true,
-    codeActionsOnSave = {
+    codeActionOnSave = {
       mode = "all",
       rules = { "!debugger", "!no-only-tests/*" },
     },
