@@ -123,6 +123,8 @@ in
       # pkgs.ssm-session-manager-plugin # No Darwin ARM support. 
       pkgs.slides
       pkgs.terraform
+      pkgs.terraform-ls
+      pkgs.tflint
       pkgs.tmate
       pkgs.tmux
       pkgs.tree

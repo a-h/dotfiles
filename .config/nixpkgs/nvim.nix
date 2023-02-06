@@ -12,20 +12,11 @@ let
     };
   };
 
-  nixpkgs_2023_01_22 = import
-    (fetchTarball "https://github.com/nixos/nixpkgs/archive/8308b25bb73da76f714b8e305ef0d130db616b18.tar.gz") {};
+  nixpkgs_2023_02_06 = import
+    (fetchTarball "https://github.com/nixos/nixpkgs/archive/2a595c9628608928c8fd9820d394c85f524a8f39.tar.gz") {};
 
-  neovim8 = nixpkgs_2023_01_22.neovim;
-  treesitter-grammars = nixpkgs_2023_01_22.tree-sitter.allGrammars;
-  nvim-treesitter-with-plugins = (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: treesitter-grammars)).overrideAttrs (old: {
-      version = "405fe27cd1b81faadd08fd5895dc54a34154103e";
-      src = pkgs.fetchFromGitHub {
-          owner = "nvim-treesitter";
-          repo = "nvim-treesitter";
-          rev = "405fe27cd1b81faadd08fd5895dc54a34154103e";
-          sha256 = "mbIKj3qa2ka/N6c5THiPn2QDHHlb6L6YLBziAgTIxJU=";
-      };
-  });
+  neovim8 = nixpkgs_2023_02_06.neovim;
+  nvim-treesitter-with-plugins = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
 
 in
 neovim8.override {
@@ -45,7 +36,7 @@ neovim8.override {
         vim-nix
         # Colour scheme.
         # Use :TSHighlightCapturesUnderCursor to see the syntax under cursor.
-        (pluginGit "nvim-treesitter" "playground" "8a887bcf66017bd775a0fb19c9d8b7a4d6759c48" "uBSSGdlpj3g2wEYYaZCvPz+gHlwxjJP+C0ES8JcKPrA=")
+        (pluginGit "nvim-treesitter" "playground" "c481c660fa903a0e295902b1765ecfbd6e76a556" "KyLR31XfYi3aANvXBGYCAsmYEr+H9hUr8j82abPQYDQ=")
         # Tressiter syntax highlighting.
         nvim-treesitter-with-plugins
         # Go test coverage highlighting.
@@ -61,7 +52,7 @@ neovim8.override {
         # Configure autocomplete.
         (pluginGit "hrsh7th" "nvim-cmp" "983453e32cb35533a119725883c04436d16c0120" "0649n476jd6dqd79fmywmigz19sb0s344ablwr25gr23fp46hzaz")
         # Configure autocomplete.
-        (pluginGit "neovim" "nvim-lspconfig" "99596a8cabb050c6eab2c049e9acde48f42aafa4" "qU9D2bGRS6gDIxY8pgjwTVEwDTa8GXHUUQkXk9pBK/U=")
+        (pluginGit "neovim" "nvim-lspconfig" "d3c82d2f9a6fd91ec1ffee645664d2cc57e706d9" "wDt3Fs6+hHAr4ToACR7BZRtm5FeDnGZtSsdjTxrsWE4=")
         # Snippets manager.
         (pluginGit "L3MON4D3" "LuaSnip" "e687d78fc95a7c04b0762d29cf36c789a6d94eda" "11a9b744cgr3w2nvnpq1bjblqp36klwda33r2xyhcvhzdcz0h53v")
         # Add snippets to the autocomplete.
