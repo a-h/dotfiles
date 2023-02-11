@@ -39,10 +39,9 @@ neovim8.override {
         (pluginGit "nvim-treesitter" "playground" "c481c660fa903a0e295902b1765ecfbd6e76a556" "KyLR31XfYi3aANvXBGYCAsmYEr+H9hUr8j82abPQYDQ=")
         # Tressiter syntax highlighting.
         nvim-treesitter-with-plugins
-        # Go test coverage highlighting.
-        (pluginGit "rafaelsq" "nvim-goc.lua" "7d23d820feeb30c6346b8a4f159466ee77e855fd" "1b9ri5s4mcs0k539kfhf5zd3fajcr7d4lc0216pbjq2bvg8987wn")
-        # General test coverage highlighting.
-        (pluginGit "ruanyl" "coverage.vim" "1d4cd01e1e99d567b640004a8122be8105046921" "1vr6ylppwd61rj0l7m6xb0scrld91wgqm0bvnxs54b20vjbqcsap")
+        # Code coverage
+        (pluginGit "nvim-lua" "plenary.nvim" "v0.1.2" "7EsquOLB7gfN2itfGFJZYKwEXBmP0xMKEOdyyjOweHg=")
+        (pluginGit "andythigpen" "nvim-coverage" "5c5ab0cc575c483bf3485b9481880b5ea4160ed4" "bmcrFiu1FWUPfhB5rzItkQozj/fR4bseK2YOPFSft8A=")
         # Grep plugin to improve grep UX.
         (pluginGit "dkprice" "vim-easygrep" "d0c36a77cc63c22648e792796b1815b44164653a" "0y2p5mz0d5fhg6n68lhfhl8p4mlwkb82q337c22djs4w5zyzggbc")
         # Templ highlighting.
@@ -70,7 +69,7 @@ neovim8.override {
         vim-sleuth #tpope/vim-sleuth
         # Change surrounding characters, e.g. cs"' to change from double to single quotes.
         vim-surround #tpope/vim-surround
-        vim-test #janko/vim-test
+        (pluginGit "vim-test" "vim-test" "048f15403d9edfa513a50fafd7b107306c5512e4" "tXIODv/5qhmq5N93m/ftxbDBMgBvsE3Qwtnmx4Smch8=")
         vim-visual-multi #mg979/vim-visual-multi
         (pluginGit "hrsh7th" "cmp-nvim-lsp" "59224771f91b86d1de12570b4070fe4ad7cd1eeb" "Mqkp8IH/laUx0cK7S0BjusTT+OtOOJOamZM4+93RHdU=")
         targets-vim # https://github.com/wellle/targets.vim
