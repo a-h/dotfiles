@@ -69,7 +69,7 @@ neovim8.override {
         vim-sleuth #tpope/vim-sleuth
         # Change surrounding characters, e.g. cs"' to change from double to single quotes.
         vim-surround #tpope/vim-surround
-        (pluginGit "vim-test" "vim-test" "048f15403d9edfa513a50fafd7b107306c5512e4" "tXIODv/5qhmq5N93m/ftxbDBMgBvsE3Qwtnmx4Smch8=")
+        (pluginGit "klen" "nvim-test" "4e30d0772a43bd67ff299cfe201964c5bd799d73" "sha256-iUkBnJxvK71xSqbH8JLm7gwvpiNxfWlAd2+3frNEXXQ=")
         vim-visual-multi #mg979/vim-visual-multi
         (pluginGit "hrsh7th" "cmp-nvim-lsp" "59224771f91b86d1de12570b4070fe4ad7cd1eeb" "Mqkp8IH/laUx0cK7S0BjusTT+OtOOJOamZM4+93RHdU=")
         targets-vim # https://github.com/wellle/targets.vim

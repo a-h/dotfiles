@@ -1,19 +1,23 @@
--- vim-test settings
-local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true }
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+local function testAll()
+  local testCommands = {
+    go = "go test -cover --coverprofile=coverage.out ./...",
+  }
+  local cmd = testCommands[vim.bo.filetype]
+  if cmd ~= nil then
+    vim.cmd("!" .. cmd)
+  else
+    print("no test command for filetype: " .. vim.bo.filetype)
+  end
 end
 
-map("n", "t<C-n>", "<cmd>TestNearest<cr>", { silent = true, noremap = true })
-map("n", "t<C-f>", "<cmd>TestFile<cr>", { silent = true, noremap = true })
-map("n", "t<C-s>", "<cmd>TestSuite<cr>", { silent = true, noremap = true })
-map("n", "t<C-l>", "<cmd>TestLast<cr>", { silent = true, noremap = true })
-map("n", "t<C-g>", "<cmd>TestVisit<cr>", { silent = true, noremap = true })
+vim.api.nvim_create_user_command('TestAll', testAll, {})
 
--- go test should always create coverage
-vim.g["test#go#gotest#options"] = '-coverprofile coverage.out'
-vim.g["test#go#gotest#file_pattern"] = '^.*\\.go$'
+-- nvim test.
+local nvimtest = require('nvim-test')
+require('nvim-test.runners.go-test'):setup {
+  args = { "test", "-v", "-cover", "-coverprofile", "coverage.out" },
+}
+nvimtest.setup()
 
 -- coverage configuration.
 local coverage = require("coverage")
