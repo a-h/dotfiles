@@ -1,0 +1,19 @@
+{
+  "flakes": [
+    {
+      "from": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      },
+      "to": {
+        "lastModified": 1674690532,
+        "narHash": "sha256-tKGva8nhRleCjNYXsmql65PeoxFdFILGO8zM/vc3YGU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "021d3b51ff43844c7e9b0534f968d56bdb52a2a7",
+        "type": "github"
+      }
+    }
+  ],
+  "version": 2
+}

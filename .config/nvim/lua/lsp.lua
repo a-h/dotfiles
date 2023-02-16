@@ -131,17 +131,17 @@ local server_settings = {
 -- eslint comes from:
 -- npm i -g vscode-langservers-extracted
 local servers = { 'gopls', 'ccls', 'cmake', 'tsserver', 'templ', 'rls', 'eslint', 'sumneko_lua', 'jdtls', 'terraformls',
-  'tflint' }
+  'tflint', 'pylsp' }
 for _, lsp in ipairs(servers) do
-  local opts = {
+  local lsp_opts = {
     on_attach = on_attach,
     capabilities = capabilities,
     flags = {
       debounce_text_changes = 150,
     },
   }
-  if server_settings[lsp] then opts.settings = server_settings[lsp] end
-  nvim_lsp[lsp].setup(opts)
+  if server_settings[lsp] then lsp_opts.settings = server_settings[lsp] end
+  nvim_lsp[lsp].setup(lsp_opts)
 end
 --vim.lsp.set_log_level("debug")
 -- Use :LspLog to see logs.

@@ -115,6 +115,7 @@ in
       pkgs.nodejs-16_x
       pkgs.pass
       pkgs.powerline
+      pkgs.python310Packages.python-lsp-server
       pkgs.source-code-pro
       pkgs.ripgrep
       pkgs.rustc # Rust compiler.
