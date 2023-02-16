@@ -2,16 +2,16 @@
 
 buildGoModule rec {
   pname = "xc";
-  version = "0.148";
+  version = "v0.0.154";
 
   src = fetchFromGitHub {
     owner = "Joe-Davidson1802";
     repo = "xc";
-    rev = "v0.0.148";
-    sha256 = "sha256-aWtl/ItO/0hPssfkE9o+DX0iFoHXwo2ouCaEfbtx+Nw=";
+    rev = "v0.0.154";
+    sha256 = "GJBSPO0PffGdGAHofd1crEFXJi2xqgd8Vk2/g4ff+E4=";
   };
 
-  vendorSha256 = "sha256-14dtguu787VR8/sYA+9WaS6xr/dB6ZcUjOzDEkFDpH4=";
+  vendorSha256 = "sha256-XDJdCh6P8ScSvxY55ExKgkgFQqmBaM9fMAjAioEQ0+s=";
 
   meta = with lib; {
     description = "eXeCute project tasks from a readme file";
