@@ -16,7 +16,7 @@ let
     (fetchTarball "https://github.com/nixos/nixpkgs/archive/2a595c9628608928c8fd9820d394c85f524a8f39.tar.gz") {};
 
   neovim8 = nixpkgs_2023_02_06.neovim;
-  nvim-treesitter-with-plugins = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+  nvim-treesitter-with-plugins = nixpkgs_2023_02_06.vimPlugins.nvim-treesitter.withAllGrammars;
 
 in
 neovim8.override {

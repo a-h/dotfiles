@@ -1,23 +1,21 @@
 # See https://nixos.org/guides/towards-reproducibility-pinning-nixpkgs.html and https://status.nixos.org
 # https://github.com/NixOS/nixpkgs/releases/tag/22.11
-{ config, pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/4d2b37a84fad1091b9de401eb450aae66f1a741e.tar.gz") { }, ... }:
+{ config, pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/d4cf6fb8e85cb101aaaaa1a78a9fa75433e337f2.tar.gz") { }, ... }:
 
 let
   neovim = pkgs.callPackage ./nvim.nix { };
-
   adr-tools = pkgs.callPackage ./adr-tools.nix { };
+  d2 = pkgs.callPackage ./d2.nix { };
   goreplace = pkgs.callPackage ./goreplace.nix { };
   html2text = pkgs.callPackage ./html2text.nix { };
   air = pkgs.callPackage ./air.nix { };
   twet = pkgs.callPackage ./twet.nix { };
   pact = pkgs.callPackage ./pact.nix { };
   jdtls = pkgs.callPackage ./jdtls.nix { };
-  xc = pkgs.callPackage ./xc.nix { };
   go = pkgs.callPackage ./go.nix { };
+  xc = pkgs.callPackage ./xc.nix { go = go; };
   gopls = pkgs.callPackage ./gopls.nix { };
-  upterm = pkgs.callPackage ./upterm.nix {
-    go = go;
-  };
+  upterm = pkgs.callPackage ./upterm.nix { };
 
   nodePackages = import ./node-env/default.nix {
     inherit pkgs;
@@ -41,7 +39,7 @@ in
       neovim
       nerdfonts
       pact
-      upterm
+      # upterm
       twet
       xc # Task executor.
       # Java development.
@@ -112,7 +110,7 @@ in
       pkgs.ripgrep
       pkgs.rustc # Rust compiler.
       pkgs.rustfmt # Rust formatter.
-      pkgs.rls # Rust language server.
+      pkgs.rust-analyzer # Rust language server.
       # pkgs.ssm-session-manager-plugin # No Darwin ARM support. 
       pkgs.slides
       pkgs.terraform
