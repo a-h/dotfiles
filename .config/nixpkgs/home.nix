@@ -38,7 +38,6 @@ in
   home.packages = [
       adr-tools
       air # Hot reload for Go.
-      pkgs.alacritty
       d2 # Diagramming
       goreplace
       neovim
