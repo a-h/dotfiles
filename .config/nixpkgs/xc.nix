@@ -1,19 +1,17 @@
-{ lib, stdenv, go, fetchFromGitHub }:
+{ lib, buildGoModule, fetchFromGitHub }:
 
-stdenv.mkDerivation {
+buildGoModule rec {
   pname = "xc";
-  version = "v0.0.154";
-
+  version = "v0.0.159";
+    
   src = fetchFromGitHub {
     owner = "Joe-Davidson1802";
     repo = "xc";
-    rev = "v0.0.154";
-    sha256 = "GJBSPO0PffGdGAHofd1crEFXJi2xqgd8Vk2/g4ff+E4=";
+    rev = "v0.0.159";
+    sha256 = "sha256-5Vw/UStMtP5CHbSCOzeD4LMJccPG34Rxw9VHc9Ut3oM=";
   };
 
-  nativeBuildInputs = [ go ];
-  builder = ./xc-install.sh;
-  system = builtins.currentSystem;
+  vendorSha256 = "sha256-XDJdCh6P8ScSvxY55ExKgkgFQqmBaM9fMAjAioEQ0+s=";
 
   meta = with lib; {
     description = "eXeCute project tasks from a readme file";

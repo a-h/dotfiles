@@ -8,6 +8,7 @@ GOCACHE=$TMPDIR/go-cache
 GOMODCACHE=$TMPDIR/go-cache
 export GOCACHE
 export GOMODCACHE
+export GOPROXY=direct
 # Build and write directly to bin.
 cd $src/cmd/xc
 go build -o $out/bin/xc

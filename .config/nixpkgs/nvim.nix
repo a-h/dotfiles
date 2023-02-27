@@ -41,7 +41,7 @@ neovim8.override {
         nvim-treesitter-with-plugins
         # Code coverage
         (pluginGit "nvim-lua" "plenary.nvim" "v0.1.2" "7EsquOLB7gfN2itfGFJZYKwEXBmP0xMKEOdyyjOweHg=")
-        (pluginGit "andythigpen" "nvim-coverage" "5c5ab0cc575c483bf3485b9481880b5ea4160ed4" "bmcrFiu1FWUPfhB5rzItkQozj/fR4bseK2YOPFSft8A=")
+        (pluginGit "andythigpen" "nvim-coverage" "fd44fde75468ddc8d72c7a64812c6d88826a3301" "Sve4ljcXR68YIoBNW5arwa5gQCUmA6PyXxs076qKAmE=")
         # Grep plugin to improve grep UX.
         (pluginGit "dkprice" "vim-easygrep" "d0c36a77cc63c22648e792796b1815b44164653a" "0y2p5mz0d5fhg6n68lhfhl8p4mlwkb82q337c22djs4w5zyzggbc")
         # Templ highlighting.
