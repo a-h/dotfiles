@@ -1,6 +1,6 @@
 # See https://nixos.org/guides/towards-reproducibility-pinning-nixpkgs.html and https://status.nixos.org
 # https://github.com/NixOS/nixpkgs/releases/tag/22.11
-{ config, pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/d4cf6fb8e85cb101aaaaa1a78a9fa75433e337f2.tar.gz") { }, ... }:
+{ config, pkgs, ... }:
 
 let
   neovim = pkgs.callPackage ./nvim.nix { };
@@ -13,7 +13,6 @@ let
   pact = pkgs.callPackage ./pact.nix { };
   jdtls = pkgs.callPackage ./jdtls.nix { };
   go = pkgs.callPackage ./go.nix { };
-  xc = pkgs.callPackage ./xc.nix { go = go; };
   gopls = pkgs.callPackage ./gopls.nix { };
   upterm = pkgs.callPackage ./upterm.nix { };
 
@@ -26,7 +25,6 @@ let
 in
 
 {
-  nixpkgs.config.allowUnfree = true;
   environment.variables = { EDITOR = "vim"; };
 
   # List packages installed in system profile. To search by name, run:
@@ -41,7 +39,7 @@ in
       pact
       # upterm
       twet
-      xc # Task executor.
+      pkgs.xc # Task executor (from Flake).
       # Java development.
       pkgs.jdk # Development.
       pkgs.openjdk17 # Development.

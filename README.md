@@ -53,7 +53,7 @@ Find more packages with `nix search <name>` or by browsing
 https://github.com/NixOS/nixpkgs/tree/master/pkgs/
 
 Once found, add them to the `darwin-configuration.nix` file and rebuild with
-`darwin-rebuild switch`
+`darwin-rebuild switch --impure --flake ./#adrian-mac`
 
 ## Other programs
 
