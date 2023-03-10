@@ -52,8 +52,7 @@
         in {
           adrian-mac = darwin.lib.darwinSystem {
             system = "aarch64-darwin";
-            specialArgs = {inherit inputs;};
-            inputs = { inherit darwin pkgs; };
+            pkgs = getPkgsForSystem "aarch64-darwin";
             modules = [ ./.config/nixpkgs/darwin-configuration.nix ];
           };
        };
