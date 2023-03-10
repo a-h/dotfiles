@@ -22,6 +22,21 @@
     },
     "flake-utils": {
       "locked": {
+        "lastModified": 1676283394,
+        "narHash": "sha256-XX2f9c3iySLCw54rJ/CZs+ZK6IQy7GXNY4nSOyu2QG4=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "3db36a8b464d0c4532ba1c7dda728f4576d6d073",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_2": {
+      "locked": {
         "lastModified": 1667395993,
         "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
         "owner": "numtide",
@@ -32,6 +47,27 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "goreleaser": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1678196549,
+        "narHash": "sha256-/QyIXuqpKn+AGLw/zJkFNWZw39nqX9UBubS3oUkG7IY=",
+        "owner": "a-h",
+        "repo": "nix-goreleaser",
+        "rev": "b7870c7c33de3bf69c635313b1c4f96af867304b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "a-h",
+        "repo": "nix-goreleaser",
         "type": "github"
       }
     },
@@ -74,6 +110,7 @@
     "root": {
       "inputs": {
         "darwin": "darwin",
+        "goreleaser": "goreleaser",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "xc": "xc"
@@ -96,7 +133,7 @@
     },
     "xc": {
       "inputs": {
-        "flake-utils": "flake-utils",
+        "flake-utils": "flake-utils_2",
         "nixpkgs": [
           "nixpkgs"
         ]

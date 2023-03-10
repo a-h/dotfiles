@@ -55,6 +55,20 @@ https://github.com/NixOS/nixpkgs/tree/master/pkgs/
 Once found, add them to the `darwin-configuration.nix` file and rebuild with
 `darwin-rebuild switch --impure --flake ./#adrian-mac`
 
+## Tasks
+
+### rebuild-mac
+
+```sh
+darwin-rebuild switch --impure --flake ./#adrian-mac
+```
+
+### rebuild-linux
+
+```sh
+home-manager switch --impure --flake ./#adrian-linux
+```
+
 ## Other programs
 
 * ARM SDK

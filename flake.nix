@@ -9,36 +9,53 @@
       url = "github:joerdav/xc";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    goreleaser = {
+      url = "github:a-h/nix-goreleaser";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, darwin, home-manager, xc, ... }:
+  outputs = inputs@{ self, nixpkgs, darwin, home-manager, xc, goreleaser, ... }:
     let
-      pkgs = import nixpkgs {
-        overlays = [
-          (self: super: {
-            xc = xc.packages.aarch64-darwin.xc;
-          })
-        ];
-      };
-    in rec {
+      getPkgsForSystem = system:
+        import nixpkgs {
+          overlays = [
+            (self: super: {
+              xc = xc.packages.${system}.xc;
+              goreleaser = goreleaser.packages.${system}.goreleaser;
+            })
+          ];
+        };
+    in {
       homeConfigurations = {
         adrian-linux = home-manager.lib.homeManagerConfiguration {
-          system = "x86_64-linux";
-          inherit pkgs;
-          modules = [ ./.config/nixpkgs/home.nix ];
+          pkgs = getPkgsForSystem "x86_64-linux";
+          modules = [
+            ./.config/nixpkgs/home.nix
+            {
+              home = {
+                username = "adrian-hesketh";
+                homeDirectory = "/home/adrian-hesketh";
+                stateVersion = "22.05";
+              };
+            }
+          ];
         };
       };
-      darwinConfigurations = {
-        adrian-mac = darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
-          specialArgs = {inherit inputs;};
-          inherit pkgs;
-          modules = [ ./.config/nixpkgs/darwin-configuration.nix ];
-        };
-      };
+      darwinConfigurations = 
+        let
+          pkgs = getPkgsForSystem "aarch64-darwin";
+        in {
+          adrian-mac = darwin.lib.darwinSystem {
+            system = "aarch64-darwin";
+            specialArgs = {inherit inputs;};
+            inputs = { inherit darwin pkgs; };
+            modules = [ ./.config/nixpkgs/darwin-configuration.nix ];
+          };
+       };
     };
 }

@@ -11,7 +11,6 @@ let
   twet = pkgs.callPackage ./twet.nix { };
   pact = pkgs.callPackage ./pact.nix { };
   jdtls = pkgs.callPackage ./jdtls.nix { };
-  xc = pkgs.callPackage ./xc.nix { };
   go = pkgs.callPackage ./go.nix { };
   gopls = pkgs.callPackage ./gopls.nix { };
   upterm = pkgs.callPackage ./upterm.nix { };
@@ -25,12 +24,6 @@ let
 in
 
 {
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = "adrian-hesketh";
-  home.homeDirectory = "/home/adrian-hesketh";
-  home.enableNixpkgsReleaseCheck = true;
-
   # Don't show home-manager news
   news.display = "silent";
 
@@ -45,7 +38,7 @@ in
       pact
       upterm
       twet
-      xc # Task executor.
+      pkgs.xc # Task executor.
       # Java development.
       pkgs.jdk # Development.
       #BROKE pkgs.openjdk17 # Development.
@@ -89,7 +82,6 @@ in
       pkgs.gotools
       # pkgs.google-cloud-sdk # No Darwin ARM support.
       gopls
-      pkgs.goreleaser
       pkgs.graphviz
       pkgs.html2text
       pkgs.htop
