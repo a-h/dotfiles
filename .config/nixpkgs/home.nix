@@ -63,6 +63,7 @@ in
       pkgs.cargo # Rust tooling.
       pkgs.delve # Go debugger.
       pkgs.docker
+      pkgs.dynamotableviz
       # pkgs.dotnet-sdk # No Darwin ARM support.
       pkgs.entr # Execute command when files change.
       pkgs.fd # Find that respects .gitignore.

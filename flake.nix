@@ -5,6 +5,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dynamotableviz = {
+      url = "github:a-h/dynamotableviz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     xc = {
       url = "github:joerdav/xc";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,12 +23,13 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, darwin, home-manager, xc, goreleaser, ... }:
+  outputs = inputs@{ self, nixpkgs, darwin, home-manager, dynamotableviz, xc, goreleaser, ... }:
     let
       getPkgsForSystem = system:
         import nixpkgs {
           overlays = [
             (self: super: {
+              dynamotableviz = dynamotableviz.packages.${system}.dynamotableviz;
               xc = xc.packages.${system}.xc;
               goreleaser = goreleaser.packages.${system}.goreleaser;
             })

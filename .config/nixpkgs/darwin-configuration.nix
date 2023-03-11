@@ -2,6 +2,7 @@
 # https://github.com/NixOS/nixpkgs/releases/tag/22.11
 { config, pkgs, ... }:
 
+with import <nixpkgs> { };
 let
   neovim = pkgs.callPackage ./nvim.nix { };
   adr-tools = pkgs.callPackage ./adr-tools.nix { };
@@ -63,6 +64,7 @@ in
       #pkgs.cmake-language-server # Broken on Darwin?
       pkgs.cargo # Rust tooling.
       pkgs.delve # Go debugger.
+      pkgs.dynamotableviz
       # pkgs.dotnet-sdk # No Darwin ARM support.
       pkgs.entr # Execute command when files change.
       pkgs.fd # Find that respects .gitignore.
