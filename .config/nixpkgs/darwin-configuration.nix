@@ -105,7 +105,7 @@ in
       pkgs.nodePackages.prettier
       pkgs.nodePackages.typescript
       pkgs.nodePackages.typescript-language-server
-      pkgs.nodejs-16_x
+      pkgs.nodejs-18_x
       pkgs.pass
       pkgs.ripgrep
       pkgs.rustc # Rust compiler.
