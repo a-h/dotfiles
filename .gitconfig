@@ -9,6 +9,7 @@
 	signingkey = 22323123
 [push]
 	default = simple
+	autoSetupRemote = true
 [credential]
 	helper = osxkeychain
 [http]
