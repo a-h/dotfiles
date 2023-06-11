@@ -13,6 +13,7 @@ export PATH="$PATH:$HOME/.dotnet/tools"
 export PATH="$PATH:/Applications/SnowSQL.app/Contents/MacOS:$PATH"
 export PATH=$PATH:/usr/sbin
 fpath=($HOME/.nix-profile/share/zsh/site-functions $fpath)
+fpath=(~/dotfiles/autocomplete $fpath)
 
 # Nix
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
