@@ -105,10 +105,11 @@ in
       pkgs.nodePackages.prettier
       #pkgs.nodePackages.typescript
       #pkgs.nodePackages.typescript-language-server
-      pkgs.nodejs-16_x
+      pkgs.nodejs-18_x
       pkgs.pass
       pkgs.powerline
       pkgs.python310Packages.python-lsp-server
+      pkgs.podman
       pkgs.source-code-pro
       pkgs.ripgrep
       pkgs.rustc # Rust compiler.
