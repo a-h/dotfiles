@@ -43,7 +43,7 @@ in
       pkgs.xc # Task executor (from Flake).
       # Java development.
       pkgs.jdk # Development.
-      pkgs.openjdk17 # Development.
+      pkgs.openjdk19 # Development.
       pkgs.jre # Runtime.
       pkgs.gradle # Build tool.
       jdtls # Language server.
@@ -105,7 +105,7 @@ in
       pkgs.nodePackages.prettier
       pkgs.nodePackages.typescript
       pkgs.nodePackages.typescript-language-server
-      pkgs.nodejs-19_x
+      pkgs.nodejs
       pkgs.pass
       pkgs.ripgrep
       pkgs.rustc # Rust compiler.
@@ -137,6 +137,12 @@ in
        enable = true;
      };
   };
+
+  nix.package = pkgs.nixFlakes;
+  nix.extraOptions = ''
+    auto-optimise-store = true
+    experimental-features = nix-command flakes
+  '';
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
