@@ -22,7 +22,7 @@ let
     "powerpc64le" = "ppc64le";
   }.${platform.parsed.cpu.name} or (throw "Unsupported CPU ${platform.parsed.cpu.name}");
 
-  version = "1.20.1";
+  version = "1.21.0";
 
   toGoPlatform = platform: "${toGoKernel platform}-${toGoCPU platform}";
 
