@@ -59,11 +59,11 @@ end
 local configs = require('lspconfig.configs')
 configs.templ = {
   default_config = {
-    cmd = { "templ", "lsp" },
+    cmd = { "templ", "lsp" }, --, "-http=localhost:7474", "-log=/Users/adrian/templ.log" },
     filetypes = { 'templ' },
     root_dir = nvim_lsp.util.root_pattern("go.mod", ".git"),
     settings = {},
-  };
+  },
 }
 -- Java language server.
 configs.jdtls = {
@@ -71,7 +71,7 @@ configs.jdtls = {
     cmd = { "jdtls" },
     filetypes = { 'java' },
     root_dir = nvim_lsp.util.root_pattern("Makefile", ".git", "build.gradle"),
-  };
+  },
 }
 
 -- Add additional capabilities supported by nvim-cmp
@@ -81,7 +81,7 @@ local server_settings = {
   gopls = {
     gopls = {
       codelenses = {
-        generate = true, -- show the `go generate` lens.
+        generate = true,   -- show the `go generate` lens.
         gc_details = true, -- show a code lens toggling the display of gc's choices.
         test = true,
         upgrade_dependency = true,
@@ -218,3 +218,8 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     underline = true,
   }
 )
+
+-- Copilot setup.
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+vim.api.nvim_set_keymap("i", "<C-]>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
