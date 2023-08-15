@@ -61,6 +61,8 @@ alias gl='git log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\
 alias gd="git diff"
 alias gp="git push"
 alias gu="git pull"
+alias gcp="git commit && git push"
+alias gaacp='git add --all && git status && printf "%s " "Press enter to continue" && read ans && git commit && git push"
 
 # Take over from the annoying Gnome keyring.
 export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
