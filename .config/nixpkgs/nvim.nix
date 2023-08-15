@@ -24,6 +24,7 @@ neovim8.override {
   configure = {
     packages.myPlugins = with pkgs.vimPlugins; {
      start = [
+        (pluginGit "github" "copilot.vim" "b6e5624351ba735e25eb8864d7d22819aad00606" "sha256-EA9SNPRIIBG9eoV299h+5/AcF/NJYS8izsurLEW31bc=")
         (pluginGit "nvim-lualine" "lualine.nvim" "d8c392dd75778d6258da4e7c55522e94ac389732" "s4bIwha2ZWvF5jYuIfUBcT/JKK9gcMH0vms2pOO5uKs=")
         (pluginGit "Mofiqul" "dracula.nvim" "a0b129d7dea51b317fa8064f13b29f68004839c4" "snCRLw/QtKPDAkh1CXZfto2iCoyaQIx++kOEC0vy9GA=")
         # Metal syntax highlighting.
