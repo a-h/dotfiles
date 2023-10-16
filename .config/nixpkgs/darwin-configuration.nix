@@ -1,25 +1,20 @@
 # See https://nixos.org/guides/towards-reproducibility-pinning-nixpkgs.html and https://status.nixos.org
 # https://github.com/NixOS/nixpkgs/releases/tag/22.11
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
-with import <nixpkgs> { };
 let
   neovim = pkgs.callPackage ./nvim.nix { };
   adr-tools = pkgs.callPackage ./adr-tools.nix { };
-  d2 = pkgs.callPackage ./d2.nix { };
+  #d2 = pkgs.callPackage ./d2.nix { };
   goreplace = pkgs.callPackage ./goreplace.nix { };
-  html2text = pkgs.callPackage ./html2text.nix { };
+  #html2text = pkgs.callPackage ./html2text.nix { };
   air = pkgs.callPackage ./air.nix { };
   twet = pkgs.callPackage ./twet.nix { };
   pact = pkgs.callPackage ./pact.nix { };
   jdtls = pkgs.callPackage ./jdtls.nix { };
   go = pkgs.callPackage ./go.nix { };
-  gopls = pkgs.callPackage ./gopls.nix { };
-  upterm = pkgs.callPackage ./upterm.nix { };
-
-  nodePackages = import ./node-env/default.nix {
-    inherit pkgs;
-  };
+  #gopls = pkgs.callPackage ./gopls.nix { };
+  #upterm = pkgs.callPackage ./upterm.nix { };
 
   nerdfonts = (pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; });
 
@@ -133,10 +128,10 @@ in
   };
 
   fonts = {
-     fonts = [ nerdfonts ];
-     fontDir = {
-       enable = true;
-     };
+    fonts = [ nerdfonts ];
+    fontDir = {
+      enable = true;
+    };
   };
 
   nix.package = pkgs.nixFlakes;

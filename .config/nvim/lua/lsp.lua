@@ -138,7 +138,7 @@ local server_settings = {
 -- eslint comes from:
 -- npm i -g vscode-langservers-extracted
 local servers = { 'gopls', 'ccls', 'cmake', 'tsserver', 'templ', 'rls', 'eslint', 'sumneko_lua', 'jdtls', 'terraformls',
-  'tflint', 'pylsp' }
+  'tflint', 'pylsp', 'nil_ls' }
 for _, lsp in ipairs(servers) do
   local lsp_opts = {
     on_attach = on_attach,

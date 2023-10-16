@@ -26,7 +26,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, darwin, home-manager, dynamotableviz, xc, goreleaser, nil, ... }:
+  outputs = { nixpkgs, darwin, home-manager, dynamotableviz, xc, goreleaser, nil, ... }:
     let
       getPkgsForSystem = system:
         import nixpkgs {
@@ -39,7 +39,8 @@
             })
           ];
         };
-    in {
+    in
+    {
       homeConfigurations = {
         adrian-linux = home-manager.lib.homeManagerConfiguration {
           pkgs = getPkgsForSystem "x86_64-linux";
@@ -55,15 +56,12 @@
           ];
         };
       };
-      darwinConfigurations = 
-        let
+      darwinConfigurations = {
+        adrian-mac = darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
           pkgs = getPkgsForSystem "aarch64-darwin";
-        in {
-          adrian-mac = darwin.lib.darwinSystem {
-            system = "aarch64-darwin";
-            pkgs = getPkgsForSystem "aarch64-darwin";
-            modules = [ ./.config/nixpkgs/darwin-configuration.nix ];
-          };
-       };
+          modules = [ ./.config/nixpkgs/darwin-configuration.nix ];
+        };
+      };
     };
 }
