@@ -97,6 +97,7 @@ in
       pkgs.mob
       pkgs.minicom # Serial monitor.
       pkgs.mutt
+      pkgs.nil # Nix language server.
       pkgs.ninja # Used by Raspberry Pi Pico SDK, build tool.
       pkgs.nixpkgs-fmt
       pkgs.nix-prefetch-git

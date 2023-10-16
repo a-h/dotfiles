@@ -21,9 +21,12 @@
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nil = {
+      url = "github:oxalica/nil";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, darwin, home-manager, dynamotableviz, xc, goreleaser, ... }:
+  outputs = inputs@{ self, nixpkgs, darwin, home-manager, dynamotableviz, xc, goreleaser, nil, ... }:
     let
       getPkgsForSystem = system:
         import nixpkgs {
@@ -32,6 +35,7 @@
               dynamotableviz = dynamotableviz.packages.${system}.dynamotableviz;
               xc = xc.packages.${system}.xc;
               goreleaser = goreleaser.packages.${system}.goreleaser;
+              nil = nil.packages.${system}.nil;
             })
           ];
         };

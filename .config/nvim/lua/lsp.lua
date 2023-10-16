@@ -59,7 +59,7 @@ end
 local configs = require('lspconfig.configs')
 configs.templ = {
   default_config = {
-    cmd = { "templ", "lsp" }, --, "-http=localhost:7474", "-log=/Users/adrian/templ.log" },
+    cmd = { "templ", "lsp", }, -- "-http=localhost:7474", "-log=/Users/adrian/templ.log" },
     filetypes = { 'templ' },
     root_dir = nvim_lsp.util.root_pattern("go.mod", ".git"),
     settings = {},
@@ -78,6 +78,13 @@ configs.jdtls = {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 local server_settings = {
+  nil_ls = {
+    ['nil'] = {
+      formatting = {
+        command = { "nixpkgs-fmt" },
+      }
+    }
+  },
   gopls = {
     gopls = {
       codelenses = {
