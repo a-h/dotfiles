@@ -68,6 +68,7 @@ in
     # pkgs.gcc-arm-embedded # Raspberry Pi Pico GCC. # No Darwin ARM support.
     pkgs.gifsicle
     pkgs.git
+    pkgs.git-lfs
     pkgs.gitAndTools.gh
     pkgs.gnomeExtensions.appindicator
     pkgs.gnomeExtensions.hide-top-bar
