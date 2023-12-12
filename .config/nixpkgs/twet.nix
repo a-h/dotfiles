@@ -1,6 +1,6 @@
 { lib, buildGoModule, fetchFromGitHub }:
 
-buildGoModule rec {
+buildGoModule {
   pname = "twet";
   version = "1.2.0";
 
@@ -12,11 +12,11 @@ buildGoModule rec {
     sha256 = "09wg0l55pkhi04vmjlrd1dj7311f5vp57lsgdq7wzbxyaipjcna1";
   };
 
-  vendorSha256 = "1z932ipjdr43f1nsv72i7zmvdg2p4risq57av2g0zh5xpnnqni0j";
+  vendorHash = "sha256-EkSLrb29wA+e2OoUrGMmV7y26z9RnK1tcIPkJm8UI/0=";
 
   meta = with lib; {
     description = "A twtxt client written in go.";
-    homepage = https://github.com/quite/twet;
+    homepage = "https://github.com/quite/twet";
     license = licenses.mit;
     maintainers = with maintainers; [ quite ];
     platforms = platforms.linux ++ platforms.darwin;

@@ -59,7 +59,7 @@ end
 local configs = require('lspconfig.configs')
 configs.templ = {
   default_config = {
-    cmd = { "templ", "lsp", }, -- "-http=localhost:7474", "-log=/Users/adrian/templ.log" },
+    cmd = { "templ", "lsp", "-http=localhost:7474", "-log=/Users/adrian/templ.log" },
     filetypes = { 'templ' },
     root_dir = nvim_lsp.util.root_pattern("go.mod", ".git"),
     settings = {},
@@ -112,7 +112,7 @@ local server_settings = {
       enable = true,
     },
   },
-  sumneko_lua = {
+  lua_ls = {
     Lua = {
       runtime = {
         version = 'Lua 5.4',

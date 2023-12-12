@@ -59,11 +59,15 @@ Once found, add them to the `darwin-configuration.nix` file and rebuild with
 
 ### rebuild-mac
 
+Env: NIXPKGS_ALLOW_UNFREE=1
+
 ```sh
 darwin-rebuild switch --impure --flake ./#adrian-mac
 ```
 
 ### rebuild-linux
+
+Env: NIXPKGS_ALLOW_UNFREE=1
 
 ```sh
 home-manager switch --impure --flake ./#adrian-linux

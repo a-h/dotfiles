@@ -1,21 +1,21 @@
 { lib, buildGoModule, fetchFromGitHub }:
 
-buildGoModule rec {
+buildGoModule {
   pname = "goreplace";
   version = "2.6";
 
   src = fetchFromGitHub {
-    owner = "a-h";
+    owner = "piranha";
     repo = "goreplace";
-    rev = "653683efc0a6e08da1168c6599216ee81236f95b";
-    sha256 = "1ia0yns20q8b9yhmpyavzbb2zvyh960i5v1hbprsb3pqb76h89cg";
+    rev = "2.6";
+    sha256 = "sha256-fh1y0fYW1LLQb/xMnSB2MFpPcZ0pKx8MIGWsTT5D5mg=";
   };
 
-  vendorSha256 = "0njcdk1yns5jp9zklpw63r6xvdlz96l1ba66hhngczr3017g66jf";
+  vendorHash = "sha256-ThrzTgAjf/YshMaoFahJn7bdTR6GXzp/urJo68NsTFo=";
 
   meta = with lib; {
     description = "Replace in files.";
-    homepage = https://github.com/piranha/goreplace;
+    homepage = "https://github.com/piranha/goreplace";
     license = licenses.isc;
     maintainers = with maintainers; [ piranha ];
     platforms = platforms.linux ++ platforms.darwin;

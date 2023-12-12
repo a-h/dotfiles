@@ -1,4 +1,4 @@
-{ pkgs, stdenv, fetchurl }:
+{ stdenv, fetchurl }:
 
 stdenv.mkDerivation {
   pname = "jdtls";

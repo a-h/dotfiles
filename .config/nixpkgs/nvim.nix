@@ -1,7 +1,7 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
-  pluginGit = owner: repo: ref: sha: pkgs.vimUtils.buildVimPluginFrom2Nix {
+  pluginGit = owner: repo: ref: sha: pkgs.vimUtils.buildVimPlugin {
     pname = "${repo}";
     version = ref;
     src = pkgs.fetchFromGitHub {
@@ -12,23 +12,19 @@ let
     };
   };
 
-  nixpkgs_2023_02_06 = import
-    (fetchTarball "https://github.com/nixos/nixpkgs/archive/2a595c9628608928c8fd9820d394c85f524a8f39.tar.gz") {};
-
-  neovim8 = nixpkgs_2023_02_06.neovim;
-  nvim-treesitter-with-plugins = nixpkgs_2023_02_06.vimPlugins.nvim-treesitter.withAllGrammars;
+  nvim-treesitter-with-plugins = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
 
 in
-neovim8.override {
+pkgs.neovim.override {
   vimAlias = true;
   configure = {
     packages.myPlugins = with pkgs.vimPlugins; {
-     start = [
-        (pluginGit "github" "copilot.vim" "b6e5624351ba735e25eb8864d7d22819aad00606" "sha256-EA9SNPRIIBG9eoV299h+5/AcF/NJYS8izsurLEW31bc=")
-        (pluginGit "nvim-lualine" "lualine.nvim" "d8c392dd75778d6258da4e7c55522e94ac389732" "s4bIwha2ZWvF5jYuIfUBcT/JKK9gcMH0vms2pOO5uKs=")
-        (pluginGit "Mofiqul" "dracula.nvim" "a0b129d7dea51b317fa8064f13b29f68004839c4" "snCRLw/QtKPDAkh1CXZfto2iCoyaQIx++kOEC0vy9GA=")
+      start = [
+        (pluginGit "github" "copilot.vim" "v1.13.0" "sha256-mHwK8vw3vbcMKuTb1aMRSL5GS0+4g3tw3G4uZGMA2lQ=")
+        (pluginGit "nvim-lualine" "lualine.nvim" "2248ef254d0a1488a72041cfb45ca9caada6d994" "sha256-jV+6mV0dyuhiHGei1UqE2r2GoiKJLtdZI2AMNexbi7E=")
+        (pluginGit "Mofiqul" "dracula.nvim" "7200e64c589f899d29f8963aad7543856d1c2545" "sha256-WI88cFQg2ePZZlgt8i/cFB50oGx6GEuuOxneygu3siQ=")
         # Metal syntax highlighting.
-        (pluginGit "tklebanoff" "metal-vim" "6970494a5490a17033650849f0a1ad07506cef2e" "14i8q9ikp3v4q7mpid9ir1azfqfm7fbksc65cpp51424clnqcapl")
+        (pluginGit "stewartimel" "Metal-Vim-Syntax-Highlighting" "f2d69c2a048394bc47ad2b02dd9abc9cb89ee6c1" "sha256-XifdXHgTtGlKqk6oN8BbZku2eMGs8FQHID1Kh65DnFA=")
         # Add fuzzy searching (Ctrl-P to search file names, space-p to search content).
         fzf-vim
         # Maintain last location in files.
@@ -37,42 +33,42 @@ neovim8.override {
         vim-nix
         # Colour scheme.
         # Use :TSHighlightCapturesUnderCursor to see the syntax under cursor.
-        (pluginGit "nvim-treesitter" "playground" "c481c660fa903a0e295902b1765ecfbd6e76a556" "KyLR31XfYi3aANvXBGYCAsmYEr+H9hUr8j82abPQYDQ=")
+        (pluginGit "nvim-treesitter" "playground" "ba48c6a62a280eefb7c85725b0915e021a1a0749" "sha256-gOQr61Y3bVa6EAb0P924X9SJmg9lOmGiLcFTMdgu8u0=")
         # Tressiter syntax highlighting.
         nvim-treesitter-with-plugins
         # Code coverage
-        (pluginGit "nvim-lua" "plenary.nvim" "v0.1.2" "7EsquOLB7gfN2itfGFJZYKwEXBmP0xMKEOdyyjOweHg=")
-        (pluginGit "andythigpen" "nvim-coverage" "fd44fde75468ddc8d72c7a64812c6d88826a3301" "Sve4ljcXR68YIoBNW5arwa5gQCUmA6PyXxs076qKAmE=")
+        (pluginGit "nvim-lua" "plenary.nvim" "v0.1.4" "sha256-zR44d9MowLG1lIbvrRaFTpO/HXKKrO6lbtZfvvTdx+o=")
+        (pluginGit "andythigpen" "nvim-coverage" "cf4b5c61dfac977026a51a2bcad9173c272986ce" "sha256-7Gle8osO4hPB2IGqtsAG+A1IK42BuqBxZVbLxH+sliI=")
         # Grep plugin to improve grep UX.
         (pluginGit "dkprice" "vim-easygrep" "d0c36a77cc63c22648e792796b1815b44164653a" "0y2p5mz0d5fhg6n68lhfhl8p4mlwkb82q337c22djs4w5zyzggbc")
         # Templ highlighting.
-        (pluginGit "Joe-Davidson1802" "templ.vim" "2d1ca014c360a46aade54fc9b94f065f1deb501a" "1bc3p0i3jsv7cbhrsxffnmf9j3zxzg6gz694bzb5d3jir2fysn4h")
+        (pluginGit "Joe-Davidson1802" "templ.vim" "5cc48b93a4538adca0003c4bc27af844bb16ba24" "sha256-YdV8ioQJ10/HEtKQy1lHB4Tg9GNKkB0ME8CV/+hlgYs=")
         # Add function signatures to autocomplete.
-        (pluginGit "ray-x" "lsp_signature.nvim" "e65a63858771db3f086c8d904ff5f80705fd962b" "17qxn2ldvh1gas3i55vigqsz4mm7sxfl721v7lix9xs9bqgm73n1")
+        (pluginGit "ray-x" "lsp_signature.nvim" "fed2c8389c148ff1dfdcdca63c2b48d08a50dea0" "sha256-4GcTfu7MRpZUi5dqewaddSvaOezRl9ROKrR7wnnLnKE=")
         # Configure autocomplete.
-        (pluginGit "hrsh7th" "nvim-cmp" "983453e32cb35533a119725883c04436d16c0120" "0649n476jd6dqd79fmywmigz19sb0s344ablwr25gr23fp46hzaz")
+        (pluginGit "hrsh7th" "nvim-cmp" "41d7633e4146dce1072de32cea31ee31b056a131" "sha256-Sxez0BKDuAubH5AYUKwDRSdjmY8wI7ph2h/xSn3e4lA=")
         # Configure autocomplete.
-        (pluginGit "neovim" "nvim-lspconfig" "d3c82d2f9a6fd91ec1ffee645664d2cc57e706d9" "wDt3Fs6+hHAr4ToACR7BZRtm5FeDnGZtSsdjTxrsWE4=")
+        (pluginGit "neovim" "nvim-lspconfig" "v0.1.7" "sha256-qFjFofA2LoD4yRfx4KGfSCpR3mDkpFaagcm+TVNPqco=")
         # Snippets manager.
-        (pluginGit "L3MON4D3" "LuaSnip" "e687d78fc95a7c04b0762d29cf36c789a6d94eda" "11a9b744cgr3w2nvnpq1bjblqp36klwda33r2xyhcvhzdcz0h53v")
+        (pluginGit "L3MON4D3" "LuaSnip" "v2.1.1" "sha256-LVvrliJJQxyu12KMF0qRmf7KKAQ8tRHUzzW7rofjd1U=")
         # Add snippets to the autocomplete.
-        (pluginGit "saadparwaiz1" "cmp_luasnip" "a9de941bcbda508d0a45d28ae366bb3f08db2e36" "0mh7gimav9p6cgv4j43l034dknz8szsnmrz49b2ra04yk9ihk1zj")
+        (pluginGit "saadparwaiz1" "cmp_luasnip" "05a9ab28b53f71d1aece421ef32fee2cb857a843" "sha256-nUJJl2zyK/oSwz5RzI9j3gf9zpDfCImCYbPbVsyXgz8=")
         # Show diagnostic errors inline.
-        (pluginGit "folke" "trouble.nvim" "929315ea5f146f1ce0e784c76c943ece6f36d786" "07nyhg5mmy1fhf6v4480wb8gq3dh7g9fz9l5ksv4v94sdp5pgzvz")
+        (pluginGit "folke" "trouble.nvim" "v2.10.0" "sha256-8nLghiueYOtWY7OGVxow9A2G/5lgt+Kt5D8q1xeJvVg=")
         # Go debugger.
-        (pluginGit "sebdah" "vim-delve" "5c8809d9c080fd00cc82b4c31900d1bc13733571" "01nlzfwfmpvp0q09h1k1j5z82i925hrl9cg9n6gbmcdqsvdrzy55")
+        (pluginGit "sebdah" "vim-delve" "41d6ad294fb6dd5090f5f938318fc4ed73b6e1ea" "sha256-wMDTMMvtjkPaWtlV6SWlQ5B7YVsJ4gjPZKPactW8HAE=")
         # Replacement for netrw.
-        (pluginGit "nvim-tree" "nvim-web-devicons" "3b1b794bc17b7ac3df3ae471f1c18f18d1a0f958" "hxujmUwNtDAXd6JCxBpvPpOzEENQSOYepS7fwmbZufs=")
-        (pluginGit "nvim-tree" "nvim-tree.lua" "1837751efb5fcfc584cb0ee900f09ff911cd6c0b" "emoQbOwwZOCV4F4/vSgcfMmnJFXvxgEAxqCwZyY1zpU=")
+        (pluginGit "nvim-tree" "nvim-web-devicons" "8b2e5ef9eb8a717221bd96cb8422686d65a09ed5" "sha256-1Dfc8xbdI6rnUcYH2iqwzD4ZbpD42iZsRHa4cDKF+2g=")
+        (pluginGit "nvim-tree" "nvim-tree.lua" "141c0f97c35f274031294267808ada59bb5fb08e" "sha256-duBskC/cSaeqGRe/n0ndRuC+y8oZ0oRYNj3Fm3DcgVg=")
         # \c to toggle commenting out a line.
         nerdcommenter #preservim/nerdcommenter
         # Work out tabs vs spaces etc. automatically.
         vim-sleuth #tpope/vim-sleuth
         # Change surrounding characters, e.g. cs"' to change from double to single quotes.
         vim-surround #tpope/vim-surround
-        (pluginGit "klen" "nvim-test" "4e30d0772a43bd67ff299cfe201964c5bd799d73" "sha256-iUkBnJxvK71xSqbH8JLm7gwvpiNxfWlAd2+3frNEXXQ=")
+        (pluginGit "klen" "nvim-test" "1.4.1" "sha256-mMi07UbMWmC75DFfW1b+sR2uRPxizibFwS2qcN9rpLI=")
         vim-visual-multi #mg979/vim-visual-multi
-        (pluginGit "hrsh7th" "cmp-nvim-lsp" "59224771f91b86d1de12570b4070fe4ad7cd1eeb" "Mqkp8IH/laUx0cK7S0BjusTT+OtOOJOamZM4+93RHdU=")
+        (pluginGit "hrsh7th" "cmp-nvim-lsp" "5af77f54de1b16c34b23cba810150689a3a90312" "sha256-/0sh9vJBD9pUuD7q3tNSQ1YLvxFMNykdg5eG+LjZAA8=")
         targets-vim # https://github.com/wellle/targets.vim
       ];
       opt = [ ];

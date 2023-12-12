@@ -3,15 +3,11 @@
 let
   neovim = pkgs.callPackage ./nvim.nix { };
   adr-tools = pkgs.callPackage ./adr-tools.nix { };
-  d2 = pkgs.callPackage ./d2.nix { };
   goreplace = pkgs.callPackage ./goreplace.nix { };
   # html2text = pkgs.callPackage ./html2text.nix { };
-  air = pkgs.callPackage ./air.nix { };
   twet = pkgs.callPackage ./twet.nix { };
-  pact = pkgs.callPackage ./pact.nix { };
   jdtls = pkgs.callPackage ./jdtls.nix { };
   go = pkgs.callPackage ./go.nix { };
-  gopls = pkgs.callPackage ./gopls.nix { };
   upterm = pkgs.callPackage ./upterm.nix { };
 
   nerdfonts = (pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; });
@@ -21,16 +17,18 @@ in
 {
   # Don't show home-manager news
   news.display = "silent";
+  #news.json = pkgs.lib.mkForce { };
+  news.entries = pkgs.lib.mkForce [ ];
+  manual.manpages.enable = false;
 
   # Packages for this user.
   home.packages = [
     adr-tools
-    air # Hot reload for Go.
-    d2 # Diagramming
+    pkgs.air # Hot reload for Go.
+    pkgs.d2 # Diagramming
     goreplace
     neovim
     nerdfonts
-    pact
     upterm
     twet
     pkgs.xc # Task executor.
@@ -78,7 +76,7 @@ in
     pkgs.gomuks
     pkgs.gotools
     # pkgs.google-cloud-sdk # No Darwin ARM support.
-    gopls
+    pkgs.gopls
     pkgs.graphviz
     pkgs.html2text
     pkgs.htop
@@ -87,7 +85,7 @@ in
     pkgs.imagemagick
     pkgs.jq
     pkgs.lua5_4
-    pkgs.sumneko-lua-language-server
+    pkgs.lua-language-server
     pkgs.llvm # Used by Raspberry Pi Pico SDK.
     pkgs.lynx
     pkgs.mob

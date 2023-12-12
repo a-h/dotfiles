@@ -86,7 +86,7 @@ in
       pkgs.imagemagick
       pkgs.jq
       pkgs.lua5_4
-      pkgs.sumneko-lua-language-server
+      pkgs.lua-language-server
       pkgs.lima # Alternative to Docker desktop https://github.com/lima-vm/lima
       pkgs.llvm # Used by Raspberry Pi Pico SDK.
       pkgs.lynx
