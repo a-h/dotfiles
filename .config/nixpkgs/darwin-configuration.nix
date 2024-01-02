@@ -8,9 +8,7 @@ let
   #d2 = pkgs.callPackage ./d2.nix { };
   goreplace = pkgs.callPackage ./goreplace.nix { };
   #html2text = pkgs.callPackage ./html2text.nix { };
-  air = pkgs.callPackage ./air.nix { };
   twet = pkgs.callPackage ./twet.nix { };
-  pact = pkgs.callPackage ./pact.nix { };
   jdtls = pkgs.callPackage ./jdtls.nix { };
   go = pkgs.callPackage ./go.nix { };
   #gopls = pkgs.callPackage ./gopls.nix { };
@@ -28,11 +26,10 @@ in
   environment.systemPackages =
     [
       adr-tools
-      air # Hot reload for Go.
+      pkgs.air # Hot reload for Go.
       goreplace
       neovim
       nerdfonts
-      pact
       # upterm
       twet
       pkgs.xc # Task executor (from Flake).
@@ -145,5 +142,6 @@ in
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
   services.nix-daemon.enable = true;
+  documentation.enable = false;
 }
 
