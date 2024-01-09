@@ -84,6 +84,8 @@ in
     pkgs.ibm-plex
     pkgs.imagemagick
     pkgs.jq
+    pkgs.libvirt
+    pkgs.virt-manager
     pkgs.lua5_4
     pkgs.lua-language-server
     pkgs.llvm # Used by Raspberry Pi Pico SDK.
