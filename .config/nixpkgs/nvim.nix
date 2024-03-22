@@ -20,7 +20,7 @@ pkgs.neovim.override {
   configure = {
     packages.myPlugins = with pkgs.vimPlugins; {
       start = [
-        (pluginGit "github" "copilot.vim" "v1.13.0" "sha256-mHwK8vw3vbcMKuTb1aMRSL5GS0+4g3tw3G4uZGMA2lQ=")
+        (pluginGit "github" "copilot.vim" "v1.26.0" "sha256-tcLrto1Y66MtPnfIcU2PBOxqE0xilVl4JyKU6ddS7bA=")
         (pluginGit "nvim-lualine" "lualine.nvim" "2248ef254d0a1488a72041cfb45ca9caada6d994" "sha256-jV+6mV0dyuhiHGei1UqE2r2GoiKJLtdZI2AMNexbi7E=")
         (pluginGit "Mofiqul" "dracula.nvim" "7200e64c589f899d29f8963aad7543856d1c2545" "sha256-WI88cFQg2ePZZlgt8i/cFB50oGx6GEuuOxneygu3siQ=")
         # Metal syntax highlighting.
@@ -42,7 +42,7 @@ pkgs.neovim.override {
         # Grep plugin to improve grep UX.
         (pluginGit "dkprice" "vim-easygrep" "d0c36a77cc63c22648e792796b1815b44164653a" "0y2p5mz0d5fhg6n68lhfhl8p4mlwkb82q337c22djs4w5zyzggbc")
         # Templ highlighting.
-        (pluginGit "Joe-Davidson1802" "templ.vim" "5cc48b93a4538adca0003c4bc27af844bb16ba24" "sha256-YdV8ioQJ10/HEtKQy1lHB4Tg9GNKkB0ME8CV/+hlgYs=")
+        (pluginGit "vrischmann" "tree-sitter-templ" "592faa3186ef857c92e4bd1c31d73c07a4a334db" "sha256-XX1+P8ibo8REYYZQaC47lneg/roralo+YiRwFNnARsQ=")
         # Add function signatures to autocomplete.
         (pluginGit "ray-x" "lsp_signature.nvim" "fed2c8389c148ff1dfdcdca63c2b48d08a50dea0" "sha256-4GcTfu7MRpZUi5dqewaddSvaOezRl9ROKrR7wnnLnKE=")
         # Configure autocomplete.
