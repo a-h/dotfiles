@@ -20,8 +20,8 @@ pkgs.neovim.override {
   configure = {
     packages.myPlugins = with pkgs.vimPlugins; {
       start = [
-        (pluginGit "github" "copilot.vim" "v1.26.0" "sha256-tcLrto1Y66MtPnfIcU2PBOxqE0xilVl4JyKU6ddS7bA=")
-        (pluginGit "nvim-lualine" "lualine.nvim" "2248ef254d0a1488a72041cfb45ca9caada6d994" "sha256-jV+6mV0dyuhiHGei1UqE2r2GoiKJLtdZI2AMNexbi7E=")
+        (pluginGit "github" "copilot.vim" "v1.34.0" "sha256-FHqlO3Pot89Dy8iW1RQzZNgaXh1mmgEgzY/j/J67Z7Q=")
+        (pluginGit "nvim-lualine" "lualine.nvim" "0a5a66803c7407767b799067986b4dc3036e1983" "sha256-WcH2dWdRDgMkwBQhcgT+Z/ArMdm+VbRhmQftx4t2kNI=")
         (pluginGit "Mofiqul" "dracula.nvim" "7200e64c589f899d29f8963aad7543856d1c2545" "sha256-WI88cFQg2ePZZlgt8i/cFB50oGx6GEuuOxneygu3siQ=")
         # Metal syntax highlighting.
         (pluginGit "stewartimel" "Metal-Vim-Syntax-Highlighting" "f2d69c2a048394bc47ad2b02dd9abc9cb89ee6c1" "sha256-XifdXHgTtGlKqk6oN8BbZku2eMGs8FQHID1Kh65DnFA=")
@@ -42,15 +42,15 @@ pkgs.neovim.override {
         # Grep plugin to improve grep UX.
         (pluginGit "dkprice" "vim-easygrep" "d0c36a77cc63c22648e792796b1815b44164653a" "0y2p5mz0d5fhg6n68lhfhl8p4mlwkb82q337c22djs4w5zyzggbc")
         # Templ highlighting.
-        (pluginGit "vrischmann" "tree-sitter-templ" "592faa3186ef857c92e4bd1c31d73c07a4a334db" "sha256-XX1+P8ibo8REYYZQaC47lneg/roralo+YiRwFNnARsQ=")
+        (pluginGit "vrischmann" "tree-sitter-templ" "cf84ea53e2e2531f23009d676ac206090c1e2392" "sha256-CQ11t4beqkjhtZktrawuavgQPSFzbwJrU/aSbPsqBPA=")
         # Add function signatures to autocomplete.
-        (pluginGit "ray-x" "lsp_signature.nvim" "fed2c8389c148ff1dfdcdca63c2b48d08a50dea0" "sha256-4GcTfu7MRpZUi5dqewaddSvaOezRl9ROKrR7wnnLnKE=")
+        (pluginGit "ray-x" "lsp_signature.nvim" "v0.3.1" "sha256-WAQ8DWjNWKYBbELC/M8ClGxU0cAqB4X1TlkWIEBqp24=")
         # Configure autocomplete.
-        (pluginGit "hrsh7th" "nvim-cmp" "41d7633e4146dce1072de32cea31ee31b056a131" "sha256-Sxez0BKDuAubH5AYUKwDRSdjmY8wI7ph2h/xSn3e4lA=")
+        (pluginGit "hrsh7th" "nvim-cmp" "5260e5e8ecadaf13e6b82cf867a909f54e15fd07" "sha256-GhXfnWqpXFVM7Yi9+qEXHfA6LIMILcMG9pP4VYXuptE=")
         # Configure autocomplete.
-        (pluginGit "neovim" "nvim-lspconfig" "v0.1.7" "sha256-qFjFofA2LoD4yRfx4KGfSCpR3mDkpFaagcm+TVNPqco=")
+        (pluginGit "neovim" "nvim-lspconfig" "v0.1.8" "sha256-foJ7a59N0a3QaBW24PtwbyYDQVlIsFxiatADLO/hQvc=")
         # Snippets manager.
-        (pluginGit "L3MON4D3" "LuaSnip" "v2.1.1" "sha256-LVvrliJJQxyu12KMF0qRmf7KKAQ8tRHUzzW7rofjd1U=")
+        (pluginGit "L3MON4D3" "LuaSnip" "v2.3.0" "sha256-E1Ov6aF9DJ0poVM6q6jK1ypsJf6cRzHqC2Gi6u9kai0=")
         # Add snippets to the autocomplete.
         (pluginGit "saadparwaiz1" "cmp_luasnip" "05a9ab28b53f71d1aece421ef32fee2cb857a843" "sha256-nUJJl2zyK/oSwz5RzI9j3gf9zpDfCImCYbPbVsyXgz8=")
         # Show diagnostic errors inline.
@@ -68,7 +68,7 @@ pkgs.neovim.override {
         vim-surround #tpope/vim-surround
         (pluginGit "klen" "nvim-test" "1.4.1" "sha256-mMi07UbMWmC75DFfW1b+sR2uRPxizibFwS2qcN9rpLI=")
         vim-visual-multi #mg979/vim-visual-multi
-        (pluginGit "hrsh7th" "cmp-nvim-lsp" "5af77f54de1b16c34b23cba810150689a3a90312" "sha256-/0sh9vJBD9pUuD7q3tNSQ1YLvxFMNykdg5eG+LjZAA8=")
+        (pluginGit "hrsh7th" "cmp-nvim-lsp" "39e2eda76828d88b773cc27a3f61d2ad782c922d" "sha256-CT1+Z4XJBVsl/RqvJeGmyitD6x7So0ylXvvef5jh7I8=")
         targets-vim # https://github.com/wellle/targets.vim
       ];
       opt = [ ];
