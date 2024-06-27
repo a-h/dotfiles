@@ -29,7 +29,7 @@ Refer to https://hardselius.github.io/2020/nix-please/ and https://github.com/ut
 ### Install nix
 
 ```shell
-sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
 ### Install nix-darwin
@@ -65,12 +65,21 @@ Env: NIXPKGS_ALLOW_UNFREE=1
 darwin-rebuild switch --impure --flake ./#adrian-mac
 ```
 
+### rebuild-linux-install-hm
+
+```
+nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz home-manager
+nix-channel --update
+```
+
 ### rebuild-linux
+
+After first adding the home-manager channel.
 
 Env: NIXPKGS_ALLOW_UNFREE=1
 
 ```sh
-home-manager switch --impure --flake ./#adrian-linux
+nix run home-manager/release-23.11 -- switch --impure --flake ./#adrian-linux
 ```
 
 ## Other programs

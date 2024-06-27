@@ -15,11 +15,14 @@ let
 in
 
 {
-  # Don't show home-manager news
-  news.display = "silent";
-  #news.json = pkgs.lib.mkForce { };
-  news.entries = pkgs.lib.mkForce [ ];
   manual.manpages.enable = false;
+
+  # Don't show home-manager news
+  news = {
+    display = "silent";
+    #json = pkgs.lib.mkForce { output = null; };
+    entries = pkgs.lib.mkForce [ ];
+  };
 
   # Packages for this user.
   home.packages = [
@@ -125,6 +128,7 @@ in
     pkgs.wl-clipboard # wayland clipboard
     pkgs.wget
     pkgs.xclip
+    pkgs.yaml-language-server
     pkgs.yarn
     pkgs.zip
   ];
@@ -235,6 +239,8 @@ in
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
+    historyWidgetOptions = # CTRL-R
+      [ ''--preview 'echo {} | sed \"s/  */ /g\" | cut -d\\  -f1 | xargs -I % sh -c \"echo %; git show --color=always %\"' '' ];
   };
 
   # This value determines the Home Manager release that your
@@ -245,7 +251,7 @@ in
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "22.05";
+  home.stateVersion = "23.11";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

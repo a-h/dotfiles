@@ -50,7 +50,7 @@
               home = {
                 username = "adrian-hesketh";
                 homeDirectory = "/home/adrian-hesketh";
-                stateVersion = "22.05";
+                stateVersion = "23.11";
               };
             }
           ];

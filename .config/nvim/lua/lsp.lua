@@ -59,7 +59,7 @@ end
 local configs = require('lspconfig.configs')
 configs.templ = {
   default_config = {
-    cmd = { "templ", "lsp", "-http=localhost:7474", "-log=/Users/adrian/templ.log" },
+    cmd = { "templ", "lsp", "-http=localhost:7474", "-log=/home/adrian-hesketh/templ.log" },
     filetypes = { 'templ' },
     root_dir = nvim_lsp.util.root_pattern("go.mod", ".git"),
     settings = {},
@@ -138,7 +138,7 @@ local server_settings = {
 -- eslint comes from:
 -- npm i -g vscode-langservers-extracted
 local servers = { 'gopls', 'ccls', 'cmake', 'tsserver', 'templ', 'rls', 'eslint', 'lua_ls', 'jdtls', 'terraformls',
-  'tflint', 'pylsp', 'nil_ls' }
+  'tflint', 'pylsp', 'nil_ls', 'yamlls' }
 for _, lsp in ipairs(servers) do
   local lsp_opts = {
     on_attach = on_attach,
@@ -151,6 +151,7 @@ for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup(lsp_opts)
 end
 --vim.lsp.set_log_level("debug")
+--Use :lua vim.lsp.set_log_level("debug") to enable debug logging interactively.
 -- Use :LspLog to see logs.
 
 -- Set completeopt to have a better completion experience
