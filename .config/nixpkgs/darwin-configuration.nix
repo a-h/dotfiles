@@ -36,7 +36,6 @@ in
       pkgs.xc # Task executor (from Flake).
       # Java development.
       pkgs.jdk # Development.
-      pkgs.openjdk19 # Development.
       pkgs.jre # Runtime.
       pkgs.gradle # Build tool.
       jdtls # Language server.
@@ -109,7 +108,6 @@ in
       pkgs.rust-analyzer # Rust language server.
       # pkgs.ssm-session-manager-plugin # No Darwin ARM support. 
       pkgs.slides
-      pkgs.terraform
       pkgs.tmate
       pkgs.tmux
       pkgs.tree
@@ -128,10 +126,7 @@ in
   };
 
   fonts = {
-    fonts = [ nerdfonts ];
-    fontDir = {
-      enable = true;
-    };
+    packages = [ nerdfonts ];
   };
 
   nix.package = pkgs.nixFlakes;

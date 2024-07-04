@@ -1,16 +1,16 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/release-24.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dynamotableviz = {
-      url = "github:a-h/dynamotableviz";
+      url = "github:a-h/dynamotableviz/v0.0.15";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     xc = {
-      url = "github:joerdav/xc";
+      url = "github:joerdav/xc/f8e8e658978d6c9fe49c27b684ca7375a74deef1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     goreleaser = {
@@ -23,6 +23,7 @@
     };
     nil = {
       url = "github:oxalica/nil";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
