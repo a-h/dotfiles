@@ -58,6 +58,7 @@ in
     pkgs.cmake # Used by Raspberry Pi Pico SDK.
     pkgs.cargo # Rust tooling.
     pkgs.delve # Go debugger.
+    pkgs.direnv # Support loading environment files, and the use of https://marketplace.visualstudio.com/items?itemName=mkhl.direnv
     pkgs.docker
     pkgs.dynamotableviz
     # pkgs.dotnet-sdk # No Darwin ARM support.

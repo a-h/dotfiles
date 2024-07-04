@@ -26,6 +26,7 @@ in
   environment.systemPackages =
     [
       adr-tools
+      pkgs.alt-tab-macos
       pkgs.air # Hot reload for Go.
       goreplace
       neovim
@@ -56,6 +57,7 @@ in
       #pkgs.cmake-language-server # Broken on Darwin?
       pkgs.cargo # Rust tooling.
       pkgs.delve # Go debugger.
+      pkgs.direnv # Environment variable manager.
       pkgs.dynamotableviz
       # pkgs.dotnet-sdk # No Darwin ARM support.
       pkgs.entr # Execute command when files change.
