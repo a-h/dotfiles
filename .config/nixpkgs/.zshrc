@@ -69,8 +69,6 @@ alias gaacp='git add --all && git status && printf "%s " "Press enter to continu
 # Take over from the annoying Gnome keyring.
 export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 
-# Configure nix package manager.
-alias nix="nix --extra-experimental-features nix-command --extra-experimental-features flakes"
 # Configure globally installed NPM modules to be in a sensible location.
 # I don't want any globally installed NPM modules, but CDK is a nuisance.
 if [ ! -f $HOME/.npmrc ]; then
