@@ -1,5 +1,6 @@
 {
   inputs = {
+    nix.url = "github:nixos/nix/2.21.4";
     nixpkgs.url = "github:nixos/nixpkgs/release-24.05";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -27,7 +28,7 @@
     };
   };
 
-  outputs = { nixpkgs, darwin, home-manager, dynamotableviz, xc, goreleaser, nil, ... }:
+  outputs = { nix, nixpkgs, darwin, home-manager, dynamotableviz, xc, goreleaser, nil, ... }:
     let
       getPkgsForSystem = system:
         import nixpkgs {
@@ -37,6 +38,7 @@
               xc = xc.packages.${system}.xc;
               goreleaser = goreleaser.packages.${system}.goreleaser;
               nil = nil.packages.${system}.nil;
+              nix = nix.packages.${system}.nix;
             })
           ];
         };

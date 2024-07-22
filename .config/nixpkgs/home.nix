@@ -98,6 +98,7 @@ in
     pkgs.minicom # Serial monitor.
     pkgs.mutt
     pkgs.nil # Nix Language Server.
+    pkgs.nix # Specific version of Nix.
     pkgs.ninja # Used by Raspberry Pi Pico SDK, build tool.
     pkgs.nixpkgs-fmt
     pkgs.nix-prefetch-git
@@ -143,9 +144,9 @@ in
   services.gpg-agent = {
     enable = true;
     enableScDaemon = true;
-    pinentryFlavor = "gnome3"; # can be "curses", "tty", "gtk2", "emacs", "gnome3", "qt"
     enableSshSupport = true;
     sshKeys = [ "FFC73CEA6D1594D7F473F1FB0ED190BDE0909FE2" ];
+    pinentryPackage = pkgs.pinentry-tty;
   };
 
   fonts.fontconfig.enable = true;
@@ -155,7 +156,7 @@ in
     style = {
       name = "adwaita-dark";
     };
-    platformTheme = "gtk";
+    platformTheme.name = "gtk";
   };
 
   gtk = {
@@ -231,9 +232,9 @@ in
 
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
     enableCompletion = true;
-    enableSyntaxHighlighting = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
     initExtra = (builtins.readFile ./.zshrc);
   };
 
