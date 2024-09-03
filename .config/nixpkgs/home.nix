@@ -64,6 +64,7 @@ in
     # pkgs.dotnet-sdk # No Darwin ARM support.
     pkgs.entr # Execute command when files change.
     pkgs.fd # Find that respects .gitignore.
+    pkgs.flakegap # Transfer flakes across airgaps.
     pkgs.fzf # Fuzzy search.
     # pkgs.gcalcli # Google Calendar CLI.
     pkgs.gcc

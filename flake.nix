@@ -26,19 +26,24 @@
       url = "github:oxalica/nil";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flakegap = {
+      url = "github:a-h/flakegap";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nix, nixpkgs, darwin, home-manager, dynamotableviz, xc, goreleaser, nil, ... }:
+  outputs = { nix, nixpkgs, darwin, home-manager, dynamotableviz, xc, goreleaser, nil, flakegap, ... }:
     let
       getPkgsForSystem = system:
         import nixpkgs {
           overlays = [
             (self: super: {
+              nix = nix.packages.${system}.nix;
               dynamotableviz = dynamotableviz.packages.${system}.dynamotableviz;
               xc = xc.packages.${system}.xc;
               goreleaser = goreleaser.packages.${system}.goreleaser;
               nil = nil.packages.${system}.nil;
-              nix = nix.packages.${system}.nix;
+              flakegap = flakegap.packages.${system}.default;
             })
           ];
         };
