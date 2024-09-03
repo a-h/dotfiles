@@ -108,6 +108,8 @@ in
     #pkgs.nodePackages.typescript
     #pkgs.nodePackages.typescript-language-server
     pkgs.nodejs-18_x
+    pkgs.pandoc # pandoc ./index.md --pdf-engine tectonic -V geometry:a4paper -V geometry:margin=2cm -o index.pdf
+    pkgs.tectonic # pandoc ./index.md --pdf-engine tectonic -V geometry:a4paper -V geometry:margin=2cm -o index.pdf
     pkgs.pass
     pkgs.powerline
     pkgs.python310Packages.python-lsp-server
