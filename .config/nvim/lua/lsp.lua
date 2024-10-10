@@ -138,7 +138,8 @@ local server_settings = {
 -- map buffer local keybindings when the language server attaches
 -- eslint comes from:
 -- npm i -g vscode-langservers-extracted
-local servers = { 'gopls', 'ccls', 'cmake', 'tsserver', 'templ', 'rls', 'eslint', 'lua_ls', 'jdtls', 'terraformls',
+local servers = { 'gopls', 'ccls', 'cmake', 'html', 'tsserver', 'templ', 'rls', 'eslint', 'lua_ls', 'jdtls',
+  'terraformls',
   'tflint', 'pylsp', 'nil_ls', 'yamlls' }
 for _, lsp in ipairs(servers) do
   local lsp_opts = {
