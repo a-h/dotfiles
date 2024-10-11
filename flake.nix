@@ -1,7 +1,8 @@
 {
   inputs = {
-    nix.url = "github:nixos/nix/2.23.1";
-    nixpkgs.url = "github:nixos/nixpkgs/release-24.05";
+    nix.url = "github:nixos/nix/2.24.9";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    unstablenixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,7 +33,7 @@
     };
   };
 
-  outputs = { nix, nixpkgs, darwin, home-manager, dynamotableviz, xc, goreleaser, nil, flakegap, ... }:
+  outputs = { nix, nixpkgs, unstablenixpkgs, darwin, home-manager, dynamotableviz, xc, goreleaser, nil, flakegap, ... }:
     let
       getPkgsForSystem = system:
         import nixpkgs {
@@ -52,6 +53,9 @@
       homeConfigurations = {
         adrian-linux = home-manager.lib.homeManagerConfiguration {
           pkgs = getPkgsForSystem "x86_64-linux";
+          specialArgs = {
+            unstablepkgs = import unstablenixpkgs { system = "x86_64-linux"; };
+          };
           modules = [
             ./.config/nixpkgs/home.nix
             {
@@ -69,6 +73,9 @@
           system = "aarch64-darwin";
           pkgs = getPkgsForSystem "aarch64-darwin";
           modules = [ ./.config/nixpkgs/darwin-configuration.nix ];
+          specialArgs = {
+            unstablepkgs = import unstablenixpkgs { system = "aarch64-darwin"; };
+          };
         };
       };
     };

@@ -49,7 +49,7 @@ pkgs.neovim.override {
         # Configure autocomplete.
         (pluginGit "hrsh7th" "nvim-cmp" "5260e5e8ecadaf13e6b82cf867a909f54e15fd07" "sha256-GhXfnWqpXFVM7Yi9+qEXHfA6LIMILcMG9pP4VYXuptE=")
         # Configure autocomplete.
-        (pluginGit "neovim" "nvim-lspconfig" "v0.1.8" "sha256-foJ7a59N0a3QaBW24PtwbyYDQVlIsFxiatADLO/hQvc=")
+        (pluginGit "neovim" "nvim-lspconfig" "v1.0.0" "sha256-6xUVOCdc8dKnJg89sV7A3UbfXrBtoLoFzqkxrNBWzGw=")
         # Snippets manager.
         (pluginGit "L3MON4D3" "LuaSnip" "v2.3.0" "sha256-E1Ov6aF9DJ0poVM6q6jK1ypsJf6cRzHqC2Gi6u9kai0=")
         # Add snippets to the autocomplete.

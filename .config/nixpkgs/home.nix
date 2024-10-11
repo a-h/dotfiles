@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, unstablepkgs, ... }:
 
 let
-  cross-platform-packages = pkgs.callPackage ./cross-platform-packages.nix { };
+  cross-platform-packages = pkgs.callPackage ./cross-platform-packages.nix { inherit pkgs unstablepkgs; };
 in
 {
   manual.manpages.enable = false;

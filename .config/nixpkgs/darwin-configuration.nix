@@ -1,9 +1,9 @@
 # See https://nixos.org/guides/towards-reproducibility-pinning-nixpkgs.html and https://status.nixos.org
 # https://github.com/NixOS/nixpkgs/releases/tag/22.11
-{ pkgs, ... }:
+{ pkgs, unstablepkgs, ... }:
 
 let
-  cross-platform-packages = pkgs.callPackage ./cross-platform-packages.nix { };
+  cross-platform-packages = pkgs.callPackage ./cross-platform-packages.nix { inherit pkgs unstablepkgs; };
   nerdfonts = (pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; });
 in
 
