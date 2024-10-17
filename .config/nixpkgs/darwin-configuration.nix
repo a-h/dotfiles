@@ -28,9 +28,13 @@ in
   };
 
   nix.package = pkgs.nix;
+  nix.distributedBuilds = true;
   nix.extraOptions = ''
-    auto-optimise-store = true
+    builders-use-substitutes = true
+    auto-optimise-store = false
     experimental-features = nix-command flakes
+    builders = ssh://adrian@65.109.61.232 x86_64-linux,aarch64-linux - 4 1 kvm -
+    trusted-users = adrian-hesketh adrian
   '';
 
   # Used for backwards compatibility, please read the changelog before changing.
