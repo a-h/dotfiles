@@ -33,7 +33,7 @@ in
     builders-use-substitutes = true
     auto-optimise-store = false
     experimental-features = nix-command flakes
-    builders = ssh://adrian@65.109.61.232 x86_64-linux,aarch64-linux - 4 1 kvm -
+    builders = ssh://adrian@65.109.61.232 x86_64-linux,aarch64-linux - 8 1 kvm -
     trusted-users = adrian-hesketh adrian
   '';
 
