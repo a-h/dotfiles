@@ -96,6 +96,7 @@ in
   pkgs.tree
   pkgs.unzip
   pkgs.urlscan
+  pkgs.vscode-langservers-extracted
   pkgs.wget
   pkgs.xclip
   pkgs.yaml-language-server

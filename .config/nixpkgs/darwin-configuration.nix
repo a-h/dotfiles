@@ -36,6 +36,7 @@ in
     builders = ssh://adrian@65.109.61.232 x86_64-linux,aarch64-linux - 8 1 kvm -
     trusted-users = adrian-hesketh adrian
   '';
+  nix.channel.enable = false;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
