@@ -35,6 +35,10 @@ in
     experimental-features = nix-command flakes
     builders = ssh://adrian@65.109.61.232 x86_64-linux,aarch64-linux - 8 1 kvm -
     trusted-users = adrian-hesketh adrian
+    # Setup use of cache.
+    extra-substituters = https://cache.adrianhesketh.com?priority=30
+    trusted-substituters = https://cache.adrianhesketh.com?priority=30
+    trusted-public-keys = cache.adrianhesketh.com-1:vbjhC0ZO93EYFkQGGUAfuwZ8mne/qUpWYNCA5nf0XGE=
   '';
   nix.channel.enable = false;
 
