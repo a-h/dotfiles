@@ -57,7 +57,6 @@ in
   pkgs.graphviz
   pkgs.html2text
   pkgs.htop
-  pkgs.hugo
   pkgs.ibm-plex
   pkgs.imagemagick
   pkgs.jq
@@ -67,18 +66,17 @@ in
   pkgs.lynx
   pkgs.mob
   pkgs.minicom # Serial monitor.
-  pkgs.mutt
   pkgs.nil # Nix Language Server.
   pkgs.nix # Specific version of Nix.
   pkgs.ninja # Used by Raspberry Pi Pico SDK, build tool.
   pkgs.nixpkgs-fmt
   pkgs.nix-prefetch-git
   pkgs.nmap
-  pkgs.nodePackages.node2nix
   pkgs.nodePackages.prettier
   pkgs.nodePackages.typescript
   pkgs.nodePackages.typescript-language-server
   pkgs.nodejs
+  pkgs.p7zip
   pkgs.pass
   pkgs.powerline
   pkgs.podman
