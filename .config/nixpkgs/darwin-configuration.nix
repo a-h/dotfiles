@@ -1,6 +1,6 @@
 # See https://nixos.org/guides/towards-reproducibility-pinning-nixpkgs.html and https://status.nixos.org
 # https://github.com/NixOS/nixpkgs/releases/tag/22.11
-{ pkgs, unstablepkgs, ... }:
+{ pkgs, lib, inputs, unstablepkgs, ... }:
 
 let
   cross-platform-packages = pkgs.callPackage ./cross-platform-packages.nix { inherit pkgs unstablepkgs; };
@@ -27,22 +27,25 @@ in
     packages = [ nerdfonts ];
   };
 
+  # Pin the flake registries, e.g. nix run nixpkgs#hello will use the pinned version of nixpkgs.
+  nix.registry = (lib.mapAttrs (_: flake: { inherit flake; })) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
   nix.package = pkgs.nix;
   nix.distributedBuilds = true;
-  nix.buildMachines = [
-    {
-      hostName = "65.109.61.232";
-      systems = [ "x86_64-linux" "aarch64-linux" ];
-      sshUser = "adrian";
-      sshKey = "/var/root/.ssh/id_ed25519";
-      protocol = "ssh-ng";
-      publicHostKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN7DxQnv/xtYyz9D1OeygTXGF1zfi4TprhXt7gjtM0SM";
-      supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-      mandatoryFeatures = [ ];
-      maxJobs = 8;
-      speedFactor = 1;
-    }
-  ];
+  #nix.buildMachines = [
+  #{
+  #hostName = "65.109.61.232";
+  #systems = [ "x86_64-linux" "aarch64-linux" ];
+  #sshUser = "adrian";
+  #sshKey = "/var/root/.ssh/id_ed25519";
+  #protocol = "ssh-ng";
+  ## Base64 encoded public key (ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN7DxQnv/xtYyz9D1OeygTXGF1zfi4TprhXt7gjtM0SM)
+  #publicHostKey = "ICAgICAgcHVibGljSG9zdEtleSA9ICJzc2gtZWQyNTUxOSBBQUFBQzNOemFDMWxaREkxTlRFNUFBQUFJTjdEeFFudi94dFl5ejlEMU9leWdUWEdGMXpmaTRUcHJoWHQ3Z2p0TTBTTSI7Cg==";
+  #supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+  #mandatoryFeatures = [ ];
+  #maxJobs = 8;
+  #speedFactor = 1;
+  #}
+  #];
   nix.settings = {
     auto-optimise-store = false;
     experimental-features = "nix-command flakes";
@@ -64,7 +67,7 @@ in
   # [minio-adrianhesketh-com]
   # aws_access_key_id = <access-key>
   # aws_secret_access_key = <secret-key>
-  # 
+  #
   # The public and private keys were generated using the following command:
   #
   # sudo nix-store --generate-binary-cache-key minio.adrianhesketh.com-1 minio-adrianhesketh-com-private-key.pem minio-adrianhesketh.com-public-key.pem
@@ -81,6 +84,7 @@ in
   # nix copy --to 's3://nix-cache?profile=minio-adrianhesketh-com&endpoint=minio.adrianhesketh.com' .#devShells.x86_64-linux.default
   nix.extraOptions = ''
     builders-use-substitutes = true
+    builders = ssh://adrian@65.109.61.232 x86_64-linux,aarch64-linux - 8 1 kvm -
   '';
   nix.channel.enable = false;
 

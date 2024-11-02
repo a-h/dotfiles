@@ -33,7 +33,7 @@
     };
   };
 
-  outputs = { nix, nixpkgs, unstablenixpkgs, darwin, home-manager, dynamotableviz, xc, goreleaser, nil, flakegap, ... }:
+  outputs = { nix, nixpkgs, unstablenixpkgs, darwin, home-manager, dynamotableviz, xc, goreleaser, nil, flakegap, ... } @inputs:
     let
       getPkgsForSystem = system:
         import nixpkgs {
@@ -54,6 +54,7 @@
         adrian-linux = home-manager.lib.homeManagerConfiguration {
           pkgs = getPkgsForSystem "x86_64-linux";
           specialArgs = {
+            inputs = inputs;
             unstablepkgs = import unstablenixpkgs { system = "x86_64-linux"; };
           };
           modules = [
@@ -74,6 +75,7 @@
           pkgs = getPkgsForSystem "aarch64-darwin";
           modules = [ ./.config/nixpkgs/darwin-configuration.nix ];
           specialArgs = {
+            inputs = inputs;
             unstablepkgs = import unstablenixpkgs { system = "aarch64-darwin"; };
           };
         };
