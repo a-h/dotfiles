@@ -48,7 +48,7 @@ in
   pkgs.gifsicle
   pkgs.git
   pkgs.git-lfs
-  pkgs.gitAndTools.gh
+  unstablepkgs.gh
   pkgs.gnupg
   go
   pkgs.go-swagger
