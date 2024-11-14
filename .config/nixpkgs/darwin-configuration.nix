@@ -1,6 +1,6 @@
 # See https://nixos.org/guides/towards-reproducibility-pinning-nixpkgs.html and https://status.nixos.org
 # https://github.com/NixOS/nixpkgs/releases/tag/22.11
-{ pkgs, lib, inputs, unstablepkgs, ... }:
+{ pkgs, unstablepkgs, ... }:
 
 let
   cross-platform-packages = pkgs.callPackage ./cross-platform-packages.nix { inherit pkgs unstablepkgs; };
@@ -27,8 +27,6 @@ in
     packages = [ nerdfonts ];
   };
 
-  # Pin the flake registries, e.g. nix run nixpkgs#hello will use the pinned version of nixpkgs.
-  nix.registry = (lib.mapAttrs (_: flake: { inherit flake; })) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
   nix.package = pkgs.nix;
   nix.distributedBuilds = true;
   #nix.buildMachines = [

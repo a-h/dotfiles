@@ -1,4 +1,4 @@
-{ pkgs, unstablepkgs, ... }:
+{ pkgs, ... }:
 let
   neovim = pkgs.callPackage ./nvim.nix { };
   adr-tools = pkgs.callPackage ./adr-tools.nix { };
@@ -48,7 +48,7 @@ in
   pkgs.gifsicle
   pkgs.git
   pkgs.git-lfs
-  unstablepkgs.gh
+  pkgs.gh
   pkgs.gnupg
   go
   pkgs.go-swagger
@@ -86,7 +86,6 @@ in
   pkgs.rustfmt # Rust formatter.
   pkgs.rust-analyzer # Rust language server.
   pkgs.slides
-  unstablepkgs.superhtml
   pkgs.terraform-ls
   pkgs.tflint
   pkgs.tmate
