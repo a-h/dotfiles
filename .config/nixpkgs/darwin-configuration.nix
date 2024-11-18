@@ -44,6 +44,13 @@ in
   #speedFactor = 1;
   #}
   #];
+
+  # To set up a remote builder, you need to add the following to your root user.
+  # sudo su
+  # mkdir -p /var/root/.aws
+  # cp /Users/adrian/.aws/config /var/root/.aws/config
+  # cp /Users/adrian/.aws/credentials /var/root/.aws/credentials
+  # nix copy -vvvv --to 's3://nix-cache?profile=minio-adrianhesketh-com&endpoint=minio.adrianhesketh.com' nixpkgs#sl
   nix.settings = {
     auto-optimise-store = false;
     experimental-features = "nix-command flakes";
