@@ -27,7 +27,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flakegap = {
-      url = "github:a-h/flakegap";
+      url = "github:a-h/flakegap/v0.0.73";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

@@ -224,15 +224,16 @@
         "xc": "xc"
       },
       "locked": {
-        "lastModified": 1730986330,
-        "narHash": "sha256-XzcFq0tvZgHUVd3chdiqr5emqeeK4q+phKDcDQYnhxE=",
+        "lastModified": 1732487125,
+        "narHash": "sha256-yODBN/SsCsyIKANH9DaGnV5oNZnCQQjJSyIZ3VWPfZs=",
         "owner": "a-h",
         "repo": "flakegap",
-        "rev": "c1f46c0d9422c272957f7d83b04bd20030e699d5",
+        "rev": "ac7fa17bcc635fe2ee874ded819a1ae6d2ec8980",
         "type": "github"
       },
       "original": {
         "owner": "a-h",
+        "ref": "v0.0.73",
         "repo": "flakegap",
         "type": "github"
       }
