@@ -14,7 +14,7 @@ in
   };
 
   # Packages for this user.
-  home.packages = cross-platform-packages + [
+  home.packages = cross-platform-packages ++ [
     pkgs.adwaita-qt # QT theme to bend Qt applications to look like they belong into GNOME Shell
     pkgs.docker
     pkgs.gnomeExtensions.appindicator

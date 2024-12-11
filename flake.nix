@@ -1,7 +1,7 @@
 {
   inputs = {
     nix.url = "github:nixos/nix/2.24.9";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,7 +27,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flakegap = {
-      url = "github:a-h/flakegap/v0.0.73";
+      url = "github:a-h/flakegap/v0.0.75";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -52,7 +52,7 @@
       homeConfigurations = {
         adrian-linux = home-manager.lib.homeManagerConfiguration {
           pkgs = getPkgsForSystem "x86_64-linux";
-          specialArgs = {
+          extraSpecialArgs = {
             inputs = inputs;
           };
           modules = [
