@@ -86,6 +86,7 @@ in
   pkgs.rustfmt # Rust formatter.
   pkgs.rust-analyzer # Rust language server.
   pkgs.slides
+  pkgs.superhtml # HTML LSP.
   pkgs.terraform-ls
   pkgs.tflint
   pkgs.tmate
