@@ -1,3 +1,12 @@
+[branch]
+	sort = committerdate
+[tag]
+	sort = "version:refname"
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
@@ -43,8 +52,6 @@
 	s = status -s
 	co = checkout
 	cob = checkout -b
-	# list branches sorted by last modified
-	b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
 
 	# list aliases
 	la = "!git config -l | grep alias | cut -c 7-"
