@@ -4,7 +4,6 @@ let
   adr-tools = pkgs.callPackage ./adr-tools.nix { };
   goreplace = pkgs.callPackage ./goreplace.nix { };
   jdtls = pkgs.callPackage ./jdtls.nix { };
-  go = pkgs.callPackage ./go.nix { };
 
   nerdfonts = (pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; });
 in
@@ -50,7 +49,7 @@ in
   pkgs.git-lfs
   pkgs.gh
   pkgs.gnupg
-  go
+  pkgs.go
   pkgs.go-swagger
   pkgs.gotools
   pkgs.goreleaser

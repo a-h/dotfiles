@@ -23,6 +23,7 @@ pkgs.neovim.override {
         (pluginGit "hedyhli" "outline.nvim" "v1.0.0" "sha256-dxw8KpsWjWWPi2PVflqg+JrK/jPJP9kmnpO5FxC/MZo=")
         (pluginGit "github" "copilot.vim" "v1.41.0" "sha256-9264TNocFvtC2znvgfjpwLWBTGfg1U5Fr0dZkkyCYpQ=")
         (pluginGit "CopilotC-Nvim" "CopilotChat.nvim" "v3.3.0" "sha256-OXm6kLiwCVntLPcsKiZCPHe8+aRtPXGn9ZNG8PocicM=")
+        (pluginGit "olimorris" "codecompanion.nvim" "v12.6.0" "sha256-ji8DIyB4Yh/EHw63/BozymhQF+Xw+TFOMSwEIEpr9VU=")
         (pluginGit "nvim-lualine" "lualine.nvim" "0a5a66803c7407767b799067986b4dc3036e1983" "sha256-WcH2dWdRDgMkwBQhcgT+Z/ArMdm+VbRhmQftx4t2kNI=")
         (pluginGit "Mofiqul" "dracula.nvim" "7200e64c589f899d29f8963aad7543856d1c2545" "sha256-WI88cFQg2ePZZlgt8i/cFB50oGx6GEuuOxneygu3siQ=")
         # Metal syntax highlighting.

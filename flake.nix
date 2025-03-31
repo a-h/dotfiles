@@ -1,6 +1,6 @@
 {
   inputs = {
-    nix.url = "github:nixos/nix/2.24.9";
+    nix.url = "github:nixos/nix/2.26.3";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -37,13 +37,22 @@
       getPkgsForSystem = system:
         import nixpkgs {
           overlays = [
-            (self: super: {
+            (final: prev: {
               nix = nix.packages.${system}.nix;
               dynamotableviz = dynamotableviz.packages.${system}.dynamotableviz;
               xc = xc.packages.${system}.xc;
+              go = prev.callPackage .config/nixpkgs/go.nix { };
               goreleaser = goreleaser.packages.${system}.goreleaser;
               nil = nil.packages.${system}.nil;
               flakegap = flakegap.packages.${system}.default;
+              neovim-unwrapped = prev.neovim-unwrapped.overrideAttrs (old: {
+                src = prev.fetchFromGitHub {
+                  owner = "neovim";
+                  repo = "neovim";
+                  rev = "e96f75a4e60c9082e89c7f61e2ce0647e4ebdf43";
+                  hash = "sha256-TAuoa5GD50XB4OCHkSwP1oXfedzVrCBRutNxBp/zGLY=";
+                };
+              });
             })
           ];
         };
