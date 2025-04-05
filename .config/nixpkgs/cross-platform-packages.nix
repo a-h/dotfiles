@@ -86,6 +86,7 @@ in
   pkgs.rust-analyzer # Rust language server.
   pkgs.slides
   pkgs.superhtml # HTML LSP.
+  pkgs.tailwindcss-language-server
   pkgs.terraform-ls
   pkgs.tflint
   pkgs.tmate

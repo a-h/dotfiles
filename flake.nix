@@ -2,6 +2,7 @@
   inputs = {
     nix.url = "github:nixos/nix/2.26.3";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,9 +33,12 @@
     };
   };
 
-  outputs = { nix, nixpkgs, darwin, home-manager, dynamotableviz, xc, goreleaser, nil, flakegap, ... } @inputs:
+  outputs = { nix, nixpkgs, nixpkgs-unstable, darwin, home-manager, dynamotableviz, xc, goreleaser, nil, flakegap, ... } @inputs:
     let
       getPkgsForSystem = system:
+        let
+          pkgs-unstable = import nixpkgs-unstable { system = system; };
+        in
         import nixpkgs {
           overlays = [
             (final: prev: {
@@ -53,6 +57,7 @@
                   hash = "sha256-TAuoa5GD50XB4OCHkSwP1oXfedzVrCBRutNxBp/zGLY=";
                 };
               });
+              tailwindcss-language-server = pkgs-unstable.tailwindcss-language-server;
             })
           ];
         };
