@@ -79,6 +79,17 @@ in
   pkgs.pass
   pkgs.powerline
   pkgs.podman
+  (pkgs.python3.withPackages (ps: with ps; [
+    python-lsp-server
+    python-lsp-jsonrpc
+    python-lsp-black
+    python-lsp-ruff
+    pyls-isort
+    pyls-flake8
+    flake8
+    isort
+    black
+  ]))
   pkgs.ripgrep
   pkgs.source-code-pro
   pkgs.rustc # Rust compiler.

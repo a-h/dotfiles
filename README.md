@@ -68,7 +68,7 @@ darwin-rebuild switch --impure --flake ./#adrian-mac
 ### rebuild-linux-install-hm
 
 ```
-nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz home-manager
+nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz home-manager
 nix-channel --update
 ```
 
@@ -79,7 +79,7 @@ After first adding the home-manager channel.
 Env: NIXPKGS_ALLOW_UNFREE=1
 
 ```sh
-nix run home-manager/release-23.11 -- switch --impure --flake ./#adrian-linux
+nix run home-manager/release-24.11 -- switch --impure --flake ./#adrian-linux
 ```
 
 ## Other programs

@@ -23,7 +23,7 @@ in
     pkgs.virt-manager
     pkgs.wl-clipboard # wayland clipboard
   ];
-  programs. gpg = {
+  programs.gpg = {
     enable = true;
   };
   services.gnome-keyring = {

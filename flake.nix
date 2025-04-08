@@ -1,11 +1,9 @@
 {
   inputs = {
-    nix.url = "github:nixos/nix/2.26.3";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager/release-24.11";
     };
     dynamotableviz = {
       url = "github:a-h/dynamotableviz/v0.0.15";
@@ -33,7 +31,7 @@
     };
   };
 
-  outputs = { nix, nixpkgs, nixpkgs-unstable, darwin, home-manager, dynamotableviz, xc, goreleaser, nil, flakegap, ... } @inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, darwin, home-manager, dynamotableviz, xc, goreleaser, nil, flakegap, ... } @inputs:
     let
       getPkgsForSystem = system:
         let
@@ -42,7 +40,6 @@
         import nixpkgs {
           overlays = [
             (final: prev: {
-              nix = nix.packages.${system}.nix;
               dynamotableviz = dynamotableviz.packages.${system}.dynamotableviz;
               xc = xc.packages.${system}.xc;
               go = prev.callPackage .config/nixpkgs/go.nix { };
