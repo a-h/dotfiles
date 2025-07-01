@@ -47,6 +47,7 @@ in
   pkgs.gifsicle
   pkgs.git
   pkgs.git-lfs
+  pkgs.git-remote-gcrypt # Encrypt git repos, see https://github.com/spwhitton/git-remote-gcrypt
   pkgs.gh
   pkgs.gnupg
   pkgs.go
