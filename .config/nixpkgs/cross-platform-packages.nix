@@ -4,8 +4,6 @@ let
   adr-tools = pkgs.callPackage ./adr-tools.nix { };
   goreplace = pkgs.callPackage ./goreplace.nix { };
   jdtls = pkgs.callPackage ./jdtls.nix { };
-
-  nerdfonts = (pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; });
 in
 [
   adr-tools
@@ -13,7 +11,7 @@ in
   pkgs.d2 # Diagramming
   goreplace
   neovim
-  nerdfonts
+  pkgs.nerd-fonts.blex-mono
   pkgs.xc # Task executor.
   # Java development.
   pkgs.jdk # Development.

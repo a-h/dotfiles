@@ -4,7 +4,6 @@
 
 let
   cross-platform-packages = pkgs.callPackage ./cross-platform-packages.nix { inherit pkgs; };
-  nerdfonts = (pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; });
 in
 
 {
@@ -24,7 +23,7 @@ in
   };
 
   fonts = {
-    packages = [ nerdfonts ];
+    packages = [ pkgs.nerd-fonts.blex-mono ];
   };
 
   nix.package = pkgs.nix;
@@ -87,6 +86,7 @@ in
   # nix store verify --store 's3://nix-cache?profile=minio-adrianhesketh-com&endpoint=minio.adrianhesketh.com' .#devShells.x86_64-linux.default
   # Push...
   # nix copy --to 's3://nix-cache?profile=minio-adrianhesketh-com&endpoint=minio.adrianhesketh.com' .#devShells.x86_64-linux.default
+  nix.enable = false;
   nix.extraOptions = ''
     builders-use-substitutes = true
     builders = ssh://adrian@65.109.61.232 x86_64-linux,aarch64-linux - 8 1 kvm -
@@ -96,7 +96,6 @@ in
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
-  services.nix-daemon.enable = true;
   documentation.enable = false;
 }
 

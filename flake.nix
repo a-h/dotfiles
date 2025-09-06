@@ -1,9 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
     };
     dynamotableviz = {
       url = "github:a-h/dynamotableviz/v0.0.15";
@@ -18,7 +18,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     darwin = {
-      url = "github:lnl7/nix-darwin";
+      url = "github:lnl7/nix-darwin/nix-darwin-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nil = {
@@ -27,6 +27,7 @@
     };
     flakegap = {
       url = "github:a-h/flakegap/v0.0.84";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -34,7 +35,10 @@
     let
       getPkgsForSystem = system:
         let
-          pkgs-unstable = import nixpkgs-unstable { system = system; };
+          pkgs-unstable = import nixpkgs-unstable { 
+            system = system; 
+            config = { allowUnfree = true; };
+          };
         in
         import nixpkgs {
           overlays = [
@@ -45,17 +49,11 @@
               goreleaser = goreleaser.packages.${system}.goreleaser;
               nil = nil.packages.${system}.nil;
               flakegap = flakegap.packages.${system}.default;
-              neovim-unwrapped = prev.neovim-unwrapped.overrideAttrs (old: {
-                src = prev.fetchFromGitHub {
-                  owner = "neovim";
-                  repo = "neovim";
-                  rev = "e96f75a4e60c9082e89c7f61e2ce0647e4ebdf43";
-                  hash = "sha256-TAuoa5GD50XB4OCHkSwP1oXfedzVrCBRutNxBp/zGLY=";
-                };
-              });
-              tailwindcss-language-server = pkgs-unstable.tailwindcss-language-server;
             })
           ];
+          config = {
+            allowUnfree = true;
+          };
         };
     in
     {

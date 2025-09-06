@@ -14,7 +14,7 @@
 	process = git-lfs filter-process
 [user]
 	name = Adrian Hesketh
-	email = adrianhesketh@hushmail.com
+	email = inbox@adrianhesketh.com
 	signingkey = 22323123
 [push]
 	default = simple
