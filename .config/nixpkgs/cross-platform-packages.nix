@@ -42,6 +42,7 @@ in
   pkgs.fzf # Fuzzy search.
   pkgs.gcc
   # pkgs.gcc-arm-embedded # Raspberry Pi Pico GCC. # No Darwin ARM support.
+  pkgs.gemini-cli
   pkgs.gifsicle
   pkgs.git
   pkgs.git-lfs
