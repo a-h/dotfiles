@@ -12,6 +12,13 @@ in
   goreplace
   neovim
   pkgs.nerd-fonts.blex-mono
+  pkgs.nerd-fonts.fira-code
+  pkgs.nerd-fonts.hack
+  pkgs.nerd-fonts.inconsolata
+  pkgs.nerd-fonts.jetbrains-mono
+  pkgs.nerd-fonts.roboto-mono
+  pkgs.ibm-plex
+  pkgs.source-code-pro
   pkgs.xc # Task executor.
   # Java development.
   pkgs.jdk # Development.

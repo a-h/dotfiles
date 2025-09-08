@@ -7,10 +7,10 @@ let
   hashes = {
     # Use `print-hashes.sh ${version}` to generate the list below
     # https://raw.githubusercontent.com/NixOS/nixpkgs/master/pkgs/development/compilers/go/print-hashes.sh
-    darwin-amd64 = "addbfce2056744962e2d7436313ab93486660cf7a2e066d171b9d6f2da7c7abe";
-    darwin-arm64 = "295581b5619acc92f5106e5bcb05c51869337eb19742fdfa6c8346c18e78ff88";
-    linux-amd64 = "cb2396bae64183cdccf81a9a6df0aea3bce9511fc21469fb89a0c00470088073";
-    linux-arm64 = "8df5750ffc0281017fb6070fba450f5d22b600a02081dceef47966ffaf36a3af";
+    darwin-amd64 = "1d622468f767a1b9fe1e1e67bd6ce6744d04e0c68712adc689748bbeccb126bb";
+    darwin-arm64 = "68deebb214f39d542e518ebb0598a406ab1b5a22bba8ec9ade9f55fb4dd94a6c";
+    linux-amd64 = "7716a0d940a0f6ae8e1f3b3f4f36299dc53e31b16840dbd171254312c41ca12e";
+    linux-arm64 = "65a3e34fb2126f55b34e1edfc709121660e1be2dee6bdf405fc399a63a95a87d";
   };
 
   toGoCPU = platform: {
@@ -22,7 +22,7 @@ let
     "powerpc64le" = "ppc64le";
   }.${platform.parsed.cpu.name} or (throw "Unsupported CPU ${platform.parsed.cpu.name}");
 
-  version = "1.24.1";
+  version = "1.25.1";
 
   toGoPlatform = platform: "${toGoKernel platform}-${toGoCPU platform}";
 

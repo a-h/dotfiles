@@ -35,8 +35,8 @@
     let
       getPkgsForSystem = system:
         let
-          pkgs-unstable = import nixpkgs-unstable { 
-            system = system; 
+          pkgs-unstable = import nixpkgs-unstable {
+            system = system;
             config = { allowUnfree = true; };
           };
         in
@@ -45,10 +45,11 @@
             (final: prev: {
               dynamotableviz = dynamotableviz.packages.${system}.dynamotableviz;
               xc = xc.packages.${system}.xc;
-              go = prev.callPackage .config/nixpkgs/go.nix { };
+              #go = prev.callPackage .config/nixpkgs/go.nix { };
               goreleaser = goreleaser.packages.${system}.goreleaser;
               nil = nil.packages.${system}.nil;
               flakegap = flakegap.packages.${system}.default;
+              gemini-cli = pkgs-unstable.gemini-cli;
             })
           ];
           config = {

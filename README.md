@@ -76,10 +76,11 @@ nix-channel --update
 
 After first adding the home-manager channel.
 
+Interactive: true
 Env: NIXPKGS_ALLOW_UNFREE=1
 
 ```sh
-nix run home-manager/release-24.11 -- switch --impure --flake ./#adrian-linux
+nix run home-manager/release-25.05 -- switch --impure --flake ./#adrian-linux
 ```
 
 ## Other programs

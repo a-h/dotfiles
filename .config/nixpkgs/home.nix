@@ -34,7 +34,7 @@ in
     enableScDaemon = true;
     enableSshSupport = true;
     sshKeys = [ "FFC73CEA6D1594D7F473F1FB0ED190BDE0909FE2" ];
-    pinentryPackage = pkgs.pinentry-tty;
+    pinentry.package = pkgs.pinentry-tty;
   };
 
   fonts.fontconfig.enable = true;
@@ -123,7 +123,7 @@ in
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    initExtra = (builtins.readFile ./.zshrc);
+    initContent = (builtins.readFile ./.zshrc);
   };
 
   programs.fzf = {
