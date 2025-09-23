@@ -1,259 +1,220 @@
-local nvim_lsp = require('lspconfig')
-
--- https://github.com/ray-x/lsp_signature.nvim
-local lsp_signature_cfg = {
-  hint_prefix = '',
-  handler_opts = {
-    border = "none"
-  },
-  padding = ' '
-}
-require 'lsp_signature'.setup(lsp_signature_cfg) -- no need to specify bufnr if you don't use toggle_key
-
--- Format on save.
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
-
--- Mappings.
-local opts = { noremap = true, silent = true }
-
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  --Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.format { async = true }<CR>', opts)
-  buf_set_keymap('n', '<space>clr', '<cmd>lua vim.lsp.codelens.refresh()<CR>', opts)
-  buf_set_keymap('n', '<space>cln', '<cmd>lua vim.lsp.codelens.run()<CR>', opts)
-  -- TypeScript organise imports.
-  buf_set_keymap('n', '<space>tsoi',
-    '<cmd>lua vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}})<CR>'
-    , opts)
-  buf_set_keymap('n', '<space>tsf', '<cmd>EslintFixAll<CR>', opts)
-end
-
--- Add templ configuration.
-local configs = require('lspconfig.configs')
-configs.templ = {
-  default_config = {
-    cmd = { "templ", "lsp", "-http=localhost:7474", "-log=/Users/adrian/templ.log", "-goplsLog=/Users/adrian/gopls.log" },
-    filetypes = { 'templ' },
-    root_dir = nvim_lsp.util.root_pattern("go.mod", ".git"),
-    settings = {},
-  },
-}
--- Java language server.
-configs.jdtls = {
-  default_config = {
-    cmd = { "jdtls" },
-    filetypes = { 'java' },
-    root_dir = nvim_lsp.util.root_pattern("Makefile", ".git", "build.gradle"),
-  },
+-- lsp_signature.nvim
+require("lsp_signature").setup {
+  hint_prefix = "",
+  handler_opts = { border = "none" },
+  padding = " ",
 }
 
--- Add additional capabilities supported by nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-local server_settings = {
-  nil_ls = {
-    ['nil'] = {
-      formatting = {
-        command = { "nixpkgs-fmt" },
-      }
-    }
+-- format on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  callback = function() vim.lsp.buf.format() end,
+})
+
+-- diagnostics keymaps
+vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, { silent = true })
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { silent = true })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { silent = true })
+vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, { silent = true })
+
+-- default capabilities
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+vim.lsp.config("*", {
+  capabilities = capabilities,
+})
+
+-- buffer-local keymaps on attach
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local bufnr = args.buf
+    local map = function(mode, lhs, rhs, desc)
+      vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, silent = true, desc = desc })
+    end
+
+    map("n", "gD", vim.lsp.buf.declaration, "Declaration")
+    map("n", "gd", vim.lsp.buf.definition, "Definition")
+    map("n", "K", vim.lsp.buf.hover, "Hover")
+    map("n", "gi", vim.lsp.buf.implementation, "Implementation")
+    map("n", "<C-k>", vim.lsp.buf.signature_help, "Signature Help")
+    map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, "Add workspace folder")
+    map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, "Remove workspace folder")
+    map("n", "<space>wl", function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+      "List workspace folders")
+    map("n", "<space>D", vim.lsp.buf.type_definition, "Type definition")
+    map("n", "<space>rn", vim.lsp.buf.rename, "Rename")
+    map("n", "<space>ca", vim.lsp.buf.code_action, "Code Action")
+    map("n", "gr", vim.lsp.buf.references, "References")
+    map("n", "<space>f", function() vim.lsp.buf.format { async = true } end, "Format")
+    map("n", "<space>clr", vim.lsp.codelens.refresh, "CodeLens Refresh")
+    map("n", "<space>cln", vim.lsp.codelens.run, "CodeLens Run")
+    map("n", "<space>tsoi", function()
+      vim.lsp.buf.execute_command({
+        command = "_typescript.organizeImports",
+        arguments = { vim.fn.expand("%:p") },
+      })
+    end, "TS Organize Imports")
+    map("n", "<space>tsf", "<cmd>EslintFixAll<cr>", "Eslint Fix All")
+  end,
+})
+
+-- custom servers
+vim.lsp.config("templ", {
+  cmd = { "templ", "lsp", "-http=localhost:7474", "-log=/Users/adrian/templ.log", "-goplsLog=/Users/adrian/gopls.log" },
+  filetypes = { "templ" },
+  root_dir = require("lspconfig.util").root_pattern("go.mod", ".git"),
+})
+
+vim.lsp.config("jdtls", {
+  cmd = { "jdtls" },
+  filetypes = { "java" },
+  root_dir = require("lspconfig.util").root_pattern("Makefile", ".git", "build.gradle"),
+})
+
+-- per-server settings
+vim.lsp.config("nil_ls", {
+  settings = {
+    ["nil"] = {
+      formatting = { command = { "nixpkgs-fmt" } },
+    },
   },
-  gopls = {
+})
+
+vim.lsp.config("gopls", {
+  settings = {
     gopls = {
       codelenses = {
-        generate = true,   -- show the `go generate` lens.
-        gc_details = true, -- show a code lens toggling the display of gc's choices.
+        generate = true,
+        gc_details = true,
         test = true,
         upgrade_dependency = true,
         tidy = true,
       },
     },
   },
-  ts_ls = {
-    format = { enable = false },
-  },
-  eslint = {
+})
+
+vim.lsp.config("ts_ls", {
+  settings = { format = { enable = false } },
+})
+
+vim.lsp.config("eslint", {
+  settings = {
     enable = true,
-    format = { enable = true }, -- this will enable formatting
+    format = { enable = true },
     packageManager = "npm",
     autoFixOnSave = true,
     codeActionOnSave = {
       mode = "all",
       rules = { "!debugger", "!no-only-tests/*" },
     },
-    lintTask = {
-      enable = true,
-    },
+    lintTask = { enable = true },
   },
-  lua_ls = {
+})
+
+vim.lsp.config("lua_ls", {
+  settings = {
     Lua = {
       runtime = {
-        version = 'Lua 5.4',
+        version = "Lua 5.4",
         nonstandardSymbol = { "+=", "-=", "*=", "/=" },
       },
       diagnostics = {
-        globals = { 'playdate', 'import', 'vim' },
+        globals = { "playdate", "import", "vim" },
       },
       workspace = {
         library = { "/Users/adrian/Developer/PlaydateSDK/CoreLibs" },
       },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
+      telemetry = { enable = false },
     },
   },
-}
+})
 
-
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
--- eslint comes from:
--- npm i -g vscode-langservers-extracted
-local servers = {
-  'gopls',
-  'ccls',
-  'cmake',
-  'superhtml',
-  'ts_ls',
-  'templ',
-  'rls',
-  'eslint',
-  'lua_ls',
-  'jdtls',
-  'terraformls',
-  'tailwindcss',
-  'tflint',
-  'pylsp',
-  'nil_ls',
-  'yamlls',
-}
-for _, lsp in ipairs(servers) do
-  local lsp_opts = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    },
-  }
-  if server_settings[lsp] then lsp_opts.settings = server_settings[lsp] end
-  nvim_lsp[lsp].setup(lsp_opts)
+-- enable servers
+for _, lsp in ipairs({
+  "gopls",
+  "ccls",
+  "cmake",
+  "superhtml",
+  "ts_ls",
+  "templ",
+  "rls",
+  "eslint",
+  "lua_ls",
+  "jdtls",
+  "terraformls",
+  "tailwindcss",
+  "tflint",
+  "pylsp",
+  "nil_ls",
+  "yamlls",
+}) do
+  vim.lsp.enable(lsp)
 end
---vim.lsp.set_log_level("debug")
---Use :lua vim.lsp.set_log_level("debug") to enable debug logging interactively.
--- Use :LspLog to see logs.
 
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+-- completion
+vim.o.completeopt = "menuone,noselect"
 
--- luasnip setup
-local luasnip = require 'luasnip'
+local luasnip = require("luasnip")
+local cmp = require("cmp")
 
--- nvim-cmp setup
-local cmp = require 'cmp'
 cmp.setup {
   snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
+    expand = function(args) luasnip.lsp_expand(args.body) end,
   },
   window = {
-    -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     completion = {
       border = { "", "", "", "", "", "", " ", "" },
-      winhighlight = 'NormalFloat:NormalFloat,FloatBorder:FloatBorder',
+      winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
     },
     documentation = {
       border = { "", "", "", "", "", "", "", "" },
-      winhighlight = 'NormalFloat:NormalFloat,FloatBorder:FloatBorder',
+      winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
     },
   },
   mapping = {
-    ['<tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-    ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-    ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-    ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    }),
-    ['<C-d>'] = cmp.mapping(function(fallback)
+    ["<Tab>"]     = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+    ["<C-p>"]     = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    ["<Down>"]    = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+    ["<Up>"]      = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"]     = cmp.mapping.close(),
+    ["<CR>"]      = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+    ["<C-d>"]     = cmp.mapping(function(fallback)
       if luasnip.jumpable(1) then
         luasnip.jump(1)
       else
-        cmp.mapping.scroll_docs(-4)
-        fallback()
+        cmp.mapping.scroll_docs(-4)(fallback)
       end
-    end, { 'i', 's' }),
-    ['<C-b>'] = cmp.mapping(function(fallback)
+    end, { "i", "s" }),
+    ["<C-b>"]     = cmp.mapping(function(fallback)
       if luasnip.jumpable(-1) then
         luasnip.jump(-1)
       else
-        cmp.mapping.scroll_docs(4)
-        fallback()
+        cmp.mapping.scroll_docs(4)(fallback)
       end
-    end, { 'i', 's' }),
+    end, { "i", "s" }),
   },
   preselect = cmp.PreselectMode.None,
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
   }, {
-    { name = 'buffer' },
+    { name = "buffer" },
   }),
 }
 
--- https://github.com/samhh/dotfiles/blob/ba63ff91a33419dfb08e412a7d832b2aca38148c/home/.config/nvim/plugins.vim#L151
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
-  {
-    virtual_text = false,
-    signs = true,
-    update_in_insert = false,
-    underline = true,
-  }
-)
+-- diagnostics config
+vim.diagnostic.config {
+  virtual_text = false,
+  signs = true,
+  update_in_insert = false,
+  underline = true,
+}
 
--- Copilot setup.
+-- copilot
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
--- Accept the current completion with Ctrl-].
-vim.keymap.set('i', '<C-]>', 'copilot#Accept("\\<CR>")', {
-  expr = true,
-  replace_keycodes = false
-})
--- Accept the current completion word with Ctrl-\.
-vim.keymap.set('i', '<C-\\>', '<Plug>(copilot-accept-word)')
--- Accept the current completion line with Ctrl-|.
-vim.keymap.set('i', '<C-|>', '<Plug>(copilot-accept-line)')
--- Request a suggestion with Ctrl-.
-vim.keymap.set('i', '<C-.>', '<Plug>(copilot-suggest)')
+vim.keymap.set("i", "<C-]>", 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
+vim.keymap.set("i", "<C-\\>", "<Plug>(copilot-accept-word)")
+vim.keymap.set("i", "<C-|>", "<Plug>(copilot-accept-line)")
+vim.keymap.set("i", "<C-.>", "<Plug>(copilot-suggest)")

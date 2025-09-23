@@ -50,6 +50,7 @@
               nil = nil.packages.${system}.nil;
               flakegap = flakegap.packages.${system}.default;
               gemini-cli = pkgs-unstable.gemini-cli;
+              direnv = pkgs-unstable.direnv;
             })
           ];
           config = {
