@@ -34,9 +34,9 @@ in
   pkgs.silver-searcher
   pkgs.asciinema
   pkgs.astyle # Code formatter for C.
-  pkgs.aws-vault
-  pkgs.awscli2
-  pkgs.awslogs
+  #pkgs.aws-vault
+  #pkgs.awscli2
+  #pkgs.awslogs
   pkgs.ccls # C LSP Server.
   pkgs.cmake # Used by Raspberry Pi Pico SDK.
   pkgs.cargo # Rust tooling.
@@ -78,25 +78,25 @@ in
   pkgs.nixpkgs-fmt
   pkgs.nix-prefetch-git
   pkgs.nmap
-  pkgs.nodePackages.prettier
-  pkgs.nodePackages.typescript
-  pkgs.nodePackages.typescript-language-server
-  pkgs.nodejs
+  #pkgs.nodePackages.prettier
+  #pkgs.nodePackages.typescript
+  #pkgs.nodePackages.typescript-language-server
+  #pkgs.nodejs
   pkgs.p7zip
   pkgs.pass
   pkgs.powerline
   pkgs.podman
-  (pkgs.python3.withPackages (ps: with ps; [
-    python-lsp-server
-    python-lsp-jsonrpc
-    python-lsp-black
-    python-lsp-ruff
-    pyls-isort
-    pyls-flake8
-    flake8
-    isort
-    black
-  ]))
+  #(pkgs.python3.withPackages (ps: with ps; [
+  #python-lsp-server
+  #python-lsp-jsonrpc
+  #python-lsp-black
+  #python-lsp-ruff
+  #pyls-isort
+  #pyls-flake8
+  #flake8
+  #isort
+  #black
+  #]))
   pkgs.ripgrep
   pkgs.source-code-pro
   pkgs.rustc # Rust compiler.

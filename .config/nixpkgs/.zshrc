@@ -122,3 +122,8 @@ listening() {
 
 # Automatically configure direnv.
 eval "$(direnv hook zsh)"
+
+# Load kubectl autocomplete.
+if command -v kubectl &> /dev/null; then
+    source <(kubectl completion zsh)
+fi

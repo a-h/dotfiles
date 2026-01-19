@@ -26,7 +26,6 @@ in
     packages = [ pkgs.nerd-fonts.blex-mono ];
   };
 
-  nix.package = pkgs.nix;
   nix.distributedBuilds = true;
   #nix.buildMachines = [
   #{

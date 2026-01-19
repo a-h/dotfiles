@@ -1,9 +1,10 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     dynamotableviz = {
       url = "github:a-h/dynamotableviz/v0.0.15";
@@ -13,17 +14,8 @@
       url = "github:joerdav/xc/f8e8e658978d6c9fe49c27b684ca7375a74deef1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    goreleaser = {
-      url = "github:a-h/nix-goreleaser";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     darwin = {
-      url = "github:lnl7/nix-darwin/nix-darwin-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nil = {
-      url = "github:oxalica/nil";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:lnl7/nix-darwin/nix-darwin-25.11";
     };
     flakegap = {
       url = "github:a-h/flakegap/v0.0.84";
@@ -31,7 +23,7 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, darwin, home-manager, dynamotableviz, xc, goreleaser, nil, flakegap, ... } @inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, darwin, home-manager, dynamotableviz, xc, flakegap, ... } @inputs:
     let
       getPkgsForSystem = system:
         let
@@ -46,11 +38,8 @@
               dynamotableviz = dynamotableviz.packages.${system}.dynamotableviz;
               xc = xc.packages.${system}.xc;
               #go = prev.callPackage .config/nixpkgs/go.nix { };
-              goreleaser = goreleaser.packages.${system}.goreleaser;
-              nil = nil.packages.${system}.nil;
               flakegap = flakegap.packages.${system}.default;
-              gemini-cli = pkgs-unstable.gemini-cli;
-              direnv = pkgs-unstable.direnv;
+              #gemini-cli = pkgs-unstable.gemini-cli;
             })
           ];
           config = {
