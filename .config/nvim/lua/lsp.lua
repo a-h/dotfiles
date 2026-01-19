@@ -129,15 +129,12 @@ vim.lsp.config("lua_ls", {
   },
 })
 
--- enable servers
 for _, lsp in ipairs({
   "gopls",
   "ccls",
-  "cmake",
   "superhtml",
   "ts_ls",
   "templ",
-  "rls",
   "eslint",
   "lua_ls",
   "jdtls",

@@ -127,3 +127,8 @@ eval "$(direnv hook zsh)"
 if command -v kubectl &> /dev/null; then
     source <(kubectl completion zsh)
 fi
+
+# Fix SSL certs for nix-installed tools, use the system ones where possible.
+if [ -f /etc/ssl/certs/ca-certificates.crt ]; then
+  export NIX_SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+fi

@@ -8,6 +8,7 @@ in
 [
   adr-tools
   pkgs.air # Hot reload for Go.
+  pkgs.docker-credential-helpers
   pkgs.d2 # Diagramming
   goreplace
   neovim
