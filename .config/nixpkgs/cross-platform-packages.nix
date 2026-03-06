@@ -8,6 +8,8 @@ in
 [
   adr-tools
   pkgs.air # Hot reload for Go.
+  pkgs.claude-code
+  pkgs.crush
   pkgs.docker-credential-helpers
   pkgs.d2 # Diagramming
   goreplace

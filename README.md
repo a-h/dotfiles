@@ -62,7 +62,7 @@ Once found, add them to the `darwin-configuration.nix` file and rebuild with
 Env: NIXPKGS_ALLOW_UNFREE=1
 
 ```sh
-darwin-rebuild switch --impure --flake ./#adrian-mac
+sudo darwin-rebuild switch --impure --flake ./#adrian-mac
 ```
 
 ### rebuild-linux-install-hm

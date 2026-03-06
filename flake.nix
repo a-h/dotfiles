@@ -40,6 +40,7 @@
               #go = prev.callPackage .config/nixpkgs/go.nix { };
               flakegap = flakegap.packages.${system}.default;
               #gemini-cli = pkgs-unstable.gemini-cli;
+              crush = pkgs-unstable.crush;
             })
           ];
           config = {
