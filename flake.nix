@@ -21,9 +21,13 @@
       url = "github:a-h/flakegap/v0.0.84";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tuicr = {
+      url = "github:agavra/tuicr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, darwin, home-manager, dynamotableviz, xc, flakegap, ... } @inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, darwin, home-manager, dynamotableviz, xc, flakegap, tuicr, ... } @inputs:
     let
       getPkgsForSystem = system:
         let
@@ -39,8 +43,10 @@
               xc = xc.packages.${system}.xc;
               #go = prev.callPackage .config/nixpkgs/go.nix { };
               flakegap = flakegap.packages.${system}.default;
+              tuicr = tuicr.defaultPackage.${system};
               #gemini-cli = pkgs-unstable.gemini-cli;
               crush = pkgs-unstable.crush;
+              claude-code = pkgs-unstable.claude-code;
             })
           ];
           config = {

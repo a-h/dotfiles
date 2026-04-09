@@ -9,6 +9,8 @@ in
   adr-tools
   pkgs.air # Hot reload for Go.
   pkgs.claude-code
+  pkgs.docker # Colima needs the Docker CLI, but not the daemon.
+  pkgs.colima # Docker / k8s on macOS (and Linux!).
   pkgs.crush
   pkgs.docker-credential-helpers
   pkgs.d2 # Diagramming
@@ -113,6 +115,7 @@ in
   pkgs.tmate
   pkgs.tmux
   pkgs.tree
+  pkgs.tuicr
   pkgs.unzip
   pkgs.urlscan
   pkgs.vscode-langservers-extracted

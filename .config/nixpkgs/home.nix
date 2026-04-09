@@ -17,6 +17,7 @@ in
   home.packages = cross-platform-packages ++ [
     pkgs.adwaita-qt # QT theme to bend Qt applications to look like they belong into GNOME Shell
     pkgs.docker
+    pkgs.ghostty
     pkgs.gnomeExtensions.appindicator
     pkgs.gnomeExtensions.hide-top-bar
     pkgs.libvirt
