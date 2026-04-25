@@ -127,3 +127,5 @@ eval "$(direnv hook zsh)"
 if [ -f /etc/ssl/certs/ca-certificates.crt ]; then
   export NIX_SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 fi
+
+export EDITOR=nvim
