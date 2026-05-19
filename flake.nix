@@ -11,7 +11,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     xc = {
-      url = "github:joerdav/xc/f8e8e658978d6c9fe49c27b684ca7375a74deef1";
+      url = "github:joerdav/xc/de0bb12a9ead25c76398e5d468aecc0510bb18b9";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     darwin = {
@@ -40,7 +40,9 @@
           overlays = [
             (final: prev: {
               dynamotableviz = dynamotableviz.packages.${system}.dynamotableviz;
-              xc = xc.packages.${system}.xc;
+              xc = xc.packages.${system}.xc.overrideAttrs (old: {
+                src = xc;
+              });
               #go = prev.callPackage .config/nixpkgs/go.nix { };
               flakegap = flakegap.packages.${system}.default;
               tuicr = tuicr.defaultPackage.${system};
