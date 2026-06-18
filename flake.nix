@@ -1,9 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dynamotableviz = {
@@ -15,7 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     darwin = {
-      url = "github:lnl7/nix-darwin/nix-darwin-25.11";
+      url = "github:lnl7/nix-darwin/nix-darwin-26.05";
     };
     flakegap = {
       url = "github:a-h/flakegap/v0.0.84";
@@ -45,9 +45,11 @@
               });
               #go = prev.callPackage .config/nixpkgs/go.nix { };
               flakegap = flakegap.packages.${system}.default;
-              tuicr = tuicr.defaultPackage.${system};
+              tuicr = tuicr.packages.${system}.default;
               #gemini-cli = pkgs-unstable.gemini-cli;
-              crush = pkgs-unstable.crush;
+              crush = pkgs-unstable.crush.overrideAttrs (old: {
+                doCheck = false;
+              });
               claude-code = pkgs-unstable.claude-code;
             })
           ];

@@ -76,7 +76,6 @@ nix-channel --update
 
 After first adding the home-manager channel.
 
-Interactive: true
 Env: NIXPKGS_ALLOW_UNFREE=1
 
 ```sh
