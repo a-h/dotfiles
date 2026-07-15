@@ -116,6 +116,7 @@ in
   pkgs.tmux
   pkgs.tree
   pkgs.tuicr
+  pkgs.typescript-language-server
   pkgs.unzip
   pkgs.urlscan
   pkgs.vscode-langservers-extracted
