@@ -96,7 +96,6 @@ nix run home-manager/release-25.05 -- switch --impure --flake ./#adrian-linux
 * Giphy capture
 * Little Snitch
 * Microsoft Remote Desktop
-* NoSQL Workbench DynamoDB
 * QMK Toolbox
 * Raspberry Pi Imager
 * Skype

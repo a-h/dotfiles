@@ -6,12 +6,8 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dynamotableviz = {
-      url = "github:a-h/dynamotableviz/v0.0.15";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     xc = {
-      url = "github:joerdav/xc/de0bb12a9ead25c76398e5d468aecc0510bb18b9";
+      url = "github:joerdav/xc/5dc73db31b9f29e69e40705a2c5a13797a15cfa6";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     darwin = {
@@ -22,12 +18,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     tuicr = {
-      url = "github:agavra/tuicr";
+      url = "github:agavra/tuicr/48e4b123fd7e59f4da094a317d1d9187110df2f7";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, darwin, home-manager, dynamotableviz, xc, flakegap, tuicr, ... } @inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, darwin, home-manager, xc, flakegap, tuicr, ... } @inputs:
     let
       getPkgsForSystem = system:
         let
@@ -39,7 +35,6 @@
         import nixpkgs {
           overlays = [
             (final: prev: {
-              dynamotableviz = dynamotableviz.packages.${system}.dynamotableviz;
               xc = xc.packages.${system}.xc.overrideAttrs (old: {
                 src = xc;
               });

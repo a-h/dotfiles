@@ -2,6 +2,7 @@
 
 let
   cross-platform-packages = pkgs.callPackage ./cross-platform-packages.nix { inherit pkgs; };
+  gtkTheme = { name = "Adwaita-dark"; };
 in
 {
   manual.manpages.enable = false;
@@ -50,13 +51,11 @@ in
 
   gtk = {
     enable = true;
-    theme = {
-      name = "Adwaita-dark"; # Enable dark mode for GTK2
-    };
+    theme = gtkTheme;
     gtk2.extraConfig = "gtk-application-prefer-dark-theme = \"true\"";
     gtk3.extraConfig = { "gtk-application-prefer-dark-theme" = "true"; };
     gtk4 = {
-      theme = config.gtk.theme;
+      theme = gtkTheme;
       extraConfig = { "gtk-application-prefer-dark-theme" = "true"; };
     };
   };

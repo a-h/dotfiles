@@ -47,7 +47,6 @@ in
   pkgs.cargo # Rust tooling.
   pkgs.delve # Go debugger.
   pkgs.direnv # Support loading environment files, and the use of https://marketplace.visualstudio.com/items?itemName=mkhl.direnv
-  pkgs.dynamotableviz
   pkgs.entr # Execute command when files change.
   pkgs.fd # Find that respects .gitignore.
   pkgs.flakegap # Transfer flakes across airgaps.
