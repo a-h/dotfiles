@@ -5,6 +5,8 @@ let
 in
 
 {
+  imports = [ ../common/registry.nix ];
+
   environment.variables = { EDITOR = "nvim"; };
 
   # List packages installed in system profile. To search by name, run:

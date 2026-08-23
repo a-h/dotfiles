@@ -23,6 +23,11 @@ vim.opt.number = true
 vim.opt.hlsearch = false
 vim.cmd("set mouse=")
 
+-- Use the system clipboard for all yank, delete, and paste operations. The
+-- wl-clipboard and xclip providers are baked into the wrapper's PATH, so this
+-- works under both Wayland and X11.
+vim.opt.clipboard = "unnamedplus"
+
 -- Configure nvim-tree.
 require("nvim-tree").setup()
 vim.keymap.set("n", "<C-h>", ":NvimTreeToggle<CR>")

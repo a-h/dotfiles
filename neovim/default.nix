@@ -42,6 +42,11 @@ let
     yaml-language-server
     rust-analyzer
     rustfmt
+  ]) ++ lib.optionals pkgs.stdenv.isLinux (with pkgs; [
+    # Clipboard providers for the editor. Linux only: macOS uses pbcopy/pbpaste,
+    # and wl-clipboard does not build on Darwin.
+    wl-clipboard
+    xclip
   ]);
 in
 pkgs.symlinkJoin {

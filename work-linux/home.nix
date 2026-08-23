@@ -5,6 +5,8 @@ let
   gtkTheme = { name = "Adwaita-dark"; };
 in
 {
+  imports = [ ../common/registry.nix ];
+
   manual.manpages.enable = false;
 
   # Don't show home-manager news

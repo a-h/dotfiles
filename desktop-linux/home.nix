@@ -12,6 +12,7 @@ in
   };
 
   home.packages = common-packages ++ [
+    pkgs.ghostty
     pkgs.wl-clipboard
   ];
 

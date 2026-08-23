@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../common/registry.nix
     ./hardware/hardware.nix
     ./hardware/disko.nix
     ./locale.nix
