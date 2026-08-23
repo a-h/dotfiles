@@ -1,4 +1,4 @@
-# The development tooling itself is installed per-user via home-manager
+# The development tooling itself is installed per-user in users.nix
 # (common/packages.nix). This module holds only what must be set system-wide.
 { ... }:
 

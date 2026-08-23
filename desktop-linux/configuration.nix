@@ -11,6 +11,7 @@
     ./steam.nix
     ./compute.nix
     ./development.nix
+    ./shell.nix
     ./users.nix
   ];
 

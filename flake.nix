@@ -141,17 +141,7 @@
             modules = [
               disko.nixosModules.disko
               ./desktop-linux/configuration.nix
-              home-manager.nixosModules.home-manager
-              {
-                nixpkgs.pkgs = desktopPkgs;
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.extraSpecialArgs = {
-                  inputs = inputs;
-                  neovim = neovimFor "x86_64-linux";
-                };
-                home-manager.users.adrian = import ./desktop-linux/home.nix;
-              }
+              { nixpkgs.pkgs = desktopPkgs; }
             ];
           };
       };
