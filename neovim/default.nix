@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, go ? pkgs.go, ... }:
 
 let
   wrappedNeovim = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped {
@@ -21,9 +21,13 @@ let
 
   # Runtime dependencies are baked into the nvim binary's PATH so that the
   # editor is self-contained and does not rely on system-installed packages.
-  runtimeDeps = with pkgs; [
-    gopls
-    gotools
+  # The Go toolchain is passed in via the go argument (defaulting to pkgs.go)
+  # so the caller can supply a newer Go for gopls than the stable nixpkgs one.
+  runtimeDeps = [
+    go
+    pkgs.gopls
+    pkgs.gotools
+  ] ++ (with pkgs; [
     nixd
     nixfmt
     fzf
@@ -38,7 +42,7 @@ let
     yaml-language-server
     rust-analyzer
     rustfmt
-  ];
+  ]);
 in
 pkgs.symlinkJoin {
   name = "neovim";

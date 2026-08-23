@@ -54,7 +54,6 @@
                 doCheck = false;
               });
               claude-code = pkgs-unstable.claude-code;
-              go = pkgs-unstable.go;
 
               # The 32-bit (i686) libcap build enables its Go bindings, but sets
               # GOARCH from the 64-bit build platform, so the Go compiler fails
@@ -72,8 +71,15 @@
           } // extraConfig;
         };
 
-      # Built with the default config: the editor needs no GPU support.
-      neovimFor = system: (getPkgsForSystem system { }).callPackage ./neovim { };
+      # The latest Go from nixpkgs-unstable, so gopls in the editor can analyse
+      # recent Go language features ahead of the stable nixpkgs release.
+      unstableGoFor = system: (import nixpkgs-unstable { system = system; }).go;
+
+      # Built with the default config: the editor needs no GPU support. The Go
+      # toolchain is overridden to the unstable version for gopls.
+      neovimFor = system: (getPkgsForSystem system { }).callPackage ./neovim {
+        go = unstableGoFor system;
+      };
     in
     {
       # Expose the self-contained neovim as a flake output so it can be run or
