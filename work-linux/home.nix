@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, neovim, ... }:
 
 let
-  cross-platform-packages = pkgs.callPackage ./cross-platform-packages.nix { inherit pkgs; };
+  common-packages = pkgs.callPackage ../common/packages.nix { inherit pkgs neovim; };
   gtkTheme = { name = "Adwaita-dark"; };
 in
 {
@@ -15,7 +15,7 @@ in
   };
 
   # Packages for this user.
-  home.packages = cross-platform-packages ++ [
+  home.packages = common-packages ++ [
     pkgs.adwaita-qt # QT theme to bend Qt applications to look like they belong into GNOME Shell
     pkgs.docker
     pkgs.ghostty
@@ -126,7 +126,7 @@ in
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    initContent = (builtins.readFile ./.zshrc);
+    initContent = (builtins.readFile ../common/.zshrc);
   };
 
   programs.fzf = {

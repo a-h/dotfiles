@@ -35,26 +35,17 @@ export AWS_VAULT_BACKEND=pass
 export AWS_VAULT_PASS_PREFIX=aws-vault
 
 # Use the dotfiles.
-if [ ! -f $HOME/.gitconfig ]; then
+if [ ! -e $HOME/.gitconfig ]; then
     ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
 fi
-if [ ! -f $HOME/.tmux.conf ]; then
+if [ ! -e $HOME/.tmux.conf ]; then
     ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
 fi
-if [ ! -f $HOME/.config/nixpkgs/darwin-configuration.nix ]; then
-    ln -s $HOME/dotfiles/.config/nixpkgs $HOME/.nixpkgs
-fi
-if [ ! -f $HOME/.mailcap ]; then
+if [ ! -e $HOME/.mailcap ]; then
     ln -s $HOME/dotfiles/.mailcap $HOME/.mailcap
 fi
-if [ ! -d "$HOME/.config/nvim/" ]; then
-  ln -s $HOME/dotfiles/.config/nvim $HOME/.config/nvim
-fi
-if [ ! -d "$HOME/.config/nixpkgs/" ]; then
-  ln -sf $HOME/dotfiles/.config/nixpkgs/ ~/.config/
-fi
-if [ ! -d "$HOME/.config/alacritty/" ]; then
-  ln -sf $HOME/dotfiles/.config/alacritty/ ~/.config/
+if [ ! -e "$HOME/.config/alacritty" ]; then
+  ln -s $HOME/dotfiles/.config/alacritty $HOME/.config/alacritty
 fi
 
 # Git aliases.

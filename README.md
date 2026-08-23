@@ -7,6 +7,33 @@
 * zsh configuration.
 * DZ60 configuration for keyboard layout (https://config.qmk.fm)
 
+## Layout
+
+The Nix configuration is split so that each machine imports the shared pieces
+it needs:
+
+* `neovim/` - A self-contained neovim package. It bakes its own language
+  servers and tools into the binary, so it does not depend on any
+  system-installed packages. It is exposed as the flake's `neovim` (and
+  `default`) package output, so it can be run or installed anywhere with
+  `nix run github:a-h/dotfiles#neovim`.
+* `common/` - Cross-platform pieces shared by every machine: the development
+  package list (`packages.nix`), the zsh configuration (`.zshrc`), and the
+  custom package derivations (`pkgs/`).
+* `mac/` - The nix-darwin configuration for the personal Mac (`adrian-mac`).
+* `work-linux/` - The home-manager configuration for the work Linux machine
+  (`adrian-linux`).
+* `desktop-linux/` - The NixOS configuration for the desktop machine
+  (`desktop-linux`). It runs the standard development environment and GPU
+  compute, and can also play games.
+
+The flake outputs are:
+
+* `packages.<system>.neovim` - the self-contained editor.
+* `darwinConfigurations.adrian-mac` - the Mac.
+* `homeConfigurations.adrian-linux` - the work Linux machine.
+* `nixosConfigurations.desktop-linux` - the desktop.
+
 ## New machine setup
 
 1. Import public key (`gpg --import public-key.gpg`)
@@ -52,8 +79,8 @@ ln ./dotfiles/.nixpkgs/darwin-configuration.nix ./.nixpkgs/
 Find more packages with `nix search <name>` or by browsing
 https://github.com/NixOS/nixpkgs/tree/master/pkgs/
 
-Once found, add them to the `darwin-configuration.nix` file and rebuild with
-`darwin-rebuild switch --impure --flake ./#adrian-mac`
+Once found, add them to the relevant machine's configuration and rebuild with
+the task for that machine.
 
 ## Tasks
 
@@ -65,21 +92,30 @@ Env: NIXPKGS_ALLOW_UNFREE=1
 sudo darwin-rebuild switch --impure --flake ./#adrian-mac
 ```
 
-### rebuild-linux-install-hm
-
-```
-nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz home-manager
-nix-channel --update
-```
-
 ### rebuild-linux
 
-After first adding the home-manager channel.
+The work Linux machine, using home-manager.
 
 Env: NIXPKGS_ALLOW_UNFREE=1
 
 ```sh
-nix run home-manager/release-25.05 -- switch --impure --flake ./#adrian-linux
+nix run home-manager/release-26.05 -- switch --impure --flake ./#adrian-linux
+```
+
+### rebuild-desktop
+
+The desktop machine, a full NixOS system.
+
+```sh
+sudo nixos-rebuild switch --flake ./#desktop-linux
+```
+
+### build-neovim
+
+Build the self-contained neovim package.
+
+```sh
+nix build ./#neovim
 ```
 
 ## Other programs
