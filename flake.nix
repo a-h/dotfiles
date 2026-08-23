@@ -55,6 +55,16 @@
               });
               claude-code = pkgs-unstable.claude-code;
               go = pkgs-unstable.go;
+
+              # The 32-bit (i686) libcap build enables its Go bindings, but sets
+              # GOARCH from the 64-bit build platform, so the Go compiler fails
+              # with "64-bit not compiled in". The 32-bit libcap pulled in by
+              # Steam and pipewire (via enable32Bit) only needs the C library, so
+              # disable the Go bindings there. See libcap package.nix withGo.
+              libcap =
+                if prev.stdenv.hostPlatform.system == "i686-linux"
+                then prev.libcap.override { withGo = false; }
+                else prev.libcap;
             })
           ];
           config = {
