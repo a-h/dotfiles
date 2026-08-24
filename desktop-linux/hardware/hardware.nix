@@ -14,7 +14,17 @@
   boot.kernelParams = [
     "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
     "amdgpu.ppfeaturemask=0xf7fff"
+    # nvidia-drm only loads ~7s into boot, so without this Plymouth waits for it
+    # and the kernel log scrolls past in the meantime. simpledrm is up at ~1s.
+    "plymouth.use-simpledrm=1"
   ];
+
+  # A splash screen instead of the kernel log during boot. DeviceScale is
+  # Plymouth's own HiDPI setting; it does not read monitors.xml.
+  boot.plymouth.enable = true;
+  boot.plymouth.extraConfig = ''
+    DeviceScale=2
+  '';
   hardware.nvidia = {
     modesetting.enable = true;
     open = true;
