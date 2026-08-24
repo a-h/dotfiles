@@ -123,15 +123,7 @@
       };
 
       nixosConfigurations = {
-        # CUDA and ROCm are enabled so GPU compute and ML packages are built
-        # with hardware acceleration.
         desktop-linux =
-          let
-            desktopPkgs = getPkgsForSystem "x86_64-linux" {
-              cudaSupport = true;
-              rocmSupport = true;
-            };
-          in
           nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             specialArgs = {
@@ -141,7 +133,7 @@
             modules = [
               disko.nixosModules.disko
               ./desktop-linux/configuration.nix
-              { nixpkgs.pkgs = desktopPkgs; }
+              { nixpkgs.pkgs = getPkgsForSystem "x86_64-linux" { }; }
             ];
           };
       };

@@ -9,7 +9,6 @@
     ./network.nix
     ./desktop.nix
     ./steam.nix
-    ./compute.nix
     ./development.nix
     ./shell.nix
     ./users.nix
@@ -21,7 +20,7 @@
   security.sudo.wheelNeedsPassword = false;
 
   # nixpkgs.config is deliberately unset: the pkgs instance is created in the
-  # flake, where allowUnfree, cudaSupport, and rocmSupport are configured.
+  # flake, where allowUnfree is configured.
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   services.openssh = {
