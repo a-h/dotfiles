@@ -48,5 +48,27 @@
   systemd.packages = [ pkgs.lact ];
   systemd.services.lactd.wantedBy = [ "multi-user.target" ];
 
+  # The Bluetooth radio (Realtek RTL8852CU, 13d3:3586) sits on the board's
+  # ASMedia-derived xHCI controller (1022:43f7, 0000:0e:00.0). That controller
+  # fails its runtime-resume path: when it has autosuspended and something wakes
+  # it - a device being plugged in, or the radio itself waking to take a
+  # reconnection - the resume errors with "xHC error in resume, USBSTS 0x401,
+  # Reinit", the kernel reinitialises the root hubs, and every device on the bus
+  # is reset. Resetting the radio tears down its links, so paired devices drop,
+  # and its scan engine can wedge until btusb resets the USB device and reloads
+  # the firmware.
+  #
+  # Holding the radio and the controller at power/control=on keeps them out of
+  # runtime suspend, so the broken resume path is never taken. This is a desktop,
+  # so there is no battery to save. It does not cover resume from a system
+  # suspend, which runs the same controller code regardless.
+  #
+  # The board's other xHCI controllers are 15b6, 15b7 and 15b8, so the PCI rule
+  # matches only the faulty one.
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="13d3", ATTR{idProduct}=="3586", ATTR{power/control}="on"
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x1022", ATTR{device}=="0x43f7", ATTR{power/control}="on"
+  '';
+
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
