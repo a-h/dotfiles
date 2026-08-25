@@ -18,7 +18,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     tuicr = {
-      url = "github:agavra/tuicr/48e4b123fd7e59f4da094a317d1d9187110df2f7";
+      url = "github:agavra/tuicr/v0.22.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {

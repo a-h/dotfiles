@@ -119,4 +119,7 @@ if [ -f /etc/ssl/certs/ca-certificates.crt ]; then
   export NIX_SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 fi
 
+# Ensure that gpg pinentry works as expected.
+gpg-connect-agent updatestartuptty /bye > /dev/null 2>&1
+
 export EDITOR=nvim
