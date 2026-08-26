@@ -1,17 +1,1 @@
-{
-  "flakes": [
-    {
-      "from": {
-        "id": "nixpkgs",
-        "type": "indirect"
-      },
-      "to": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "8eeec934ae0dbeca3d7868c059568a65c08b2fc3",
-        "type": "github"
-      }
-    }
-  ],
-  "version": 2
-}
+/nix/store/ffq076dimrmbgrcz3xsnbfzqbxdiy9iz-home-manager-files/.config/nix/registry.json
