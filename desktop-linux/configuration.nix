@@ -11,6 +11,7 @@
     ./firefox.nix
     ./ghostty.nix
     ./steam.nix
+    ./betaflight.nix
     ./development.nix
     ./shell.nix
     ./users.nix
