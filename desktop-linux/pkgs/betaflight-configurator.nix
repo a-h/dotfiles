@@ -49,6 +49,13 @@
   webkitgtk_4_1,
 }:
 
+let
+  # The commit that tag 2026.6.1 points at. Pinned as a rev rather than a tag
+  # so the short hash substituted into vite.config.js below is derived from the
+  # very thing the source is fetched from, and cannot drift from it when the
+  # version is bumped.
+  rev = "14a057ffc58417c5128199fc1233284982a64be3";
+in
 rustPlatform.buildRustPackage rec {
   pname = "betaflight-configurator";
   version = "2026.6.1";
@@ -56,7 +63,7 @@ rustPlatform.buildRustPackage rec {
   src = fetchFromGitHub {
     owner = "betaflight";
     repo = "betaflight-configurator";
-    tag = version;
+    inherit rev;
     hash = "sha256-5KS3nibbotoiJezJVKWcSpz8Bp5bd4rh20ZAoiPgAo8=";
   };
 
@@ -73,7 +80,7 @@ rustPlatform.buildRustPackage rec {
   # truthful and the build independent of a repository being present.
   postPatch = ''
     substituteInPlace vite.config.js \
-      --replace-fail 'child.execSync("git rev-parse --short HEAD").toString().trim()' '"14a057f"'
+      --replace-fail 'child.execSync("git rev-parse --short HEAD").toString().trim()' '"${builtins.substring 0 7 rev}"'
   '';
 
   cargoHash = "sha256-jBchYNXiKpyURC2SCoy71Xv6b1jRwj6OvTxtcpZgKlA=";
