@@ -42,7 +42,6 @@
     "fenix": {
       "inputs": {
         "nixpkgs": [
-          "tuicr",
           "naersk",
           "nixpkgs"
         ],
@@ -164,22 +163,21 @@
       "inputs": {
         "fenix": "fenix",
         "nixpkgs": [
-          "tuicr",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1769799857,
-        "narHash": "sha256-88IFXZ7Sa1vxbz5pty0Io5qEaMQMMUPMonLa3Ls/ss4=",
+        "lastModified": 1782220280,
+        "narHash": "sha256-thLTFbp9D5Qknmh8q/v4FRpLGphUSijT3E86cbLYTXo=",
         "owner": "nix-community",
         "repo": "naersk",
-        "rev": "9d4ed44d8b8cecdceb1d6fd76e74123d90ae6339",
+        "rev": "9aa07bb0256d300219b30622d2454e85f7f3667e",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
-        "ref": "master",
         "repo": "naersk",
+        "rev": "9aa07bb0256d300219b30622d2454e85f7f3667e",
         "type": "github"
       }
     },
@@ -237,6 +235,7 @@
         "disko": "disko",
         "flakegap": "flakegap",
         "home-manager": "home-manager",
+        "naersk": "naersk",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "tuicr": "tuicr",
@@ -292,7 +291,9 @@
     },
     "tuicr": {
       "inputs": {
-        "naersk": "naersk",
+        "naersk": [
+          "naersk"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ],

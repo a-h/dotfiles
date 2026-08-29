@@ -17,9 +17,23 @@
       url = "github:a-h/flakegap/v0.0.84";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # naersk is tuicr's Rust builder. It fetched crates from crates.io/api/v1,
+    # which now answers 403 to curl's default User-Agent, so building tuicr fails
+    # with "cannot download ... from any mirror". Upstream fixed this in
+    # nix-community/naersk#391 (merged 2026-06-08) by switching to
+    # static.crates.io, but every released tuicr tag - v0.24.0 included - still
+    # locks the January 2026 naersk from before the fix, so bumping tuicr does not
+    # pick it up and the override has to happen here. Pinned to a revision rather
+    # than tracking master, like the other inputs, so naersk cannot break a build
+    # unannounced.
+    naersk = {
+      url = "github:nix-community/naersk/9aa07bb0256d300219b30622d2454e85f7f3667e";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     tuicr = {
       url = "github:agavra/tuicr/v0.22.0";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.naersk.follows = "naersk";
     };
     disko = {
       url = "github:nix-community/disko";
