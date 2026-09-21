@@ -11,6 +11,11 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = false
 vim.cmd.colorscheme("vim")
 
+-- The vim colorscheme renders floating windows as magenta on grey, which is
+-- unreadable. Use reverse video so the float stands out from the buffer
+-- underneath without spending screen space on a border.
+vim.api.nvim_set_hl(0, "NormalFloat", { reverse = true })
+
 -- Setup editor options.
 vim.opt.expandtab = false
 vim.opt.tabstop = 2
@@ -78,7 +83,13 @@ vim.keymap.set("n", "<leader>a", function() ts_swap.swap_next("@parameter.inner"
 vim.keymap.set("n", "<leader>A", function() ts_swap.swap_previous("@parameter.inner") end)
 
 -- Configure autocompletion.
-require("blink.cmp").setup()
+require("blink.cmp").setup({
+  keymap = {
+    preset = "default",
+    ["<Tab>"] = { "select_and_accept", "fallback" },
+    ["<CR>"] = { "accept", "fallback" },
+  },
+})
 
 -- Enable LSPs.
 vim.lsp.enable("nixd")
@@ -95,8 +106,21 @@ vim.lsp.enable("jsonls")
 vim.lsp.enable("eslint")
 vim.lsp.enable("yamlls")
 vim.lsp.enable("rust_analyzer")
+-- Show diagnostics in a float, with the source shown and severity sorted so
+-- the most serious problem is listed first.
+vim.diagnostic.config({
+  severity_sort = true,
+  float = {
+    border = "none",
+    source = true,
+    header = "",
+  },
+})
+
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { remap = false })
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
+vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end)
+vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 
 -- Format on save.
