@@ -48,7 +48,8 @@ if [ ! -e "$HOME/.config/alacritty" ]; then
   ln -s $HOME/dotfiles/.config/alacritty $HOME/.config/alacritty
 fi
 if [ ! -e "$HOME/.config/nvim" ]; then
-  ln -s $HOME/dotfiles/neovim $HOME/.config/nvim
+	rm -f "$HOME/.config/nvim"
+	ln -s $HOME/dotfiles/neovim $HOME/.config/nvim
 fi
 
 # Git aliases.
