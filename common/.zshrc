@@ -47,6 +47,9 @@ fi
 if [ ! -e "$HOME/.config/alacritty" ]; then
   ln -s $HOME/dotfiles/.config/alacritty $HOME/.config/alacritty
 fi
+if [ ! -e "$HOME/.config/nvim" ]; then
+  ln -s $HOME/dotfiles/neovim $HOME/.config/nvim
+fi
 
 # Git aliases.
 alias gs="git status -s"
@@ -121,5 +124,9 @@ fi
 
 # Ensure that gpg pinentry works as expected.
 gpg-connect-agent updatestartuptty /bye > /dev/null 2>&1
+
+if command -v kubectl &> /dev/null; then
+    source <(kubectl completion zsh)
+fi
 
 export EDITOR=nvim
