@@ -31,7 +31,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     tuicr = {
-      url = "github:agavra/tuicr/v0.22.0";
+      url = "github:agavra/tuicr/v0.27.0";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.naersk.follows = "naersk";
     };
@@ -41,18 +41,33 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, darwin, home-manager, xc, flakegap, tuicr, disko, ... } @inputs:
+  outputs =
+    {
+      nixpkgs,
+      nixpkgs-unstable,
+      darwin,
+      home-manager,
+      xc,
+      flakegap,
+      tuicr,
+      disko,
+      ...
+    }@inputs:
     let
       # Build a nixpkgs instance for a system. extraConfig is merged into the
       # nixpkgs config, so machines that need it (e.g. the desktop for CUDA and
       # ROCm) can opt in without affecting the others. allowUnfree is set here
       # so unfree packages are permitted at the nixpkgs level everywhere,
       # rather than with per-package predicates.
-      getPkgsForSystem = system: extraConfig:
+      getPkgsForSystem =
+        system: extraConfig:
         let
           pkgs-unstable = import nixpkgs-unstable {
             system = system;
-            config = { allowUnfree = true; } // extraConfig;
+            config = {
+              allowUnfree = true;
+            }
+            // extraConfig;
           };
         in
         import nixpkgs {
@@ -75,14 +90,16 @@
               # Steam and pipewire (via enable32Bit) only needs the C library, so
               # disable the Go bindings there. See libcap package.nix withGo.
               libcap =
-                if prev.stdenv.hostPlatform.system == "i686-linux"
-                then prev.libcap.override { withGo = false; }
-                else prev.libcap;
+                if prev.stdenv.hostPlatform.system == "i686-linux" then
+                  prev.libcap.override { withGo = false; }
+                else
+                  prev.libcap;
             })
           ];
           config = {
             allowUnfree = true;
-          } // extraConfig;
+          }
+          // extraConfig;
         };
 
       # The latest Go from nixpkgs-unstable, so gopls in the editor can analyse
@@ -91,17 +108,21 @@
 
       # Built with the default config: the editor needs no GPU support. The Go
       # toolchain is overridden to the unstable version for gopls.
-      neovimFor = system: (getPkgsForSystem system { }).callPackage ./neovim {
-        go = unstableGoFor system;
-      };
+      neovimFor =
+        system:
+        (getPkgsForSystem system { }).callPackage ./neovim {
+          go = unstableGoFor system;
+        };
     in
     {
       # Expose the self-contained neovim as a flake output so it can be run or
       # installed anywhere: nix run .#neovim, or added to any other flake.
-      packages = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ] (system: {
-        neovim = neovimFor system;
-        default = neovimFor system;
-      });
+      packages =
+        nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ]
+          (system: {
+            neovim = neovimFor system;
+            default = neovimFor system;
+          });
 
       homeConfigurations = {
         # The work Linux machine.
@@ -137,19 +158,18 @@
       };
 
       nixosConfigurations = {
-        desktop-linux =
-          nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            specialArgs = {
-              inputs = inputs;
-              neovim = neovimFor "x86_64-linux";
-            };
-            modules = [
-              disko.nixosModules.disko
-              ./desktop-linux/configuration.nix
-              { nixpkgs.pkgs = getPkgsForSystem "x86_64-linux" { }; }
-            ];
+        desktop-linux = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {
+            inputs = inputs;
+            neovim = neovimFor "x86_64-linux";
           };
+          modules = [
+            disko.nixosModules.disko
+            ./desktop-linux/configuration.nix
+            { nixpkgs.pkgs = getPkgsForSystem "x86_64-linux" { }; }
+          ];
+        };
       };
     };
 }
