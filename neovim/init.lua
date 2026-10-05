@@ -46,14 +46,14 @@ vim.keymap.set("n", "<leader>P", require("fzf-lua").live_grep)
 -- nvim-treesitter 0.10.0 removed the configs module; highlighting is now via
 -- Neovim's built-in treesitter API.
 vim.api.nvim_create_autocmd("FileType", {
-  callback = function()
-    pcall(vim.treesitter.start)
-  end,
+	callback = function()
+		pcall(vim.treesitter.start)
+	end,
 })
 
 require("nvim-treesitter-textobjects").setup({
-  select = { lookahead = true },
-  move = { set_jumps = true },
+	select = { lookahead = true },
+	move = { set_jumps = true },
 })
 
 local ts_select = require("nvim-treesitter-textobjects.select")
@@ -84,11 +84,11 @@ vim.keymap.set("n", "<leader>A", function() ts_swap.swap_previous("@parameter.in
 
 -- Configure autocompletion.
 require("blink.cmp").setup({
-  keymap = {
-    preset = "default",
-    ["<Tab>"] = { "select_and_accept", "fallback" },
-    ["<CR>"] = { "accept", "fallback" },
-  },
+	keymap = {
+		preset = "default",
+		["<Tab>"] = { "select_and_accept", "fallback" },
+		["<CR>"] = { "accept", "fallback" },
+	},
 })
 
 -- Enable LSPs.
@@ -99,6 +99,7 @@ vim.lsp.enable("lua_ls")
 vim.lsp.enable("tailwindcss")
 vim.lsp.enable("terraformls")
 vim.lsp.enable("superhtml")
+vim.lsp.enable("templ")
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("html")
 vim.lsp.enable("cssls")
@@ -109,12 +110,12 @@ vim.lsp.enable("rust_analyzer")
 -- Show diagnostics in a float, with the source shown and severity sorted so
 -- the most serious problem is listed first.
 vim.diagnostic.config({
-  severity_sort = true,
-  float = {
-    border = "none",
-    source = true,
-    header = "",
-  },
+	severity_sort = true,
+	float = {
+		border = "none",
+		source = true,
+		header = "",
+	},
 })
 
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { remap = false })
@@ -125,15 +126,15 @@ vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 
 -- Format on save.
 vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if client:supports_method("textDocument/formatting") then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = ev.buf,
-        callback = function()
-          vim.lsp.buf.format({ bufnr = ev.buf, id = client.id, timeout_ms = 1000 })
-        end,
-      })
-    end
-  end,
+	callback = function(ev)
+		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+		if client:supports_method("textDocument/formatting") then
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				buffer = ev.buf,
+				callback = function()
+					vim.lsp.buf.format({ bufnr = ev.buf, id = client.id, timeout_ms = 1000 })
+				end,
+			})
+		end
+	end,
 })

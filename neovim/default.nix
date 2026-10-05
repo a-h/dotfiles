@@ -33,6 +33,7 @@ let
     fzf
     ripgrep
     ccls
+    templ
     lua-language-server
     tailwindcss-language-server
     terraform-ls
