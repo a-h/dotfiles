@@ -1,4 +1,4 @@
-{ pkgs, lib, go ? pkgs.go, ... }:
+{ pkgs, lib, go ? pkgs.go, gopls ? pkgs.gopls, ... }:
 
 let
   wrappedNeovim = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped {
@@ -21,11 +21,12 @@ let
 
   # Runtime dependencies are baked into the nvim binary's PATH so that the
   # editor is self-contained and does not rely on system-installed packages.
-  # The Go toolchain is passed in via the go argument (defaulting to pkgs.go)
-  # so the caller can supply a newer Go for gopls than the stable nixpkgs one.
+  # The Go toolchain and gopls are passed in via the go and gopls arguments
+  # (defaulting to pkgs.go and pkgs.gopls) so the caller can supply newer
+  # versions than the stable nixpkgs ones, keeping pace with new Go releases.
   runtimeDeps = [
     go
-    pkgs.gopls
+    gopls
     pkgs.gotools
   ] ++ (with pkgs; [
     nixd

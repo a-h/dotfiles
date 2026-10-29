@@ -102,16 +102,19 @@
           // extraConfig;
         };
 
-      # The latest Go from nixpkgs-unstable, so gopls in the editor can analyse
-      # recent Go language features ahead of the stable nixpkgs release.
-      unstableGoFor = system: (import nixpkgs-unstable { system = system; }).go;
-
-      # Built with the default config: the editor needs no GPU support. The Go
-      # toolchain is overridden to the unstable version for gopls.
+      # Built with default config: the editor does not need GPU support. Go is
+      # taken as go_1_27 (bump this attribute as new Go versions ship) and
+      # gopls comes from nixpkgs-unstable, both ahead of the versions in the
+      # pinned nixpkgs release, so the editor can analyse newer Go projects.
       neovimFor =
         system:
-        (getPkgsForSystem system { }).callPackage ./neovim {
-          go = unstableGoFor system;
+        let
+          pkgs = getPkgsForSystem system { };
+          pkgs-unstable = import nixpkgs-unstable { system = system; };
+        in
+        pkgs.callPackage ./neovim {
+          go = pkgs.go_1_27;
+          gopls = pkgs-unstable.gopls;
         };
     in
     {

@@ -118,11 +118,32 @@ vim.diagnostic.config({
 	},
 })
 
+-- Neovim 0.12 sets these LSP mappings by default when a server attaches
+-- (see :help lsp-defaults):
+--
+--   grr       References.
+--   gri       Implementation.
+--   grt       Type definition.
+--   grn       Rename.
+--   gra       Code action (normal and visual mode).
+--   gO        Document symbols in the location list.
+--   K         Hover documentation.
+--   <C-s>     Signature help (insert mode).
+--   <C-]>     Go to definition, through tagfunc.
+--   an / in   Expand or shrink the selection by syntax node (visual mode).
+--
+-- It also sets these diagnostic mappings by default:
+--
+--   ]d / [d   Next or previous diagnostic.
+--   ]D / [D   Last or first diagnostic.
+--   <C-w>d    Show the diagnostic under the cursor in a float.
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { remap = false })
+vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
 vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end)
 vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 
 -- Format on save.
 vim.api.nvim_create_autocmd("LspAttach", {
